@@ -4,25 +4,29 @@
     {
         public struct Folder
         {
-             public const string IMAGE = "imageApp";
-             public const string ROOTIMAGE = @"\img\";
-             public const string ICONO = "logo_main.ico";
-             public const string PRIMERO = "back_2_fill.png";
-             public const string ANTERIOR = "left_fill.png";
-             public const string SIGUIENTE = "right_fill.png";
-             public const string ULTIMA = "forward_2_fill.png";
-             public const string PLACEHOLDER = "imgPlaceholder.jpg";
-             public const string IMPRIMIR = "printer_medium_icon.png";
-             public const string GUARDARARCHIVO = "folder_medium_icon.png";
-             public const string EXPORTAR = "export_medium_icon.png";
-             public const string CONFIGURACION = "configure.png";
-             public const string LOGO = "logo_generic.jpg";
-             public const string ELIMINAR = "delete.png";
-             public const string VERSION = "version_fill.png";
-             public const string AUTOR = "user_3_fill.png";
-             public const string GITHUB = "github_fill.png";
-             public const string WEB = "web_fill.png";
-             public const string MAIL = "mail_fill.png";
+            public const string IMAGE = "imageApp";
+            public const string ROOTIMAGE = @"\img\";
+            public const string ICONO = "logo_main.ico";
+            public const string PRIMERO = "back_2_fill.png";
+            public const string ANTERIOR = "left_fill.png";
+            public const string SIGUIENTE = "right_fill.png";
+            public const string ULTIMA = "forward_2_fill.png";
+            public const string PLACEHOLDER = "imgPlaceholder.jpg";
+            public const string IMPRIMIR = "printer_medium_icon.png";
+            public const string GUARDARARCHIVO = "folder_medium_icon.png";
+            public const string EXPORTAR = "export_medium_icon.png";
+            public const string CONFIGURACION = "configure.png";
+            public const string LOGO = "logo_generic.jpg";
+            public const string ELIMINAR = "delete.png";
+            public const string VERSION = "version_fill.png";
+            public const string AUTOR = "user_3_fill.png";
+            public const string GITHUB = "github_fill.png";
+            public const string WEB = "web_fill.png";
+            public const string MAIL = "mail_fill.png";
+            public const string DATABASE = @"\DataBase\";
+            public const string DATA = "data.csv";
+            public const string DATAMARCA = "marca.csv";
+            public const string DATACATEGORIA = "categoria.csv";
         }
 
         public struct Buscador
