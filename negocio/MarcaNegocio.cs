@@ -3,6 +3,9 @@ using dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace negocio
 {
@@ -12,161 +15,178 @@ namespace negocio
 
         public List<Marca> listar()
         {
-            AccesoDB datoSQL = new AccesoDB();
+            //TODO Crear Carpeta y archivo en caso de que no existan
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
 
-            try
-            {
-                datoSQL.setQuery("SELECT * FROM MARCAS");
-                datoSQL.executeReader();
-
-                while (datoSQL.Reader.Read())
-                {
-                    Marca aux = new Marca();
-                    aux.Id = (int)datoSQL.Reader["Id"];
-                    aux.Descripcion = (string)datoSQL.Reader["Descripcion"];
-
-                    listaMarca.Add(aux);
-
-                }
-
-                return listaMarca;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
-        }
-
-        public List<Marca> buscar(string filtro)
-        {
-            AccesoDB datoSQL = new AccesoDB();
             List<Marca> listaMarca = new List<Marca>();
 
             try
             {
-                datoSQL.setQuery($"select * from {Opciones.DBTablas.MARCAS} where descripcion like '%{filtro}%'");
-                datoSQL.executeReader();
-                while (datoSQL.Reader.Read())
+                if(new FileInfo(path + Opciones.Folder.DATAMARCA).Length > 2)
                 {
-                    Marca aux = new Marca();
-                    aux.Id = (int)datoSQL.Reader[Opciones.Campo.ID];
-                    aux.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCRIPCION];
+                    List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATAMARCA)
+                            .Select(line => line.Split(',')).ToList();
 
-                    listaMarca.Add(aux);
+                    foreach (string[] line in lines)
+                    {
+                        Marca marca = new Marca();
+                        marca.Id = int.Parse(line[0]);
+                        marca.Descripcion = line[1];
+
+                        listaMarca.Add(marca);
+                    }
                 }
-                return listaMarca;
+
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            finally
-            { 
-                datoSQL.closeConnection();
-            }
+
+            return listaMarca;
         }
 
         public bool agregar(string keyword)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = this.listar();
+
+            Marca aux = new Marca();
+            aux.Id = listaMarca.Count > 0 ? listaMarca[listaMarca.Count - 1].Id + 1 : 1;
+            aux.Descripcion = keyword;
+
+            listaMarca.Add(aux);
+
+            string csv = string.Empty;
+            //Adding the Rows
+            foreach (var item in listaMarca)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
 
             try
             {
-                datoSQL.setQuery($"INSERT INTO {Opciones.DBTablas.MARCAS} ({Opciones.Campo.DESCRIPCION}) VALUES ('{keyword}')");
-                if (datoSQL.executeNonQuery())
-                    return true;
+                File.WriteAllText(path + Opciones.Folder.DATAMARCA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
 
-            return false;
         }
 
         public bool modificar(Marca marca, string change)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = this.listar();
+
+            listaMarca = listaMarca.FindAll(prod => prod.Id != marca.Id);
+
+            Marca aux = new Marca();
+            aux.Id = marca.Id;
+            aux.Descripcion = change;
+            listaMarca.Add(aux);
+
+            string csv = string.Empty;
+
+            //Adding the Rows
+            foreach (var item in listaMarca)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
+
             try
             {
-                datoSQL.setQuery($"UPDATE {Opciones.DBTablas.MARCAS} SET {Opciones.Campo.DESCRIPCION} = '{change}' WHERE {Opciones.Campo.ID} = {marca.Id}");
-                if (datoSQL.executeNonQuery())
-                {
-                    datoSQL.closeConnection();
-                    return true;
-                }
-
+                File.WriteAllText(path + Opciones.Folder.DATAMARCA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
 
-            return false;
         }
 
         public bool eliminar(Marca marca)
         {
-            AccesoDB datoSQL = new AccesoDB();
-            ProductoNegocio productoNegocio = new ProductoNegocio();
-            List<Producto> listaProductos = productoNegocio.listar();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = this.listar();
+
+            listaMarca = listaMarca.FindAll(prod => prod.Id != marca.Id);
+
+            string csv = string.Empty;
+
+            //Adding the Rows
+            foreach (var item in listaMarca)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
 
             try
             {
-                if (listaProductos.All(x => x.MarcaInfo.Id != marca.Id))
-                {
-                    datoSQL.setQuery($"DELETE {Opciones.DBTablas.MARCAS} WHERE {Opciones.Campo.ID} = {marca.Id}");
+                File.WriteAllText(path + Opciones.Folder.DATAMARCA, csv);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
 
-                    if (datoSQL.executeNonQuery())
-                    {
-                        datoSQL.closeConnection();
-                        return true;
-                    }
-                }
+        }
+
+        public List<Marca> buscar(string filtro)
+        {
+            
+            List<Marca> listaMarca = new List<Marca>();
+
+            try
+            {
+                listaMarca = listaMarca.Select(prod => prod.Descripcion.Contains(filtro) ? prod : null).ToList();
+                return listaMarca;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection(); 
-            }
-
-            return false;
         }
 
         public bool existeMarca(string keyword)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = this.listar();
 
             try
             {
-                datoSQL.setQuery($"SELECT * FROM {Opciones.DBTablas.MARCAS} WHERE {Opciones.Campo.DESCRIPCION} = '{keyword}'");
-                datoSQL.executeReader();
+                    if(listaMarca.Any(prod => prod.Descripcion == keyword))
+                        return true;
 
-                if(datoSQL.Reader.Read())
-                    return true;
-                else
                     return false;
             }
             catch (Exception ex)
             {
 
                 throw ex;
-            }
-            finally
-            {
-                datoSQL.closeConnection();
             }
         }
     }
