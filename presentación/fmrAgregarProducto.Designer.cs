@@ -71,6 +71,7 @@
             this.lbAgregarCategoria = new System.Windows.Forms.Label();
             this.panelTituloCargarCategoria = new System.Windows.Forms.Panel();
             this.btnBorrar = new System.Windows.Forms.Button();
+            this.lbID = new System.Windows.Forms.Label();
             this.panelCargaProducto.SuspendLayout();
             this.panelCargarCategoria.SuspendLayout();
             this.panelCargarMarca.SuspendLayout();
@@ -96,6 +97,7 @@
             // panelCargaProducto
             // 
             this.panelCargaProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelCargaProducto.Controls.Add(this.lbID);
             this.panelCargaProducto.Controls.Add(this.lbErrorImagen);
             this.panelCargaProducto.Controls.Add(this.lbErrorCodigo);
             this.panelCargaProducto.Controls.Add(this.lbErrorArticulo);
@@ -583,6 +585,16 @@
             this.btnBorrar.UseVisualStyleBackColor = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
+            // lbID
+            // 
+            this.lbID.AutoSize = true;
+            this.lbID.Location = new System.Drawing.Point(110, 6);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(13, 13);
+            this.lbID.TabIndex = 20;
+            this.lbID.Text = "0";
+            this.lbID.Visible = false;
+            // 
             // fmrAgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -666,5 +678,6 @@
         private System.Windows.Forms.PictureBox pbDeleteImage;
         private System.Windows.Forms.Button btnConfigureMarca;
         private System.Windows.Forms.Button btnConfigureCategoria;
+        private System.Windows.Forms.Label lbID;
     }
 }

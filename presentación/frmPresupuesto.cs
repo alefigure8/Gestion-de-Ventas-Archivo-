@@ -248,7 +248,7 @@ namespace presentación
             if(listaPresupuesto.Count > 0)
             {
                 auxModificar.cantidad = (int)numericModificarPresupuesto.Value;
-                auxModificar.Precio = Convert.ToDecimal(txtModificarPrecio.Text.Replace(".", ","));
+                auxModificar.Precio = Convert.ToDecimal(txtModificarPrecio.Text);
                 auxModificar.total = auxModificar.cantidad * auxModificar.Precio;
 
                 listaPresupuesto.Remove(auxModificar);

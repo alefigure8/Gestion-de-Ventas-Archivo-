@@ -75,7 +75,8 @@ namespace presentación
 
         private void cantidadEncontrada()
         {
-            lbEncontrados.Text = $"{listaProductosAux.Count} productos encontrados";
+            if(listaProductosAux != null)
+                lbEncontrados.Text = $"{listaProductosAux.Count} productos encontrados";
         }
 
         private void listarProductos()
@@ -84,7 +85,8 @@ namespace presentación
             {
                 ProductoNegocio productos = new ProductoNegocio();
                 listaProductos = productos.listar();
-                listaProductosAux = listaProductos;
+                if(listaProductos != null)
+                    listaProductosAux = listaProductos;
             }
             catch (Exception)
             {
@@ -95,14 +97,17 @@ namespace presentación
         public void cargarGridView(bool sort = false)
         {
             //OPCIONES GRID
-            dgvProductos.DataSource = listaProductosAux;
-            dgvProductos.Columns[Opciones.Campo.ID].Visible = false;
-            dgvProductos.Columns[Opciones.Campo.URLIMAGEN].Visible = false;
-            dgvProductos.EnableHeadersVisualStyles = false;
+            if(listaProductos != null)
+            {
+                dgvProductos.DataSource = listaProductosAux;
+                dgvProductos.Columns[Opciones.Campo.ID].Visible = false;
+                dgvProductos.Columns[Opciones.Campo.URLIMAGEN].Visible = false;
+                dgvProductos.EnableHeadersVisualStyles = false;
 
-             //SORT
-            if (sort)
-                sortListaProducto();
+                //SORT
+                if (sort)
+                    sortListaProducto();
+            }
         }
 
         private void sortListaProducto()
@@ -142,10 +147,13 @@ namespace presentación
 
         private void mostrarPorCantidad()
         {
-            int mostrar = Convert.ToInt32(comboBoxMostrarCantidad.SelectedItem);
-            var subset = listaProductosAux.Take(mostrar).ToList();
-            dgvProductos.DataSource = subset;
-            cantidadEncontrada();
+            if(listaProductosAux != null)
+            {
+                int mostrar = Convert.ToInt32(comboBoxMostrarCantidad.SelectedItem);
+                var subset = listaProductosAux.Take(mostrar).ToList();
+                dgvProductos.DataSource = subset;
+                cantidadEncontrada();
+            }
         }
 
        private void comboBoxCriterioBusquedaAvanzada()
@@ -407,7 +415,7 @@ namespace presentación
                     {
 
                         //Add the Data rows.
-                        csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ";")},{item.ImagenURL},{item.MarcaInfo.Id},{item.MarcaInfo.Descripcion},{item.CategoriaInfo.Id},{item.CategoriaInfo.Descripcion}";
+                        csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.MarcaInfo.Descripcion},{item.CategoriaInfo.Id},{item.CategoriaInfo.Descripcion}";
 
                         //Add new line.
                         csv += "\r\n";

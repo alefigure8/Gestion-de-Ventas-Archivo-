@@ -97,6 +97,7 @@ namespace presentación
 
         private void cargarFormulario()
         {
+            lbID.Text = productoAux.Id.ToString();
             txtAgregarCodigo.Text = productoAux.Codigo;
             txtAgregarArticulo.Text = productoAux.Nombre;
             txtAgregarDescripcion.Text = productoAux.Descripcion;
@@ -171,6 +172,7 @@ namespace presentación
             if (producto != null)
             {
                 //Carga formulario con los datos del objeto a editar
+                lbID.Text = producto.Id.ToString();
                 txtAgregarCodigo.Text = producto.Codigo;
                 txtAgregarArticulo.Text = producto.Nombre;
                 txtAgregarDescripcion.Text = producto.Descripcion;
@@ -201,13 +203,14 @@ namespace presentación
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             //Habilitar campos para editar
-            if(this.vista)
+            if (this.vista)
             {
                 modoModificar();
                 return;
             }
 
             // Variables formulario
+            int Id = int.Parse(lbID.Text);
             string precio = txtAgregarPrecio.Text.Trim();
             string codigo = txtAgregarCodigo.Text.Trim();
             string nombre = txtAgregarArticulo.Text.Trim();
@@ -247,6 +250,8 @@ namespace presentación
 
                 return;
             }
+
+            producto.Id = Id;
             producto.Codigo = codigo;
             producto.Precio = Convert.ToDecimal(precio.Replace(".", ","));
             producto.Nombre = nombre;
@@ -287,7 +292,11 @@ namespace presentación
                         return;
                     }
 
-                     // Guardar producto en la base de datos
+                    //Crear ID //TODO PASAR A METODO
+                    int ultimoID = listaProducto.Count > 0 ? listaProducto[listaProducto.Count - 1].Id + 1 : 1;
+                    producto.Id = ultimoID;
+
+                    // Guardar producto en la base de datos
                     if (productoNegocio.agregar(producto))
                     {
                         MessageBox.Show("El Producto fue agregado con éxito");
@@ -332,8 +341,7 @@ namespace presentación
                         cargarFormulario();
                     }
 
-                    MessageBox.Show(ex.Message);
-                    //MessageBox.Show("El producto no pudo ser modificar");
+                    MessageBox.Show("El producto no pudo ser modificar");
                 }
             }
 
@@ -362,6 +370,7 @@ namespace presentación
                         if (categoria.agregar(cbAgregarcategoria.Text))
                         {
                             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
                             //Recargar ComboBoxes
                             ComboBoxOptions.comboBoxCategoria(cbAgregarcategoria);
                             ComboBoxOptions.comboBoxCategoria(cbCategoria);
@@ -402,6 +411,7 @@ namespace presentación
 
                     if(respuesta == DialogResult.OK)
                     {
+
                         if (negocio.agregar(cbAgregarMarca.Text))
                         {
                             MarcaNegocio marcaNegocio = new MarcaNegocio();
@@ -409,6 +419,7 @@ namespace presentación
                             //Recargar ComboBoxes
                             ComboBoxOptions.comboBoxMarca(cbAgregarMarca);
                             ComboBoxOptions.comboBoxMarca(cbMarca);
+                            listaMarca.Clear();
                             listaMarca = marcaNegocio.listar();
                             MessageBox.Show(Opciones.MensajeExito.EXITOCARGARMENSAJE);
                         }
@@ -494,7 +505,7 @@ namespace presentación
 
             if(result == DialogResult.OK)
             {
-                Metodos.borrarImagen(producto, file, txtAgregarImagen);
+                Metodos.borrarImagen(producto, txtAgregarImagen);
             }
             Metodos.cargarimagen(pbCargarProducto, txtAgregarImagen.Text);
         }
