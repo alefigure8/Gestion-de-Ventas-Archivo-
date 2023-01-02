@@ -3,139 +3,169 @@ using System.Collections.Generic;
 using System.Linq;
 using dominio;
 using configuracion;
+using System.IO;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> listaCategoria = new List<Categoria>();
-
         public List<Categoria> listar()
         {
-            AccesoDB datoSQL = new AccesoDB();
+            //TODO Crear Carpeta y archivo en caso de que no existan
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+            List<Categoria> listaCategoria = new List<Categoria>();
 
             try
             {
-                datoSQL.setQuery("SELECT * FROM CATEGORIAS");
-                datoSQL.executeReader();
-
-                while(datoSQL.Reader.Read())
+                if (new FileInfo(path + Opciones.Folder.DATACATEGORIA).Length > 2)
                 {
-                    Categoria aux = new Categoria();
-                    aux.Id = (int)datoSQL.Reader["Id"];
-                    aux.Descripcion = (string)datoSQL.Reader["Descripcion"];
+                    List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATACATEGORIA)
+                            .Select(line => line.Split(',')).ToList();
 
-                    listaCategoria.Add(aux);
+                    foreach (string[] line in lines)
+                    {
+                        Categoria categoria = new Categoria();
+                        categoria.Id = int.Parse(line[0]);
+                        categoria.Descripcion = line[1];
 
+                        listaCategoria.Add(categoria);
+                    }
                 }
 
-                return listaCategoria;
+                 return listaCategoria;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
+
         }
 
         public bool agregar(string keyword)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = this.listar();
+
+            Categoria aux = new Categoria();
+            aux.Id = listaCategoria.Count > 0 ? listaCategoria[listaCategoria.Count - 1].Id + 1 : 1;
+            aux.Descripcion = keyword;
+
+            listaCategoria.Add(aux);
+
+            string csv = string.Empty;
+
+            //Adding the Rows
+            foreach (var item in listaCategoria)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
 
             try
             {
-                datoSQL.setQuery($"INSERT INTO {Opciones.DBTablas.CATEGORIAS} ({Opciones.Campo.DESCRIPCION}) VALUES ('{keyword}')");
-                if (datoSQL.executeNonQuery())
-                    return true;
+                File.WriteAllText(path + Opciones.Folder.DATACATEGORIA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
-
-            return false;
         }
 
         public bool modificar(Categoria categoria, string change)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = this.listar();
+
+            listaCategoria = listaCategoria.FindAll(prod => prod.Id != categoria.Id);
+
+            Categoria aux = new Categoria();
+            aux.Id = categoria.Id;
+            aux.Descripcion = change;
+            listaCategoria.Add(aux);
+
+            string csv = string.Empty;
+
+            //Adding the Rows
+            foreach (var item in listaCategoria)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
+
             try
             {
-                datoSQL.setQuery($"UPDATE {Opciones.DBTablas.CATEGORIAS} SET {Opciones.Campo.DESCRIPCION} = '{change}' WHERE {Opciones.Campo.ID} = {categoria.Id}");
-                if (datoSQL.executeNonQuery())
-                { 
-                    datoSQL.closeConnection();
-                    return true;
-                }
+                File.WriteAllText(path + Opciones.Folder.DATACATEGORIA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-
-            return false;
         }
 
         public bool eliminar(Categoria categoria)
         {
-            AccesoDB datoSQL = new AccesoDB();
-            ProductoNegocio productoNegocio = new ProductoNegocio();
-            List<Producto> listaProductos = productoNegocio.listar();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = this.listar();
+
+            listaCategoria = listaCategoria.FindAll(prod => prod.Id != categoria.Id);
+
+            string csv = string.Empty;
+
+            //Adding the Rows
+            foreach (var item in listaCategoria)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Descripcion}";
+                //Add new line.
+                csv += "\r\n";
+            }
 
             try
             {
-                if (listaProductos.All(x => x.CategoriaInfo.Id != categoria.Id))
-                {
-                    datoSQL.setQuery($"DELETE {Opciones.DBTablas.CATEGORIAS} WHERE {Opciones.Campo.ID} = {categoria.Id}");
-
-                    if (datoSQL.executeNonQuery())
-                    {
-                        datoSQL.closeConnection();
-                        return true;
-                    }
-                }
+                File.WriteAllText(path + Opciones.Folder.DATACATEGORIA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
-
-            return false;
         }
 
         public bool existeCategoria(string keyword)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            List<Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = this.listar();
 
             try
             {
-                datoSQL.setQuery($"SELECT * FROM {Opciones.DBTablas.CATEGORIAS} WHERE {Opciones.Campo.DESCRIPCION} = '{keyword}'");
-                datoSQL.executeReader();
-
-                if (datoSQL.Reader.Read())
+                if (listaCategoria.Any(prod => prod.Descripcion == keyword))
                     return true;
-                else
-                    return false;
+
+                return false;
             }
             catch (Exception ex)
             {
-
                 throw ex;
-            }
-            finally
-            {
-                datoSQL.closeConnection();
             }
         }
     }
