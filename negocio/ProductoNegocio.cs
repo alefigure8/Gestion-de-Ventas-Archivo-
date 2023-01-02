@@ -10,8 +10,6 @@ namespace negocio
 {
     public class ProductoNegocio
     {
-        public List<Producto> listaProductos = new List<Producto>();
-
         public List<Producto> listar()
         {
             string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
@@ -63,7 +61,7 @@ namespace negocio
 
                     }
 
-                }
+                } // SI NO EXISTE CREAMOS CARPETA Y ARCHIVO
 
                 return listaProducto;
                 
@@ -78,10 +76,10 @@ namespace negocio
 
         public bool agregar (Producto producto)
         {
-
             string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
             string csv = string.Empty;
 
+            List<Producto> listaProductos = new List<Producto>();
             listaProductos = this.listar();
 
             listaProductos.Add(producto);
@@ -113,7 +111,9 @@ namespace negocio
 
         public bool modificar(Producto producto)
         {
+            List<Producto> listaProductos = new List<Producto>();
             listaProductos = this.listar();
+
             listaProductos = listaProductos.FindAll(prod => prod.Id != producto.Id );
             listaProductos.Add(producto);
 
@@ -145,6 +145,7 @@ namespace negocio
 
         public bool borrar(int id)
         {
+            List<Producto> listaProductos = new List<Producto>();
             listaProductos = this.listar();
             listaProductos = listaProductos.FindAll(prod => prod.Id != id);
  
@@ -174,61 +175,62 @@ namespace negocio
 
         }
 
-        //TODO BUSQUEDA EN ARCHIVOS O LISTA
         public List<Producto> busquedaAvanzada(string filtro, string campo, string criterio, string categoria, string marca)
         {
             List<Producto> listaProducto = new List<Producto>();
-            AccesoDB datoSQL = new AccesoDB();
+            listaProducto = this.listar();
 
             try
             {
-                string query = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.ImagenUrl, A.IdMarca, A.IdCategoria, C.Descripcion as CategoriaDescripcion, M.Descripcion as MarcaDescripcion, A.Precio " +
-                    $"from {Opciones.DBTablas.ARTICULOS} A, {Opciones.DBTablas.CATEGORIAS} C, {Opciones.DBTablas.MARCAS} M " +
-                    "where A.IdCategoria = C.Id AND A.IdMarca = M.Id " +
-                    $"AND M.Descripcion LIKE '%{marca}%' AND C.Descripcion LIKE '%{categoria}%' ";
+                //Filtro Marca
+                if(!string.IsNullOrEmpty(marca))
+                    listaProducto = listaProducto.FindAll(prod => prod.MarcaInfo.Descripcion == marca);
 
-                switch(campo)
+                //Friltro Categoria
+                if(!string.IsNullOrEmpty(categoria))
+                    listaProducto = listaProducto.FindAll(prod => prod.CategoriaInfo.Descripcion == categoria);
+
+                switch (campo)
                 {
                     case Opciones.Campo.NOMBRE:
                         {
                             switch(criterio)
                             {
                                 case Opciones.CriterioTexto.CONTIENE:
-                                    query += $"AND A.Nombre LIKE '%{filtro}%'";
+                                    {
+                                        if (string.IsNullOrEmpty(filtro))
+                                            return listaProducto;
+
+                                        listaProducto = listaProducto.FindAll(x => x.Nombre.ToLower() == filtro.ToLower()).ToList();
+                                    }
                                     break;
+
                                 case Opciones.CriterioTexto.EMPIEZA:
-                                    query += $"AND A.Nombre LIKE '{filtro}%'";
+                                    {
+                                        if (string.IsNullOrEmpty(filtro))
+                                            return listaProducto;
+
+                                        listaProducto = listaProducto.FindAll(x => x.Nombre.Contains(filtro)).ToList();
+                                    }
                                     break;
                                 case Opciones.CriterioTexto.INCLUYE:
                                     {
-                                        bool encontrado = false;
-                                        string[] vFiltro = filtro.Split(' ');
+                                        if (string.IsNullOrEmpty(filtro))
+                                            return listaProducto;
 
-                                        foreach(string item in vFiltro)
+                                        string[] keyWords = filtro.Split(',');
+                                        foreach(string word in keyWords)
                                         {
-                                            datoSQL.setQuery($"select Nombre from ARTICULOS where Nombre LIKE '%{item}%'");
-                                            datoSQL.executeReader();
-
-                                            if (datoSQL.Reader.HasRows)
+                                            if (listaProducto.Any(x => x.Nombre.Contains(word)))
                                             {
-                                                query += $"AND A.Nombre LIKE '%{item}%'";
-                                                encontrado= true;
-                                                break;  
+                                                listaProducto.FindAll(x => x.Nombre.Contains(word));
+                                                break;
                                             }
-
-                                            datoSQL.closeConnection();
                                         }
-
-                                        if(!encontrado)
-                                        {
-                                            query += $"AND A.Nombre LIKE '%{filtro}%'";
-                                        }
-
-                                        datoSQL.closeConnection();
                                     }
                                     break;
                                 default:
-                                    query += $"";
+                                    listaProducto.Clear();
                                     break;
                             }
                         }
@@ -238,41 +240,27 @@ namespace negocio
                             switch(criterio)
                             {
                                 case Opciones.CriterioTexto.CONTIENE:
-                                    query += $"AND A.Codigo LIKE '%{filtro}%'";
+                                    listaProducto = listaProducto.FindAll(x => x.Codigo.ToLower() == filtro.ToLower()).ToList();
                                     break;
+
                                 case Opciones.CriterioTexto.EMPIEZA:
-                                    query += $"AND A.Codigo LIKE '{filtro}%'";
+                                    listaProducto = listaProducto.FindAll(x => x.Codigo.Contains(filtro)).ToList();
                                     break;
                                 case Opciones.CriterioTexto.INCLUYE:
                                     {
-                                        bool encontrado = false;
-                                        string[] vFiltro = filtro.Split(' ');
-
-                                        foreach (string item in vFiltro)
+                                        string[] keyWords = filtro.Split(',');
+                                        foreach (string word in keyWords)
                                         {
-                                            datoSQL.setQuery($"select Codigo from ARTICULOS where Codigo LIKE '%{item}%'");
-                                            datoSQL.executeReader();
-
-                                            if (datoSQL.Reader.HasRows)
+                                            if (listaProducto.Any(x => x.Codigo.Contains(word)))
                                             {
-                                                query += $"AND A.Codigo LIKE '%{item}%'";
-                                                encontrado = true;
+                                                listaProducto.FindAll(x => x.Codigo.Contains(word));
                                                 break;
                                             }
-
-                                            datoSQL.closeConnection();
                                         }
-
-                                        if (!encontrado)
-                                        {
-                                            query += $"AND A.Codigo LIKE '%{filtro}%'";
-                                        }
-
-                                        datoSQL.closeConnection();
                                     }
                                     break;
                                 default:
-                                    query += $"";
+                                    listaProducto.Clear();
                                     break;
                             }
                         }
@@ -282,134 +270,55 @@ namespace negocio
                             switch (criterio)
                             {
                                 case Opciones.CriterioTexto.CONTIENE:
-                                    query += $"AND A.Descripcion LIKE '%{filtro}%'";
+                                    listaProducto = listaProducto.FindAll(x => x.Descripcion.ToLower() == filtro.ToLower()).ToList();
                                     break;
+
                                 case Opciones.CriterioTexto.EMPIEZA:
-                                    query += $"AND A.Descripcion LIKE '{filtro}%'";
+                                    listaProducto = listaProducto.FindAll(x => x.Descripcion.Contains(filtro)).ToList();
                                     break;
                                 case Opciones.CriterioTexto.INCLUYE:
                                     {
-                                        bool encontrado = false;
-                                        string[] vFiltro = filtro.Split(' ');
-
-                                        foreach (string item in vFiltro)
+                                        string[] keyWords = filtro.Split(',');
+                                        foreach (string word in keyWords)
                                         {
-                                            datoSQL.setQuery($"select Descripcion from ARTICULOS where Descripcion LIKE '%{item}%'");
-                                            datoSQL.executeReader();
-
-                                            if (datoSQL.Reader.HasRows)
+                                            if (listaProducto.Any(x => x.Descripcion.Contains(word)))
                                             {
-                                                query += $"AND A.Descripcion LIKE '%{item}%'";
-                                                encontrado = true;
+                                                listaProducto.FindAll(x => x.Descripcion.Contains(word));
                                                 break;
                                             }
-
-                                            datoSQL.closeConnection();
                                         }
-
-                                        if (!encontrado)
-                                        {
-                                            query += $"AND A.Descripcion LIKE '%{filtro}%'";
-                                        }
-
-                                        datoSQL.closeConnection();
                                     }
                                     break;
                                 default:
-                                    query += $"";
+                                    listaProducto.Clear();
                                     break;
                             }
                         }
                         break;
-                    //case Opciones.Campo.MARCA:
-                    //    {
-                    //        switch (criterio)
-                    //        {
-                    //            case Opciones.CriterioTexto.CONTIENE:
-                    //                query += $"AND M.Descripcion LIKE '%{filtro}%'";
-                    //                break;
-                    //            case Opciones.CriterioTexto.EMPIEZA:
-                    //                query += $"AND M.Descripcion LIKE '{filtro}%'";
-                    //                break;
-                    //            case Opciones.CriterioTexto.TERMINA:
-                    //                query += $"AND M.Descripcion LIKE '%{filtro}'";
-                    //                break;
-                    //            default:
-                    //                query += $"";
-                    //                break;
-                    //        }
-                    //    }
-                    //    break;
-                    //case Opciones.Campo.CATEGORIA:
-                    //    {
-                    //        switch (criterio)
-                    //        {
-                    //            case Opciones.CriterioTexto.CONTIENE:
-                    //                query += $"AND C.Descripcion LIKE '%{filtro}%'";
-                    //                break;
-                    //            case Opciones.CriterioTexto.EMPIEZA:
-                    //                query += $"AND C.Descripcion LIKE '{filtro}%'";
-                    //                break;
-                    //            case Opciones.CriterioTexto.TERMINA:
-                    //                query += $"AND C.Descripcion LIKE '%{filtro}'";
-                    //                break;
-                    //            default:
-                    //                query += $"";
-                    //                break;
-                    //        }
-                    //    }
-                    //    break;
                     case Opciones.Campo.PRECIO:
                         {
                             switch (criterio)
                             {
                                 case Opciones.CriterioNumero.MAYOR:
-                                    query += $"AND A.Precio > {filtro}";
+                                    listaProducto = listaProducto.FindAll(x => x.Precio > Convert.ToDecimal(filtro));
                                     break;
                                 case Opciones.CriterioNumero.MENOR:
-                                    query += $"AND A.Precio < {filtro}";
+                                    listaProducto = listaProducto.FindAll(x => x.Precio < Convert.ToDecimal(filtro));
                                     break;
                                 case Opciones.CriterioNumero.IGUAL:
-                                    query += $"AND A.Precio = {filtro}";
+                                    listaProducto = listaProducto.FindAll(x => x.Precio == Convert.ToDecimal(filtro));
                                     break;
                                 default:
-                                    query += $"";
+                                    listaProducto.Clear();
                                     break;
                             }
                         }
                         break;
                     default:
-                            query += $"A.Nombre LIKE '%'";
+                        listaProducto.Clear();
                         break;
                 }
 
-                datoSQL.setQuery(query);
-                datoSQL.executeReader();
-
-                while(datoSQL.Reader.Read())
-                {
-                    Producto aux = new Producto();
-
-                    //***** PRODUCTO ***** //
-                   aux.Id = (int)datoSQL.Reader[Opciones.Campo.ID];
-                   aux.Codigo = (string)datoSQL.Reader[Opciones.Campo.CODIGO];
-                   aux.Nombre = (string)datoSQL.Reader[Opciones.Campo.NOMBRE];
-                   aux.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCRIPCION];
-                   aux.Precio = Math.Round(Convert.ToDecimal(datoSQL.Reader["Precio"]), 2);
-                    aux.ImagenURL = (string)datoSQL.Reader[Opciones.Campo.URLIMAGEN];
-                   
-                   //**** MARCA ***** //
-                   aux.MarcaInfo = new Marca();
-                   aux.MarcaInfo.Id = (int)datoSQL.Reader[Opciones.Campo.IDMARCA];
-                   aux.MarcaInfo.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCMARCA];
-                   
-                   //**** CATEGORIA ***** ///
-                   aux.CategoriaInfo = new Categoria();
-                   aux.CategoriaInfo.Id = (int)datoSQL.Reader[Opciones.Campo.IDCATEGORIA];
-                   aux.CategoriaInfo.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCCATEGORIA];
-
-                    listaProducto.Add(aux);
-                }
 
                 return listaProducto;
             }
@@ -417,76 +326,20 @@ namespace negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
         }
 
         public List<Producto> busquedaSimple(string filtro)
         {
             List<Producto> listaProducto = new List<Producto>();
-            AccesoDB datoSQL = new AccesoDB();
+            listaProducto = this.listar();
 
             try
             {
-                string query =
-                    "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.ImagenUrl, A.IdMarca, A.IdCategoria, C.Descripcion as CategoriaDescripcion, M.Descripcion as MarcaDescripcion, A.Precio " +
-                    "from ARTICULOS A, CATEGORIAS C, MARCAS M " +
-                    "where  A.IdCategoria = C.Id AND A.IdMarca = M.Id ";
-                bool encontrado = false;
-                string[] vFiltro = filtro.Split(' ');
-
-                foreach (string item in vFiltro)
-                {
-                    datoSQL.setQuery($"SELECT Nombre FROM ARTICULOS WHERE Nombre LIKE '%{item}%' ");
-                    datoSQL.executeReader();
-
-                    if (datoSQL.Reader.HasRows)
-                    {
-                        Console.WriteLine("Entra " + item);
-                        query += $"AND A.Nombre LIKE '%{item}%'";
-                        encontrado = true;
-                        datoSQL.closeConnection();
-                        break;
-                    }
-
-                    datoSQL.closeConnection();
-                }
-
-                if (!encontrado)
-                {
-                    query += $"AND A.Nombre LIKE '%{filtro}%'";
-                }
-                Console.WriteLine(query);
-
-                datoSQL.setQuery(query);
-                datoSQL.executeReader();
-
-                while (datoSQL.Reader.Read())
-                {
-                    Producto aux = new Producto();
-
-                    //***** PRODUCTO ***** //
-                    aux.Id = (int)datoSQL.Reader[Opciones.Campo.ID];
-                    aux.Codigo = (string)datoSQL.Reader[Opciones.Campo.CODIGO];
-                    aux.Nombre = (string)datoSQL.Reader[Opciones.Campo.NOMBRE];
-                    aux.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCRIPCION];
-                    aux.Precio = Math.Round(Convert.ToDecimal(datoSQL.Reader["Precio"]), 2);
-                    aux.ImagenURL = (string)datoSQL.Reader[Opciones.Campo.URLIMAGEN];
-
-                    //**** MARCA ***** //
-                    aux.MarcaInfo = new Marca();
-                    aux.MarcaInfo.Id = (int)datoSQL.Reader[Opciones.Campo.IDMARCA];
-                    aux.MarcaInfo.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCMARCA];
-
-                    //**** CATEGORIA ***** ///
-                    aux.CategoriaInfo = new Categoria();
-                    aux.CategoriaInfo.Id = (int)datoSQL.Reader[Opciones.Campo.IDCATEGORIA];
-                    aux.CategoriaInfo.Descripcion = (string)datoSQL.Reader[Opciones.Campo.DESCCATEGORIA];
-
-                    listaProducto.Add(aux);
-                }
+                if (!string.IsNullOrEmpty(filtro))
+                    listaProducto = listaProducto.FindAll(x => x.Nombre.ToLower().Contains(filtro));
+                else
+                    listaProducto.Clear();
+                
                 return listaProducto;
             }
             catch(Exception ex)
