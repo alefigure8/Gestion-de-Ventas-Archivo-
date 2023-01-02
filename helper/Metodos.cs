@@ -47,12 +47,10 @@ namespace helper
             }
         }
 
-        static public bool borrarImagen(Producto producto, OpenFileDialog file, TextBox txtImagen)
+        static public bool borrarImagen(Producto producto, TextBox txtImagen)
         {
             try
             {
-                //string path = producto.ImagenURL;
-                //File.Delete(path);
                 producto.ImagenURL = "";
                 txtImagen.Text = "";
 
