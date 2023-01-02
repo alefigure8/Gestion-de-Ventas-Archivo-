@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using dominio;
 using configuracion;
-using System.Globalization;
+using System.Windows.Forms;
+using System.IO;
+using System.Linq;
 
 namespace negocio
 {
@@ -12,137 +14,167 @@ namespace negocio
 
         public List<Producto> listar()
         {
-            AccesoDB datoSQL = new AccesoDB();
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+
+            //Listar Marca
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            List<Marca> listaMarca = new List<Marca>();
+            listaMarca = marcaNegocio.listar();
+
+            //Listar Categoria
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            List <Categoria> listaCategoria = new List<Categoria>();
+            listaCategoria = categoriaNegocio.listar();
+
+            List<Producto> listaProducto = new List<Producto>();
+
             try
             {
-                datoSQL.setQuery(
-                    "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.ImagenUrl, A.IdMarca, A.IdCategoria, C.Descripcion as CategoriaDescripcion, M.Descripcion as MarcaDescripcion, A.Precio " +
-                    $"from {Opciones.DBTablas.ARTICULOS} A, {Opciones.DBTablas.CATEGORIAS} C, {Opciones.DBTablas.MARCAS} M " +
-                    "where A.IdCategoria = C.Id AND A.IdMarca = M.Id"
-                    );
-                datoSQL.executeReader();
-
-                while (datoSQL.Reader.Read())
+                if(File.Exists(path + Opciones.Folder.DATA))
                 {
-                    Producto aux = new Producto();
+                    if (new FileInfo(path + Opciones.Folder.DATA).Length > 2)
+                    {
+                        List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATA)
+                            .Select(line => line.Split(',')).ToList();
 
-                    //***** PRODUCTO ***** //
-                    aux.Id = (int)datoSQL.Reader["Id"];
-                    aux.Codigo = (string)datoSQL.Reader["Codigo"];
-                    aux.Nombre = (string)datoSQL.Reader["Nombre"];
-                    aux.Descripcion = (string)datoSQL.Reader["Descripcion"];
-                    aux.Precio = Math.Round(Convert.ToDecimal(datoSQL.Reader["Precio"]), 2);
-                    aux.ImagenURL = (string)datoSQL.Reader["ImagenUrl"];
+                        foreach (var data in lines)
+                        {
+                            int icolumn = 0;
+                            Producto aux = new Producto();
+                            aux.Id = int.Parse(data[icolumn++]);
+                            aux.Codigo = data[icolumn++];
+                            aux.Nombre = data[icolumn++];
+                            aux.Descripcion = data[icolumn++];
+                            aux.Precio = Convert.ToDecimal(data[icolumn++].Replace(".", ","));
+                            aux.ImagenURL = data[icolumn++];
 
-                    //***** MARCA ***** //
-                    aux.MarcaInfo = new Marca();
-                    aux.MarcaInfo.Id = (int)datoSQL.Reader["IdMarca"];
-                    aux.MarcaInfo.Descripcion = (string)datoSQL.Reader["MarcaDescripcion"];
-                    
-                    //***** CATEGORIA ***** ///
-                    aux.CategoriaInfo = new Categoria();
-                    aux.CategoriaInfo.Id = (int)datoSQL.Reader["IdCategoria"];
-                    aux.CategoriaInfo.Descripcion = (string)datoSQL.Reader["CategoriaDescripcion"];
+                            Marca marca = new Marca();
+                            marca.Id = int.Parse(data[icolumn++]);
+                            marca.Descripcion = listaMarca.Find(x => x.Id == marca.Id).Descripcion;
+                            aux.MarcaInfo = marca;
 
-                    listaProductos.Add(aux);
+                            Categoria categoria = new Categoria();
+                            categoria.Id = int.Parse(data[icolumn++]);
+                            categoria.Descripcion = listaCategoria.Find(x => x.Id == categoria.Id).Descripcion;
+                            aux.CategoriaInfo = categoria;
+
+                            listaProducto.Add(aux);
+                        }
+
+                    }
+
                 }
 
-                return listaProductos;
+                return listaProducto;
+                
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
+
         }
 
         public bool agregar (Producto producto)
         {
-            AccesoDB datoSQL = new AccesoDB();
 
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+            string csv = string.Empty;
+
+            listaProductos = this.listar();
+
+            listaProductos.Add(producto);
+
+            //Adding the Rows
+            foreach (var item in listaProductos)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                //Add new line.
+                csv += "\r\n";
+                //Add new line.
+            }
+
+            //Guardar
             try
             {
-                datoSQL.setQuery
-                 (
-                    $"INSERT INTO {Opciones.DBTablas.ARTICULOS} " +
-                    $"({Opciones.Campo.CODIGO}, {Opciones.Campo.NOMBRE}, {Opciones.Campo.DESCRIPCION}, {Opciones.Campo.IDMARCA}, {Opciones.Campo.IDCATEGORIA}, {Opciones.Campo.URLIMAGEN}, {Opciones.Campo.PRECIO}) " +
-                    $"VALUES('{producto.Codigo}', '{producto.Nombre}', '{producto.Descripcion}', {producto.MarcaInfo.Id}, {producto.CategoriaInfo.Id}, '{producto.ImagenURL}', {producto.Precio.ToString(new CultureInfo("en-US"))})"
-                );
-
-                if (datoSQL.executeNonQuery())
-                {
-                    datoSQL.closeConnection();
-                    return true;
-                }
+                File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                return true;
             }
             catch (Exception ex)
             {
-
+                return false;
                 throw ex;
             }
-            finally 
-            { 
-                datoSQL.closeConnection(); 
-            }
-
-            return false;
+                
+            
         }
 
         public bool modificar(Producto producto)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            listaProductos = this.listar();
+            listaProductos = listaProductos.FindAll(prod => prod.Id != producto.Id );
+            listaProductos.Add(producto);
+
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+            string csv = string.Empty;
+
+            // Adding the Rows
+            foreach (var item in listaProductos)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                //Add new line.
+                csv += "\r\n";
+                //Add new line.
+            }
+
             try
             {
-                datoSQL.setQuery(
-                    $"UPDATE {Opciones.DBTablas.ARTICULOS} " + 
-                    $"SET {Opciones.Campo.CODIGO} = '{producto.Codigo}', {Opciones.Campo.NOMBRE} = '{producto.Nombre}', {Opciones.Campo.DESCRIPCION} = '{producto.Descripcion}', {Opciones.Campo.URLIMAGEN} = '{producto.ImagenURL}', " +
-                    $"{Opciones.Campo.PRECIO} = {producto.Precio.ToString(new CultureInfo("en-US"))}, {Opciones.Campo.IDMARCA} = {producto.MarcaInfo.Id}, {Opciones.Campo.IDCATEGORIA} = {producto.CategoriaInfo.Id} " + 
-                    $"WHERE {Opciones.Campo.ID} = {producto.Id}"
-                );
-
-                if (datoSQL.executeNonQuery())
-                {
-                    datoSQL.closeConnection();
-                    return true;
-                }
+                File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
-            finally
-            {
-                datoSQL.closeConnection();
-            }
 
-            return false;
         }
 
         public bool borrar(int id)
         {
-            AccesoDB datoSQL = new AccesoDB();
+            listaProductos = this.listar();
+            listaProductos = listaProductos.FindAll(prod => prod.Id != id);
+ 
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+            string csv = string.Empty;
+
+            foreach (var item in listaProductos)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                //Add new line.
+                csv += "\r\n";
+                //Add new line.
+            }
 
             try
             {
-                datoSQL.setQuery($"DELETE {Opciones.DBTablas.ARTICULOS} WHERE {Opciones.Campo.ID} = {id}");
-                if(datoSQL.executeNonQuery())
-                {
-                    datoSQL.closeConnection();
-                    return true;
-                }
+                File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                return true;
             }
             catch (Exception ex)
             {
 
+                 return false;
                 throw ex;
             }
 
-            return false;
         }
 
+        //TODO BUSQUEDA EN ARCHIVOS O LISTA
         public List<Producto> busquedaAvanzada(string filtro, string campo, string criterio, string categoria, string marca)
         {
             List<Producto> listaProducto = new List<Producto>();
