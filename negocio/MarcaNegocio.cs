@@ -22,28 +22,43 @@ namespace negocio
 
             try
             {
-                if(new FileInfo(path + Opciones.Folder.DATAMARCA).Length > 2)
+                //verificar si existe el directorio. Caso contrario, crear carpeta y archivo.
+                if (Directory.Exists(path))
                 {
-                    List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATAMARCA)
-                            .Select(line => line.Split(',')).ToList();
-
-                    foreach (string[] line in lines)
+                    //Verificar si no existe el archivo
+                    if (!File.Exists(path + Opciones.Folder.DATAMARCA))
                     {
-                        Marca marca = new Marca();
-                        marca.Id = int.Parse(line[0]);
-                        marca.Descripcion = line[1];
+                        File.Create(path + Opciones.Folder.DATAMARCA);
+                    }
 
-                        listaMarca.Add(marca);
+                    if (new FileInfo(path + Opciones.Folder.DATAMARCA).Length > 2)
+                    {
+                        List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATAMARCA)
+                                .Select(line => line.Split(',')).ToList();
+
+                        foreach (string[] line in lines)
+                        {
+                            Marca marca = new Marca();
+                            marca.Id = int.Parse(line[0]);
+                            marca.Descripcion = line[1];
+
+                            listaMarca.Add(marca);
+                        }
                     }
                 }
+                else
+                {
+                    Directory.CreateDirectory(path);
+                    File.Create(path + Opciones.Folder.DATAMARCA);
+                }
 
+                return listaMarca;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return listaMarca;
         }
 
         public bool agregar(string keyword)

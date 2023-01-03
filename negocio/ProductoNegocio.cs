@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Linq;
 
+
 namespace negocio
 {
     public class ProductoNegocio
@@ -28,8 +29,16 @@ namespace negocio
 
             try
             {
-                if(File.Exists(path + Opciones.Folder.DATA))
+                //Si el directorio existe
+                if(Directory.Exists(path))
                 {
+                    //i el archivo no existe
+                    if(!File.Exists(path + Opciones.Folder.DATA))
+                    {
+                        File.Create(path + Opciones.Folder.DATA);
+                    }
+                    
+                    //Si el archivo tiene un longitud mayor a 2
                     if (new FileInfo(path + Opciones.Folder.DATA).Length > 2)
                     {
                         List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATA)
@@ -58,10 +67,13 @@ namespace negocio
 
                             listaProducto.Add(aux);
                         }
-
                     }
-
-                } // SI NO EXISTE CREAMOS CARPETA Y ARCHIVO
+                }
+                else
+                {
+                    Directory.CreateDirectory(path);
+                    File.Create(path + Opciones.Folder.DATA);
+                }
 
                 return listaProducto;
                 
@@ -97,7 +109,7 @@ namespace negocio
             //Guardar
             try
             {
-                File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                System.IO.File.WriteAllText(path + Opciones.Folder.DATA, csv);
                 return true;
             }
             catch (Exception ex)

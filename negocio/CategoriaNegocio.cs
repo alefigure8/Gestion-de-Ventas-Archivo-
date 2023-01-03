@@ -19,23 +19,37 @@ namespace negocio
 
             try
             {
-                if (new FileInfo(path + Opciones.Folder.DATACATEGORIA).Length > 2)
+                //verificar si existe el directorio. Caso contrario, crear carpeta y archivo.
+                if (Directory.Exists(path))
                 {
-                    List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATACATEGORIA)
-                            .Select(line => line.Split(',')).ToList();
-
-                    foreach (string[] line in lines)
+                    //Verificar si no existe el archivo
+                    if (!File.Exists(path + Opciones.Folder.DATACATEGORIA))
                     {
-                        Categoria categoria = new Categoria();
-                        categoria.Id = int.Parse(line[0]);
-                        categoria.Descripcion = line[1];
+                        File.Create(path + Opciones.Folder.DATACATEGORIA);
+                    }
 
-                        listaCategoria.Add(categoria);
+                    if (new FileInfo(path + Opciones.Folder.DATACATEGORIA).Length > 2)
+                    {
+                        List<string[]> lines = File.ReadAllLines(path + Opciones.Folder.DATACATEGORIA)
+                                .Select(line => line.Split(',')).ToList();
+
+                        foreach (string[] line in lines)
+                        {
+                            Categoria categoria = new Categoria();
+                            categoria.Id = int.Parse(line[0]);
+                            categoria.Descripcion = line[1];
+
+                            listaCategoria.Add(categoria);
+                        }
                     }
                 }
+                else
+                {
+                    Directory.CreateDirectory(path);
+                    File.Create(path + Opciones.Folder.DATACATEGORIA);
+                }
 
-                 return listaCategoria;
-
+                return listaCategoria;
             }
             catch (Exception ex)
             {
