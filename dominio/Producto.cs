@@ -16,8 +16,11 @@ namespace dominio
         public Marca MarcaInfo { get; set; }
         [DisplayName("Categoria")]
         public Categoria CategoriaInfo{ get; set; }
-
         public decimal Precio { get; set; }
+        public decimal Costo { get; set; }
+        public int Stock{ get; set; }
+        public DateTime Creado { get; set; }
+        public DateTime Modifiado { get; set; }
 
         public Producto()
         { 
@@ -26,6 +29,10 @@ namespace dominio
             this.Descripcion = String.Empty;
             this.ImagenURL = String.Empty;
             this.Precio = 0;
+            this.Costo = 0;
+            this.Stock = 0;
+            this.Creado = DateTime.Now;
+            this.Modifiado = DateTime.Now;
         }
     }
 }
