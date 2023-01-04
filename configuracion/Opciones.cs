@@ -4,7 +4,7 @@
     {
         public struct Folder
         {
-            public const string IMAGE = "imageApp";
+            public const string IMAGE = @"\imageApp\";
             public const string ROOTIMAGE = @"\img\";
             public const string ICONO = "logo_main.ico";
             public const string PRIMERO = "back_2_fill.png";
@@ -48,6 +48,10 @@
             public const string IDCATEGORIA = "IdCategoria";
             public const string DESCMARCA = "MarcaDescripcion";
             public const string DESCCATEGORIA = "CategoriaDescripcion";
+            public const string COSTO = "Costo";
+            public const string STOCK = "Stock";
+            public const string MODIFICADO = "Modifiado";
+            public const string CREADO = "Creado";
         }
 
         public struct Numero
