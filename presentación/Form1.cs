@@ -35,6 +35,7 @@ namespace presentación
         {
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
             picLogo.Load(path + Opciones.Folder.ICONO);
+            picLogoEmpresa.Load(path + Opciones.Folder.LOGO);
             this.Icon = new Icon(path + Opciones.Folder.ICONO);
         }
 
@@ -85,6 +86,14 @@ namespace presentación
             propiedadesBtn();
         }
 
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            frmVentas screen = new frmVentas();
+            screen.MdiParent = this;
+            screen.Show();
+            propiedadesBtn();
+        }
+
         private void propiedadesBtn()
         {
             Color btnNonSelected = Color.FromArgb(38,62,79);
@@ -97,8 +106,10 @@ namespace presentación
                     panelBtnAbout.Visible = false;
                     panelBtnPresupuesto.Visible = false;
                     panelBtnPrincipal.Visible = true;
+                    panelBtnVentas.Visible = false;
                     btnPresupuesto.BackColor = btnNonSelected;
                     btnAbout.BackColor = btnNonSelected;
+                    btnVentas.BackColor = btnNonSelected;
                     btnCatalogo.BackColor = btnSelected;
                 }
                 else if(views is frmAbout)
@@ -106,8 +117,10 @@ namespace presentación
                     panelBtnAbout.Visible = true;
                     panelBtnPrincipal.Visible = false;
                     panelBtnPresupuesto.Visible = false;
+                    panelBtnVentas.Visible = false;
                     btnPresupuesto.BackColor = btnNonSelected;
                     btnAbout.BackColor = btnSelected;
+                    btnVentas.BackColor = btnNonSelected;
                     btnCatalogo.BackColor = btnNonSelected;
                 }
                 else if(views is frmPresupuesto)
@@ -115,9 +128,23 @@ namespace presentación
                     panelBtnAbout.Visible = false;
                     panelBtnPresupuesto.Visible = true;
                     panelBtnPrincipal.Visible = false;
+                    panelBtnVentas.Visible = false;
                     btnPresupuesto.BackColor = btnSelected;
                     btnAbout.BackColor = btnNonSelected;
+                    btnVentas.BackColor = btnNonSelected;
                     btnCatalogo.BackColor = btnNonSelected;
+                }
+                else if (views is frmVentas)
+                {
+                    panelBtnAbout.Visible = false;
+                    panelBtnPresupuesto.Visible = false;
+                    panelBtnPrincipal.Visible = false;
+                    panelBtnVentas.Visible = true;
+                    btnPresupuesto.BackColor = btnNonSelected;
+                    btnAbout.BackColor = btnNonSelected;
+                    btnCatalogo.BackColor = btnNonSelected;
+                    btnVentas.BackColor = btnSelected;
+
                 }
             }
         }

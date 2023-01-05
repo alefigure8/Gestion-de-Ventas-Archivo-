@@ -11,10 +11,11 @@ namespace helper
 {
     static public class Metodos
     {
-        static public void copiarImagen(Producto producto, OpenFileDialog file, TextBox txtImagen)
+        static public bool copiarImagen(Producto producto, OpenFileDialog file, TextBox txtImagen)
         {
-            string path = ConfigurationManager.AppSettings[Opciones.Folder.IMAGE];
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.IMAGE;
 
+            //Validar si existe la carpeta
             if (!Directory.Exists(path))
             {                                      
                 Directory.CreateDirectory(path);
@@ -32,14 +33,19 @@ namespace helper
                         File.Copy(file.FileName, path + file.SafeFileName);
                         producto.ImagenURL = path + file.SafeFileName;
                         txtImagen.Text = path + file.SafeFileName;
+                        return true;
                     }
+
+                    return false;
                 }
                 else
                 {
                     File.Copy(file.FileName, path + file.SafeFileName);
                     producto.ImagenURL = path + file.SafeFileName;
                     txtImagen.Text = path + file.SafeFileName;
+                    return true;
                 }
+
             }
             catch (Exception ex)
             {

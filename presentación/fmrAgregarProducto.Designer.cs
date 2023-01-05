@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmrAgregarProducto));
             this.lbTituloCargarProducto = new System.Windows.Forms.Label();
             this.panelCargaProducto = new System.Windows.Forms.Panel();
+            this.lbID = new System.Windows.Forms.Label();
             this.lbErrorImagen = new System.Windows.Forms.Label();
             this.lbErrorCodigo = new System.Windows.Forms.Label();
             this.lbErrorArticulo = new System.Windows.Forms.Label();
@@ -71,7 +72,14 @@
             this.lbAgregarCategoria = new System.Windows.Forms.Label();
             this.panelTituloCargarCategoria = new System.Windows.Forms.Panel();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.lbID = new System.Windows.Forms.Label();
+            this.lbErrorCosto = new System.Windows.Forms.Label();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.lbCosto = new System.Windows.Forms.Label();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.lbStock = new System.Windows.Forms.Label();
+            this.lbTextoModificado = new System.Windows.Forms.Label();
+            this.lbModificado = new System.Windows.Forms.Label();
+            this.lbErrorStock = new System.Windows.Forms.Label();
             this.panelCargaProducto.SuspendLayout();
             this.panelCargarCategoria.SuspendLayout();
             this.panelCargarMarca.SuspendLayout();
@@ -97,6 +105,12 @@
             // panelCargaProducto
             // 
             this.panelCargaProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelCargaProducto.Controls.Add(this.lbErrorStock);
+            this.panelCargaProducto.Controls.Add(this.txtStock);
+            this.panelCargaProducto.Controls.Add(this.lbStock);
+            this.panelCargaProducto.Controls.Add(this.lbErrorCosto);
+            this.panelCargaProducto.Controls.Add(this.txtCosto);
+            this.panelCargaProducto.Controls.Add(this.lbCosto);
             this.panelCargaProducto.Controls.Add(this.lbID);
             this.panelCargaProducto.Controls.Add(this.lbErrorImagen);
             this.panelCargaProducto.Controls.Add(this.lbErrorCodigo);
@@ -120,15 +134,25 @@
             this.panelCargaProducto.Controls.Add(this.lbAgregarCodigo);
             this.panelCargaProducto.Location = new System.Drawing.Point(42, 91);
             this.panelCargaProducto.Name = "panelCargaProducto";
-            this.panelCargaProducto.Size = new System.Drawing.Size(371, 238);
+            this.panelCargaProducto.Size = new System.Drawing.Size(371, 262);
             this.panelCargaProducto.TabIndex = 1;
+            // 
+            // lbID
+            // 
+            this.lbID.AutoSize = true;
+            this.lbID.Location = new System.Drawing.Point(110, 6);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(13, 13);
+            this.lbID.TabIndex = 20;
+            this.lbID.Text = "0";
+            this.lbID.Visible = false;
             // 
             // lbErrorImagen
             // 
             this.lbErrorImagen.AutoSize = true;
             this.lbErrorImagen.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbErrorImagen.ForeColor = System.Drawing.Color.LightCoral;
-            this.lbErrorImagen.Location = new System.Drawing.Point(350, 201);
+            this.lbErrorImagen.Location = new System.Drawing.Point(350, 200);
             this.lbErrorImagen.Name = "lbErrorImagen";
             this.lbErrorImagen.Size = new System.Drawing.Size(18, 18);
             this.lbErrorImagen.TabIndex = 19;
@@ -172,7 +196,7 @@
             this.lbErrorPrecio.AutoSize = true;
             this.lbErrorPrecio.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbErrorPrecio.ForeColor = System.Drawing.Color.LightCoral;
-            this.lbErrorPrecio.Location = new System.Drawing.Point(322, 111);
+            this.lbErrorPrecio.Location = new System.Drawing.Point(174, 112);
             this.lbErrorPrecio.Name = "lbErrorPrecio";
             this.lbErrorPrecio.Size = new System.Drawing.Size(18, 18);
             this.lbErrorPrecio.TabIndex = 14;
@@ -182,7 +206,7 @@
             // 
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(110, 168);
+            this.cbCategoria.Location = new System.Drawing.Point(110, 167);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(205, 21);
             this.cbCategoria.TabIndex = 5;
@@ -191,7 +215,7 @@
             // 
             this.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMarca.FormattingEnabled = true;
-            this.cbMarca.Location = new System.Drawing.Point(110, 138);
+            this.cbMarca.Location = new System.Drawing.Point(110, 137);
             this.cbMarca.Name = "cbMarca";
             this.cbMarca.Size = new System.Drawing.Size(205, 21);
             this.cbMarca.TabIndex = 4;
@@ -203,7 +227,7 @@
             this.btnAgregarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarImagen.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarImagen.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAgregarImagen.Location = new System.Drawing.Point(321, 197);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(321, 196);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(27, 23);
             this.btnAgregarImagen.TabIndex = 8;
@@ -213,7 +237,7 @@
             // 
             // txtAgregarImagen
             // 
-            this.txtAgregarImagen.Location = new System.Drawing.Point(110, 199);
+            this.txtAgregarImagen.Location = new System.Drawing.Point(110, 197);
             this.txtAgregarImagen.Name = "txtAgregarImagen";
             this.txtAgregarImagen.Size = new System.Drawing.Size(205, 20);
             this.txtAgregarImagen.TabIndex = 6;
@@ -222,7 +246,7 @@
             // 
             this.txtAgregarPrecio.Location = new System.Drawing.Point(110, 109);
             this.txtAgregarPrecio.Name = "txtAgregarPrecio";
-            this.txtAgregarPrecio.Size = new System.Drawing.Size(205, 20);
+            this.txtAgregarPrecio.Size = new System.Drawing.Size(58, 20);
             this.txtAgregarPrecio.TabIndex = 3;
             // 
             // txtAgregarDescripcion
@@ -252,7 +276,7 @@
             this.lbCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbCategoria.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCategoria.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbCategoria.Location = new System.Drawing.Point(33, 169);
+            this.lbCategoria.Location = new System.Drawing.Point(33, 168);
             this.lbCategoria.Name = "lbCategoria";
             this.lbCategoria.Size = new System.Drawing.Size(70, 16);
             this.lbCategoria.TabIndex = 6;
@@ -264,7 +288,7 @@
             this.lbMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbMarca.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMarca.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbMarca.Location = new System.Drawing.Point(56, 139);
+            this.lbMarca.Location = new System.Drawing.Point(56, 138);
             this.lbMarca.Name = "lbMarca";
             this.lbMarca.Size = new System.Drawing.Size(47, 16);
             this.lbMarca.TabIndex = 5;
@@ -276,7 +300,7 @@
             this.lbAgregarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbAgregarImagen.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAgregarImagen.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbAgregarImagen.Location = new System.Drawing.Point(48, 199);
+            this.lbAgregarImagen.Location = new System.Drawing.Point(45, 199);
             this.lbAgregarImagen.Name = "lbAgregarImagen";
             this.lbAgregarImagen.Size = new System.Drawing.Size(55, 16);
             this.lbAgregarImagen.TabIndex = 4;
@@ -339,7 +363,7 @@
             this.btnConfigureMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfigureMarca.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigureMarca.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnConfigureMarca.Location = new System.Drawing.Point(186, 57);
+            this.btnConfigureMarca.Location = new System.Drawing.Point(186, 62);
             this.btnConfigureMarca.Name = "btnConfigureMarca";
             this.btnConfigureMarca.Size = new System.Drawing.Size(27, 22);
             this.btnConfigureMarca.TabIndex = 20;
@@ -354,7 +378,7 @@
             this.panelCargarCategoria.Controls.Add(this.btnAgregarCategoria);
             this.panelCargarCategoria.Location = new System.Drawing.Point(633, 115);
             this.panelCargarCategoria.Name = "panelCargarCategoria";
-            this.panelCargarCategoria.Size = new System.Drawing.Size(290, 92);
+            this.panelCargarCategoria.Size = new System.Drawing.Size(290, 104);
             this.panelCargarCategoria.TabIndex = 2;
             // 
             // cbAgregarcategoria
@@ -362,7 +386,7 @@
             this.cbAgregarcategoria.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbAgregarcategoria.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAgregarcategoria.FormattingEnabled = true;
-            this.cbAgregarcategoria.Location = new System.Drawing.Point(52, 19);
+            this.cbAgregarcategoria.Location = new System.Drawing.Point(52, 29);
             this.cbAgregarcategoria.Name = "cbAgregarcategoria";
             this.cbAgregarcategoria.Size = new System.Drawing.Size(187, 21);
             this.cbAgregarcategoria.TabIndex = 0;
@@ -377,7 +401,7 @@
             this.btnConfigureCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfigureCategoria.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfigureCategoria.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnConfigureCategoria.Location = new System.Drawing.Point(186, 58);
+            this.btnConfigureCategoria.Location = new System.Drawing.Point(186, 68);
             this.btnConfigureCategoria.Name = "btnConfigureCategoria";
             this.btnConfigureCategoria.Size = new System.Drawing.Size(27, 23);
             this.btnConfigureCategoria.TabIndex = 21;
@@ -392,7 +416,7 @@
             this.btnAgregarCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCategoria.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarCategoria.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(100, 57);
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(100, 67);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
             this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCategoria.TabIndex = 1;
@@ -406,9 +430,9 @@
             this.panelCargarMarca.Controls.Add(this.btnConfigureMarca);
             this.panelCargarMarca.Controls.Add(this.cbAgregarMarca);
             this.panelCargarMarca.Controls.Add(this.btnAgregarMarca);
-            this.panelCargarMarca.Location = new System.Drawing.Point(633, 237);
+            this.panelCargarMarca.Location = new System.Drawing.Point(633, 249);
             this.panelCargarMarca.Name = "panelCargarMarca";
-            this.panelCargarMarca.Size = new System.Drawing.Size(290, 92);
+            this.panelCargarMarca.Size = new System.Drawing.Size(290, 104);
             this.panelCargarMarca.TabIndex = 3;
             // 
             // cbAgregarMarca
@@ -416,7 +440,7 @@
             this.cbAgregarMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbAgregarMarca.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAgregarMarca.FormattingEnabled = true;
-            this.cbAgregarMarca.Location = new System.Drawing.Point(47, 19);
+            this.cbAgregarMarca.Location = new System.Drawing.Point(47, 24);
             this.cbAgregarMarca.Name = "cbAgregarMarca";
             this.cbAgregarMarca.Size = new System.Drawing.Size(187, 21);
             this.cbAgregarMarca.TabIndex = 0;
@@ -430,7 +454,7 @@
             this.btnAgregarMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarMarca.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarMarca.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAgregarMarca.Location = new System.Drawing.Point(100, 57);
+            this.btnAgregarMarca.Location = new System.Drawing.Point(100, 62);
             this.btnAgregarMarca.Name = "btnAgregarMarca";
             this.btnAgregarMarca.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarMarca.TabIndex = 1;
@@ -442,7 +466,7 @@
             // 
             this.panelTituloCargarMarcar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.panelTituloCargarMarcar.Controls.Add(this.lbAgregarMarca);
-            this.panelTituloCargarMarcar.Location = new System.Drawing.Point(633, 213);
+            this.panelTituloCargarMarcar.Location = new System.Drawing.Point(633, 225);
             this.panelTituloCargarMarcar.Name = "panelTituloCargarMarcar";
             this.panelTituloCargarMarcar.Size = new System.Drawing.Size(290, 24);
             this.panelTituloCargarMarcar.TabIndex = 5;
@@ -460,9 +484,9 @@
             // 
             // pbCargarProducto
             // 
-            this.pbCargarProducto.Location = new System.Drawing.Point(11, 19);
+            this.pbCargarProducto.Location = new System.Drawing.Point(11, 28);
             this.pbCargarProducto.Name = "pbCargarProducto";
-            this.pbCargarProducto.Size = new System.Drawing.Size(185, 171);
+            this.pbCargarProducto.Size = new System.Drawing.Size(185, 199);
             this.pbCargarProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCargarProducto.TabIndex = 6;
             this.pbCargarProducto.TabStop = false;
@@ -477,7 +501,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCancelar.Location = new System.Drawing.Point(42, 335);
+            this.btnCancelar.Location = new System.Drawing.Point(45, 393);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 1;
@@ -495,7 +519,7 @@
             this.btnAgregarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarProducto.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.btnAgregarProducto.Location = new System.Drawing.Point(135, 335);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(135, 393);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
             this.btnAgregarProducto.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarProducto.TabIndex = 0;
@@ -530,7 +554,7 @@
             this.panel2.Controls.Add(this.pbCargarProducto);
             this.panel2.Location = new System.Drawing.Point(419, 115);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(208, 214);
+            this.panel2.Size = new System.Drawing.Size(208, 238);
             this.panel2.TabIndex = 3;
             // 
             // pbDeleteImage
@@ -539,9 +563,9 @@
             this.pbDeleteImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDeleteImage.BackgroundImage")));
             this.pbDeleteImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbDeleteImage.InitialImage = null;
-            this.pbDeleteImage.Location = new System.Drawing.Point(163, 29);
+            this.pbDeleteImage.Location = new System.Drawing.Point(178, 5);
             this.pbDeleteImage.Name = "pbDeleteImage";
-            this.pbDeleteImage.Size = new System.Drawing.Size(23, 30);
+            this.pbDeleteImage.Size = new System.Drawing.Size(15, 20);
             this.pbDeleteImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbDeleteImage.TabIndex = 17;
             this.pbDeleteImage.TabStop = false;
@@ -577,7 +601,7 @@
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBorrar.Location = new System.Drawing.Point(335, 335);
+            this.btnBorrar.Location = new System.Drawing.Point(335, 393);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 2;
@@ -585,15 +609,87 @@
             this.btnBorrar.UseVisualStyleBackColor = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // lbID
+            // lbErrorCosto
             // 
-            this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(110, 6);
-            this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(13, 13);
-            this.lbID.TabIndex = 20;
-            this.lbID.Text = "0";
-            this.lbID.Visible = false;
+            this.lbErrorCosto.AutoSize = true;
+            this.lbErrorCosto.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbErrorCosto.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbErrorCosto.Location = new System.Drawing.Point(322, 114);
+            this.lbErrorCosto.Name = "lbErrorCosto";
+            this.lbErrorCosto.Size = new System.Drawing.Size(18, 18);
+            this.lbErrorCosto.TabIndex = 23;
+            this.lbErrorCosto.Text = "*";
+            // 
+            // txtCosto
+            // 
+            this.txtCosto.Location = new System.Drawing.Point(257, 109);
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Size = new System.Drawing.Size(58, 20);
+            this.txtCosto.TabIndex = 21;
+            // 
+            // lbCosto
+            // 
+            this.lbCosto.AutoSize = true;
+            this.lbCosto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbCosto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCosto.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbCosto.Location = new System.Drawing.Point(207, 110);
+            this.lbCosto.Name = "lbCosto";
+            this.lbCosto.Size = new System.Drawing.Size(44, 16);
+            this.lbCosto.TabIndex = 22;
+            this.lbCosto.Text = "Costo";
+            // 
+            // txtStock
+            // 
+            this.txtStock.Location = new System.Drawing.Point(110, 226);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(58, 20);
+            this.txtStock.TabIndex = 25;
+            this.txtStock.Text = "0";
+            // 
+            // lbStock
+            // 
+            this.lbStock.AutoSize = true;
+            this.lbStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbStock.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStock.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbStock.Location = new System.Drawing.Point(48, 227);
+            this.lbStock.Name = "lbStock";
+            this.lbStock.Size = new System.Drawing.Size(43, 16);
+            this.lbStock.TabIndex = 24;
+            this.lbStock.Text = "Stock";
+            // 
+            // lbTextoModificado
+            // 
+            this.lbTextoModificado.AutoSize = true;
+            this.lbTextoModificado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTextoModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbTextoModificado.Location = new System.Drawing.Point(48, 360);
+            this.lbTextoModificado.Name = "lbTextoModificado";
+            this.lbTextoModificado.Size = new System.Drawing.Size(134, 16);
+            this.lbTextoModificado.TabIndex = 7;
+            this.lbTextoModificado.Text = "Última Modificación:";
+            // 
+            // lbModificado
+            // 
+            this.lbModificado.AutoSize = true;
+            this.lbModificado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbModificado.Location = new System.Drawing.Point(186, 360);
+            this.lbModificado.Name = "lbModificado";
+            this.lbModificado.Size = new System.Drawing.Size(0, 16);
+            this.lbModificado.TabIndex = 8;
+            // 
+            // lbErrorStock
+            // 
+            this.lbErrorStock.AutoSize = true;
+            this.lbErrorStock.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbErrorStock.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbErrorStock.Location = new System.Drawing.Point(174, 230);
+            this.lbErrorStock.Name = "lbErrorStock";
+            this.lbErrorStock.Size = new System.Drawing.Size(18, 18);
+            this.lbErrorStock.TabIndex = 26;
+            this.lbErrorStock.Text = "*";
             // 
             // fmrAgregarProducto
             // 
@@ -601,6 +697,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
             this.ClientSize = new System.Drawing.Size(954, 450);
+            this.Controls.Add(this.lbModificado);
+            this.Controls.Add(this.lbTextoModificado);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -614,7 +712,7 @@
             this.Controls.Add(this.lbTituloCargarProducto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fmrAgregarProducto";
-            this.Text = "fmrAgregarProducto";
+            this.Text = "Agregar";
             this.Load += new System.EventHandler(this.fmrAgregarProducto_Load);
             this.panelCargaProducto.ResumeLayout(false);
             this.panelCargaProducto.PerformLayout();
@@ -679,5 +777,13 @@
         private System.Windows.Forms.Button btnConfigureMarca;
         private System.Windows.Forms.Button btnConfigureCategoria;
         private System.Windows.Forms.Label lbID;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.Label lbStock;
+        private System.Windows.Forms.Label lbErrorCosto;
+        private System.Windows.Forms.TextBox txtCosto;
+        private System.Windows.Forms.Label lbCosto;
+        private System.Windows.Forms.Label lbTextoModificado;
+        private System.Windows.Forms.Label lbModificado;
+        private System.Windows.Forms.Label lbErrorStock;
     }
 }

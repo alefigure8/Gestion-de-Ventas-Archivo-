@@ -219,6 +219,10 @@ namespace presentación
 
             dgvPresupuesto.Columns[Opciones.Campo.ID].Visible = false;
             dgvPresupuesto.Columns[Opciones.Campo.URLIMAGEN].Visible = false;
+            dgvPresupuesto.Columns[Opciones.Campo.MODIFICADO].Visible = false;
+            dgvPresupuesto.Columns[Opciones.Campo.CREADO].Visible = false;
+            dgvPresupuesto.Columns[Opciones.Campo.COSTO].Visible = false;
+            dgvPresupuesto.Columns[Opciones.Campo.STOCK].Visible = false;
             dgvPresupuesto.Columns[Opciones.Campo.CODIGO].DisplayIndex = 0;
             dgvPresupuesto.Columns[Opciones.Campo.NOMBRE].DisplayIndex = 1;
             dgvPresupuesto.Columns[Opciones.Campo.DESCRIPCION].DisplayIndex = 2;

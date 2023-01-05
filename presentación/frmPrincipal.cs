@@ -102,6 +102,9 @@ namespace presentación
                 dgvProductos.DataSource = listaProductosAux;
                 dgvProductos.Columns[Opciones.Campo.ID].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.URLIMAGEN].Visible = false;
+                dgvProductos.Columns[Opciones.Campo.MODIFICADO].Visible = false;
+                dgvProductos.Columns[Opciones.Campo.CREADO].Visible = false;
+                dgvProductos.Columns[Opciones.Campo.COSTO].Visible = false;
                 dgvProductos.EnableHeadersVisualStyles = false;
 
                 //SORT

@@ -37,19 +37,24 @@ namespace presentación
             this.sidePanel = new System.Windows.Forms.Panel();
             this.panelBtnPresupuesto = new System.Windows.Forms.Panel();
             this.btnPresupuesto = new System.Windows.Forms.Button();
+            this.panelBtnVentas = new System.Windows.Forms.Panel();
+            this.btnVentas = new System.Windows.Forms.Button();
             this.panelBtnAbout = new System.Windows.Forms.Panel();
             this.panelBtnPrincipal = new System.Windows.Forms.Panel();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnCatalogo = new System.Windows.Forms.Button();
+            this.picLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.sidePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
             this.headerPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.headerPanel.Controls.Add(this.picLogoEmpresa);
             this.headerPanel.Controls.Add(this.lbFecha);
             this.headerPanel.Controls.Add(this.picLogo);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -64,7 +69,7 @@ namespace presentación
             this.lbFecha.AutoSize = true;
             this.lbFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFecha.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbFecha.Location = new System.Drawing.Point(846, 9);
+            this.lbFecha.Location = new System.Drawing.Point(830, 67);
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.Size = new System.Drawing.Size(221, 16);
             this.lbFecha.TabIndex = 1;
@@ -86,6 +91,8 @@ namespace presentación
             this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
             this.sidePanel.Controls.Add(this.panelBtnPresupuesto);
             this.sidePanel.Controls.Add(this.btnPresupuesto);
+            this.sidePanel.Controls.Add(this.panelBtnVentas);
+            this.sidePanel.Controls.Add(this.btnVentas);
             this.sidePanel.Controls.Add(this.panelBtnAbout);
             this.sidePanel.Controls.Add(this.panelBtnPrincipal);
             this.sidePanel.Controls.Add(this.btnAbout);
@@ -100,10 +107,10 @@ namespace presentación
             // panelBtnPresupuesto
             // 
             this.panelBtnPresupuesto.BackColor = System.Drawing.Color.Gold;
-            this.panelBtnPresupuesto.Location = new System.Drawing.Point(3, 53);
+            this.panelBtnPresupuesto.Location = new System.Drawing.Point(3, 106);
             this.panelBtnPresupuesto.Name = "panelBtnPresupuesto";
             this.panelBtnPresupuesto.Size = new System.Drawing.Size(10, 53);
-            this.panelBtnPresupuesto.TabIndex = 3;
+            this.panelBtnPresupuesto.TabIndex = 9;
             // 
             // btnPresupuesto
             // 
@@ -116,14 +123,42 @@ namespace presentación
             this.btnPresupuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPresupuesto.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPresupuesto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPresupuesto.Location = new System.Drawing.Point(0, 53);
+            this.btnPresupuesto.Location = new System.Drawing.Point(0, 106);
             this.btnPresupuesto.Name = "btnPresupuesto";
             this.btnPresupuesto.Size = new System.Drawing.Size(141, 53);
-            this.btnPresupuesto.TabIndex = 1;
+            this.btnPresupuesto.TabIndex = 8;
             this.btnPresupuesto.Text = "     Presupuesto";
             this.btnPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPresupuesto.UseVisualStyleBackColor = false;
             this.btnPresupuesto.Click += new System.EventHandler(this.btnPresupuesto_Click);
+            // 
+            // panelBtnVentas
+            // 
+            this.panelBtnVentas.BackColor = System.Drawing.Color.Salmon;
+            this.panelBtnVentas.Location = new System.Drawing.Point(3, 53);
+            this.panelBtnVentas.Name = "panelBtnVentas";
+            this.panelBtnVentas.Size = new System.Drawing.Size(10, 53);
+            this.panelBtnVentas.TabIndex = 4;
+            // 
+            // btnVentas
+            // 
+            this.btnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.btnVentas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVentas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVentas.FlatAppearance.BorderSize = 0;
+            this.btnVentas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVentas.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVentas.Location = new System.Drawing.Point(0, 53);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(141, 53);
+            this.btnVentas.TabIndex = 7;
+            this.btnVentas.Text = "     Ventas";
+            this.btnVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVentas.UseVisualStyleBackColor = false;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // panelBtnAbout
             // 
@@ -181,6 +216,17 @@ namespace presentación
             this.btnCatalogo.UseVisualStyleBackColor = false;
             this.btnCatalogo.Click += new System.EventHandler(this.btnCatalogo_Click);
             // 
+            // picLogoEmpresa
+            // 
+            this.picLogoEmpresa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picLogoEmpresa.InitialImage = null;
+            this.picLogoEmpresa.Location = new System.Drawing.Point(399, 7);
+            this.picLogoEmpresa.Name = "picLogoEmpresa";
+            this.picLogoEmpresa.Size = new System.Drawing.Size(314, 76);
+            this.picLogoEmpresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogoEmpresa.TabIndex = 2;
+            this.picLogoEmpresa.TabStop = false;
+            // 
             // presentacion
             // 
             this.AllowDrop = true;
@@ -204,6 +250,7 @@ namespace presentación
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.sidePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,9 +263,12 @@ namespace presentación
         private Button btnAbout;
         private Panel panelBtnPrincipal;
         private Panel panelBtnAbout;
-        private Button btnPresupuesto;
-        private Panel panelBtnPresupuesto;
         private Label lbFecha;
+        private Panel panelBtnVentas;
+        private Button btnVentas;
+        private Panel panelBtnPresupuesto;
+        private Button btnPresupuesto;
+        private PictureBox picLogoEmpresa;
     }
 }
 

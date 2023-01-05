@@ -102,6 +102,8 @@ namespace presentación
             txtAgregarArticulo.Text = productoAux.Nombre;
             txtAgregarDescripcion.Text = productoAux.Descripcion;
             txtAgregarPrecio.Text = productoAux.Precio.ToString();
+            txtCosto.Text = productoAux.Costo.ToString();
+            txtStock.Text = productoAux.Stock.ToString();
             txtAgregarImagen.Text = productoAux.ImagenURL;
             cbCategoria.SelectedValue = productoAux.MarcaInfo.Id;
             cbMarca.SelectedValue = productoAux.CategoriaInfo.Id;
@@ -154,7 +156,9 @@ namespace presentación
                 txtAgregarArticulo,
                 txtAgregarDescripcion,
                 txtAgregarPrecio,
-                txtAgregarImagen,
+                txtCosto,
+                txtStock,
+                txtAgregarImagen
             };
 
             listaLabel = new List<Label>()
@@ -163,6 +167,8 @@ namespace presentación
                 lbErrorArticulo,
                 lbErrorDescripcion,
                 lbErrorPrecio,
+                lbErrorCosto,
+                lbErrorStock,
                 lbErrorImagen
             };
 
@@ -177,11 +183,12 @@ namespace presentación
                 txtAgregarArticulo.Text = producto.Nombre;
                 txtAgregarDescripcion.Text = producto.Descripcion;
                 txtAgregarPrecio.Text = producto.Precio.ToString();
-                Console.WriteLine(producto.Precio);
+                txtStock.Text = producto.Stock.ToString();
+                txtCosto.Text = producto.Costo.ToString();
                 txtAgregarImagen.Text = producto.ImagenURL;
                 cbCategoria.SelectedValue = producto.CategoriaInfo.Id;
                 cbMarca.SelectedValue = producto.MarcaInfo.Id;
-
+                lbModificado.Text = producto.Modifiado.ToString("dd/MM/yyyy");
                 Metodos.cargarimagen(pbCargarProducto, producto.ImagenURL);
 
                 clonarObjeto();
@@ -211,11 +218,13 @@ namespace presentación
 
             // Variables formulario
             int Id = int.Parse(lbID.Text);
-            string precio = txtAgregarPrecio.Text.Trim();
             string codigo = txtAgregarCodigo.Text.Trim();
             string nombre = txtAgregarArticulo.Text.Trim();
             string descripcion = txtAgregarDescripcion.Text.Trim();
             string imagenURL = txtAgregarImagen.Text.Trim();
+            string precio = txtAgregarPrecio.Text.Trim();
+            string costo = txtCosto.Text.Trim();
+            string stock = txtStock.Text.Trim();
 
             Marca marca;
             Categoria categoria;
@@ -242,11 +251,27 @@ namespace presentación
                 return;
             }
 
-            //Validar Numeros
-            if (!Validacion.esNumero(precio))
+            if (!Validacion.esNumero(precio) || !Validacion.esNumero(costo) || !Validacion.esNumero(stock))
             {
-                Metodos.agregarToolTip(lbErrorPrecio, "Solo puede ser un número");
-                lbErrorPrecio.Visible = true;
+
+                //Validar Numeros
+                if (!Validacion.esNumero(precio))
+                {
+                    Metodos.agregarToolTip(lbErrorPrecio, "Solo puede ser un número");
+                    lbErrorPrecio.Visible = true;
+                }
+
+                if (!Validacion.esNumero(costo))
+                {
+                    Metodos.agregarToolTip(lbErrorCosto, "Solo puede ser un número");
+                    lbErrorCosto.Visible = true;
+                }
+
+                if (!Validacion.esNumero(stock))
+                {
+                    Metodos.agregarToolTip(lbErrorStock, "Solo puede ser un número");
+                    lbErrorStock.Visible = true;
+                }
 
                 return;
             }
@@ -254,6 +279,8 @@ namespace presentación
             producto.Id = Id;
             producto.Codigo = codigo;
             producto.Precio = Convert.ToDecimal(precio.Replace(".", ","));
+            producto.Costo = Convert.ToDecimal(costo.Replace(".", ","));
+            producto.Stock = Convert.ToInt32(stock);
             producto.Nombre = nombre;
             producto.Descripcion = descripcion;
             producto.ImagenURL = imagenURL;
@@ -295,12 +322,11 @@ namespace presentación
                     //Crear ID //TODO PASAR A METODO
                     int ultimoID = listaProducto.Count > 0 ? listaProducto[listaProducto.Count - 1].Id + 1 : 1;
                     producto.Id = ultimoID;
+                    producto.Modifiado = DateTime.Now;
 
                     // Guardar producto en la base de datos
                     if (productoNegocio.agregar(producto))
                     {
-                        MessageBox.Show("El Producto fue agregado con éxito");
-
                         //Reset Formulario
                         Metodos.vaciarTextBox(listaTxt);
                     }

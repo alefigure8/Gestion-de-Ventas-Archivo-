@@ -52,8 +52,12 @@ namespace negocio
                             aux.Codigo = data[icolumn++];
                             aux.Nombre = data[icolumn++];
                             aux.Descripcion = data[icolumn++];
-                            aux.Precio = Convert.ToDecimal(data[icolumn++].Replace(".", ","));
                             aux.ImagenURL = data[icolumn++];
+                            aux.Precio = Convert.ToDecimal(data[icolumn++].Replace(".", ","));
+                            aux.Costo = Convert.ToDecimal(data[icolumn++]);
+                            aux.Stock = Convert.ToInt32(data[icolumn++]);
+                            aux.Creado = Convert.ToDateTime(data[icolumn++]);
+                            aux.Modifiado = Convert.ToDateTime(data[icolumn++]);
 
                             Marca marca = new Marca();
                             marca.Id = int.Parse(data[icolumn++]);
@@ -100,7 +104,7 @@ namespace negocio
             foreach (var item in listaProductos)
             {
                 //Add the Data rows.
-                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.ImagenURL},{item.Precio.ToString().Replace(",", ".")},{item.Costo.ToString().Replace(",", ".")},{item.Stock},{item.Creado.ToString("dd/MM/yyyy")},{item.Modifiado.ToString("dd/MM/yyyy")},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
                 //Add new line.
                 csv += "\r\n";
                 //Add new line.
@@ -136,7 +140,7 @@ namespace negocio
             foreach (var item in listaProductos)
             {
                 //Add the Data rows.
-                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.ImagenURL},{item.Precio.ToString().Replace(",", ".")},{item.Costo.ToString().Replace(",", ".")},{item.Stock},{item.Creado.ToString("dd/MM/yyyy")},{item.Modifiado.ToString("dd/MM/yyyy")},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
                 //Add new line.
                 csv += "\r\n";
                 //Add new line.
@@ -167,7 +171,7 @@ namespace negocio
             foreach (var item in listaProductos)
             {
                 //Add the Data rows.
-                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.Precio.ToString().Replace(",", ".")},{item.ImagenURL},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.ImagenURL},{item.Precio.ToString().Replace(",", ".")},{item.Costo.ToString().Replace(",", ".")},{item.Stock},{item.Creado.ToString("dd/MM/yyyy")},{item.Modifiado.ToString("dd/MM/yyyy")},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
                 //Add new line.
                 csv += "\r\n";
                 //Add new line.
