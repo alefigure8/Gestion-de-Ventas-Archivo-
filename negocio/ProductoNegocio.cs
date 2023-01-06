@@ -364,6 +364,49 @@ namespace negocio
             }
         }
 
+        public Venta busquedaCodigo(string filtro)
+        {
+            Venta ventaEncontrada = new Venta();
+            List<Producto> listaAux = new List<Producto>();
+            Producto aux;
+
+            listaAux = this.listar();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(filtro))
+                {
+                    aux = listaAux.Find(x => x.Codigo.ToLower().Contains(filtro));
+                   if(aux != null)
+                    {
+                        ventaEncontrada.Id = aux.Id;
+                        ventaEncontrada.Codigo = aux.Codigo;
+                        ventaEncontrada.Nombre = aux.Nombre;
+                        ventaEncontrada.Descripcion = aux.Descripcion;
+                        ventaEncontrada.Precio = aux.Precio;
+                        ventaEncontrada.Costo = aux.Costo;
+                        ventaEncontrada.Stock = aux.Stock;
+
+                        Categoria auxCat = new Categoria();
+                        ventaEncontrada.CategoriaInfo = auxCat;
+                        ventaEncontrada.CategoriaInfo.Id = aux.CategoriaInfo.Id;
+                        ventaEncontrada.CategoriaInfo.Descripcion = aux.CategoriaInfo.Descripcion;
+
+                        Marca auxMarca = new Marca();
+                        ventaEncontrada.MarcaInfo = auxMarca;
+                        ventaEncontrada.MarcaInfo.Id = aux.MarcaInfo.Id;
+                        ventaEncontrada.MarcaInfo.Descripcion = aux.MarcaInfo.Descripcion;
+                    }
+                }
+
+                return ventaEncontrada;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool existeMarca(string keyword)
         {
             AccesoDB datoSQL = new AccesoDB();
