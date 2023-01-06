@@ -3,15 +3,15 @@ using dominio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using negocio;
 
 namespace presentación
 {
     public partial class frmVentas : Form
     {
         List<Venta> listaVentas = null;
-        int row = 0;
-        int column = 0;
-
+        int iCell = 0;
+        
         public frmVentas()
         {
             InitializeComponent();
@@ -25,6 +25,9 @@ namespace presentación
                 new Venta()
             };
             cargarGridView();
+            
+            this.KeyPreview = true;
+
         }
 
         private void cargarGridView()
@@ -41,46 +44,61 @@ namespace presentación
             dgvProductos.Columns["Total"].DisplayIndex = 11;
             dgvProductos.EnableHeadersVisualStyles = false;
 
+            //Reado only true
             foreach(DataGridViewColumn c in dgvProductos.Columns)
             {
                 c.ReadOnly = true;
-            }
+              }
 
-            DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
-            textBoxColumn.Name = "TEXTO";
-            textBoxColumn.HeaderText = "TEXTO";
-            textBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            textBoxColumn.ReadOnly = false;
-            dgvProductos.Columns.Add(textBoxColumn);
+            DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
+            this.dgvProductos[Opciones.Campo.CODIGO, iCell] = cell;
+            cell.Value = "Ingrese Código";
+            cell.ReadOnly = false;
+            dgvProductos.BeginEdit(true);
+
+            //Edit mode
+            if (listaVentas.Count < 2)
+                dgvProductos.EditMode = DataGridViewEditMode.EditOnF2;
+            else
+                dgvProductos.EditMode = DataGridViewEditMode.EditOnEnter;
+
+            dgvProductos.CurrentCell = dgvProductos[Opciones.Campo.CODIGO, iCell];
+            dgvProductos.SelectAll();
         }
 
-        void ItemTxtBox_TextChanged(object sender, EventArgs e)
+        private void dgvProductos_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if ((sender as TextBox).Text != null)
+            if (e.KeyCode == Keys.Enter)
             {
-                MessageBox.Show((sender as TextBox).Text);
+                //Finalizar editado
+                dgvProductos.EndEdit();
+                
+                Venta aux = new Venta();
+                ProductoNegocio productoNegocio = new ProductoNegocio();
+
+                aux = productoNegocio.busquedaCodigo(dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString());
+
+                if (aux.Codigo == dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString())
+                {
+                    listaVentas.Add(aux);
+                    Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
+                    listaVentas.Remove(eraser);
+                    listaVentas.Add(new Venta());
+                    iCell++;
+                }
+
+                dgvProductos.DataSource = null;
+                cargarGridView();
             }
         }
 
         private void dgvProductos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgvProductos.CurrentCell.ColumnIndex == 0)
+            if (e.Control is DataGridViewTextBoxEditingControl txt)
             {
-
-                TextBox tb = (TextBox)e.Control;
-
-                tb.TextChanged += new EventHandler(tb_TextChanged);
-
+                txt.PreviewKeyDown -= new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
+                txt.PreviewKeyDown += new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
             }
         }
-
-        void tb_TextChanged(object sender, EventArgs e)
-
-        {
-            //TEST
-            MessageBox.Show("changed");
-
-        }
-
     }
 }
