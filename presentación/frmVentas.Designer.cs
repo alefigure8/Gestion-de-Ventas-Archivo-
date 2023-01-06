@@ -342,7 +342,6 @@
             // 
             // dgvProductos
             // 
-            this.dgvProductos.AllowDrop = true;
             this.dgvProductos.AllowUserToResizeColumns = false;
             this.dgvProductos.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
@@ -373,10 +372,10 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvProductos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvProductos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProductos.GridColor = System.Drawing.SystemColors.WindowText;
-            this.dgvProductos.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dgvProductos.Location = new System.Drawing.Point(42, 116);
+            this.dgvProductos.MultiSelect = false;
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -401,7 +400,9 @@
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvProductos.Size = new System.Drawing.Size(876, 240);
             this.dgvProductos.TabIndex = 12;
+            this.dgvProductos.TabStop = false;
             this.dgvProductos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
+           // this.dgvProductos.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dgvProductos_PreviewKeyDown);
             // 
             // frmVentas
             // 
@@ -423,6 +424,7 @@
             this.Controls.Add(this.lbCantidadItemTitulo);
             this.Controls.Add(this.panelSubtotal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frmVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ventas";
