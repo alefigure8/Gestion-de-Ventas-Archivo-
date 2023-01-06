@@ -377,6 +377,7 @@ namespace negocio
                 if (!string.IsNullOrEmpty(filtro))
                 {
                     aux = listaAux.Find(x => x.Codigo.ToLower().Contains(filtro));
+                    
                    if(aux != null)
                     {
                         ventaEncontrada.Id = aux.Id;

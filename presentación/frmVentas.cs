@@ -11,7 +11,11 @@ namespace presentación
     {
         List<Venta> listaVentas = null;
         int iCell = 0;
-        
+        int cantidad = 1;
+        decimal subTotal = 0;
+        decimal total = 0;
+        decimal iva = 0;
+
         public frmVentas()
         {
             InitializeComponent();
@@ -19,13 +23,17 @@ namespace presentación
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-            txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            cargarFecha();
+
+            //Agregar a la lista de ventas un objeto de tipo venta
             listaVentas = new List<Venta>()
             {
                 new Venta()
             };
-            cargarGridView();
             
+            cargarGridView();
+
+            //settings
             this.KeyPreview = true;
 
         }
@@ -43,13 +51,72 @@ namespace presentación
             dgvProductos.Columns["Cantidad"].DisplayIndex = 10;
             dgvProductos.Columns["Total"].DisplayIndex = 11;
             dgvProductos.EnableHeadersVisualStyles = false;
+            
+            cargarTotal();
+            editGridView();
+        }
 
+        private void dgvProductos_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Finalizar editado para poder tomar valores de la celda
+                dgvProductos.EndEdit();
+
+                if (!string.IsNullOrEmpty(dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString()))
+                {
+                    Venta aux = new Venta();
+                    ProductoNegocio productoNegocio = new ProductoNegocio();
+
+                    //Buscar el prodicto por codigo
+                    aux = productoNegocio.busquedaCodigo(dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString());
+
+                    //Agregar producto a la lista
+                    if (aux.Codigo == dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString())
+                    {
+                        //Setting
+                        aux.Cantidad = cantidad;
+                        aux.Total = cantidad * aux.Precio;
+                        
+                        //Carhar producto en la lista de venta
+                        listaVentas.Add(aux);
+                        Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
+                        
+                        //Colocar último el objeto tipo para búsqueda
+                        listaVentas.Remove(eraser);
+                        listaVentas.Add(new Venta());
+                        
+                        this.cantidad = 1;
+                        iCell++;
+                    }
+
+                    //Cargar la lista en el gridview
+                    dgvProductos.DataSource = null;
+                    cargarGridView();
+                    actualizarTotal();
+                    cargarCantidadItems();
+                    cargarCantidadProducto();
+                }
+            }
+
+            if (e.KeyCode.ToString() == "F1")
+            {
+                //Cargar ventana de cantidad de items por producto
+                frmCantidadVentas screen = new frmCantidadVentas();
+                screen.ShowDialog();
+                this.cantidad = screen.cantidad;
+            }
+        }
+
+        private void editGridView()
+        {
             //Reado only true
-            foreach(DataGridViewColumn c in dgvProductos.Columns)
+            foreach (DataGridViewColumn c in dgvProductos.Columns)
             {
                 c.ReadOnly = true;
-              }
+            }
 
+            //setting celda de búsqueda
             DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
             this.dgvProductos[Opciones.Campo.CODIGO, iCell] = cell;
             cell.Value = "Ingrese Código";
@@ -62,34 +129,9 @@ namespace presentación
             else
                 dgvProductos.EditMode = DataGridViewEditMode.EditOnEnter;
 
+            //Seleccionar texto en la celda de búsqueda
             dgvProductos.CurrentCell = dgvProductos[Opciones.Campo.CODIGO, iCell];
             dgvProductos.SelectAll();
-        }
-
-        private void dgvProductos_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                //Finalizar editado
-                dgvProductos.EndEdit();
-                
-                Venta aux = new Venta();
-                ProductoNegocio productoNegocio = new ProductoNegocio();
-
-                aux = productoNegocio.busquedaCodigo(dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString());
-
-                if (aux.Codigo == dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString())
-                {
-                    listaVentas.Add(aux);
-                    Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
-                    listaVentas.Remove(eraser);
-                    listaVentas.Add(new Venta());
-                    iCell++;
-                }
-
-                dgvProductos.DataSource = null;
-                cargarGridView();
-            }
         }
 
         private void dgvProductos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -99,6 +141,83 @@ namespace presentación
                 txt.PreviewKeyDown -= new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
                 txt.PreviewKeyDown += new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
             }
+        }
+        
+        private void cargarFecha()
+        {
+            txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
+        
+        private void actualizarTotal()
+        {
+            foreach (Venta item in listaVentas)
+            {
+                subTotal += item.Total;
+                total = subTotal;
+            }
+            cargarIVA();
+            cargarTotal();
+        }
+
+        private void checkIVA_CheckedChanged(object sender, EventArgs e)
+        {
+            cargarIVA();
+        }
+
+        private void cargarTotal()
+        {
+            lbSubTotalPrecio.Text = subTotal.ToString("c");
+            lbTotalPrecio.Text = total.ToString("c");
+            lbIVAPrecio.Text = iva.ToString("c");
+        }
+        
+        private void cargarIVA()
+        {
+
+            if (checkIVA.Checked)
+            {
+                decimal aux = subTotal;
+                total = aux * 1.210M;
+                iva = total - aux;
+            }
+            else
+            {
+                total = subTotal;
+                iva = 0;
+            }
+            cargarTotal();
+        }
+
+        private void cargarCantidadItems()
+        {
+            int total = 0;
+
+            foreach(var item in listaVentas)
+            {
+                total += item.Cantidad;
+            }
+            lbCantidadItemsTotal.Text = total.ToString();
+        }
+
+        private void cargarCantidadProducto()
+        {
+            int total = 0;
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+
+            foreach(var item in listaVentas)
+            {
+                if (!dic.ContainsKey(item.Codigo) && item.Codigo != "Ingrese Código")
+                {
+                    dic[item.Codigo] = 1;
+                }
+            }
+
+            foreach(var item in dic)
+            {
+                total += item.Value;
+            }
+
+            lbCantidadProductosTotal.Text = total.ToString();
         }
     }
 }
