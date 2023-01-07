@@ -4,21 +4,30 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using negocio;
+using helper;
 
 namespace presentación
 {
     public partial class frmVentas : Form
     {
         List<Venta> listaVentas = null;
-        int iCell = 0;
-        int cantidad = 1;
-        decimal subTotal = 0;
-        decimal total = 0;
-        decimal iva = 0;
+        int iCell;
+        int cantidad;
+        decimal subTotal;
+        decimal total;
+        decimal iva;
+        decimal descuento;
 
         public frmVentas()
         {
             InitializeComponent();
+
+            this.iCell = 0;
+            this.cantidad = 1;
+            this.subTotal = 0;
+            this.total = 0;
+            this.iva = 0;
+            this.descuento = 0;
         }
 
         private void frmVentas_Load(object sender, EventArgs e)
@@ -91,11 +100,7 @@ namespace presentación
                     }
 
                     //Cargar la lista en el gridview
-                    dgvProductos.DataSource = null;
-                    cargarGridView();
-                    actualizarTotal();
-                    cargarCantidadItems();
-                    cargarCantidadProducto();
+                    cargarGUI();
                 }
             }
 
@@ -150,18 +155,22 @@ namespace presentación
         
         private void actualizarTotal()
         {
+            subTotal = 0;
+
             foreach (Venta item in listaVentas)
             {
                 subTotal += item.Total;
                 total = subTotal;
             }
+
             cargarIVA();
+            cargarDescuento();
             cargarTotal();
         }
 
         private void checkIVA_CheckedChanged(object sender, EventArgs e)
         {
-            cargarIVA();
+            actualizarTotal();
         }
 
         private void cargarTotal()
@@ -169,6 +178,7 @@ namespace presentación
             lbSubTotalPrecio.Text = subTotal.ToString("c");
             lbTotalPrecio.Text = total.ToString("c");
             lbIVAPrecio.Text = iva.ToString("c");
+            lbTotalDescuento.Text = descuento > 0 ? "-" + descuento.ToString("c") : descuento.ToString("c");
         }
         
         private void cargarIVA()
@@ -185,7 +195,6 @@ namespace presentación
                 total = subTotal;
                 iva = 0;
             }
-            cargarTotal();
         }
 
         private void cargarCantidadItems()
@@ -218,6 +227,53 @@ namespace presentación
             }
 
             lbCantidadProductosTotal.Text = total.ToString();
+        }
+
+        private void cargarDescuento()
+        {
+            if (!string.IsNullOrEmpty(txtDescuento.Text) && Validacion.esNumero(txtDescuento.Text))
+            {
+                descuento = decimal.Parse(txtDescuento.Text);
+                decimal totalDescuento = (descuento * total) / 100;
+                total -= totalDescuento;
+                descuento = totalDescuento;
+            }
+            else
+            {
+                descuento = 0;
+            }
+        }
+
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+            actualizarTotal();
+        }
+
+        private void dgvProductos_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Borrar producto de lista si se preciona delete;
+            if(e.KeyCode == Keys.Delete)
+            {
+               MessageBoxButtons btn = MessageBoxButtons.OKCancel;
+                DialogResult result = MessageBox.Show("Está por borrar un producto. ¿Está seguro?", "Borrar", btn);
+
+                if(result == DialogResult.OK)
+                {
+                    int i = dgvProductos.CurrentRow.Index;
+                    listaVentas.Remove(listaVentas[i]);
+                    iCell--;
+                    cargarGUI();
+                }
+            }
+        }
+
+        private void cargarGUI()
+        {
+            dgvProductos.DataSource = null;
+            cargarGridView();
+            actualizarTotal();
+            cargarCantidadItems();
+            cargarCantidadProducto();
         }
     }
 }
