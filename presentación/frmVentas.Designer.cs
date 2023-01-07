@@ -39,7 +39,7 @@
             this.lbTotalTitulo = new System.Windows.Forms.Label();
             this.lbTotalPrecio = new System.Windows.Forms.Label();
             this.lbIVAPorcentaje = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
             this.lbDescuentoSimbolo = new System.Windows.Forms.Label();
             this.lbIVATitulo = new System.Windows.Forms.Label();
             this.lbIVAPrecio = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@
             this.panelSubtotal.Controls.Add(this.checkIVA);
             this.panelSubtotal.Controls.Add(this.panel1);
             this.panelSubtotal.Controls.Add(this.lbIVAPorcentaje);
-            this.panelSubtotal.Controls.Add(this.textBox1);
+            this.panelSubtotal.Controls.Add(this.txtDescuento);
             this.panelSubtotal.Controls.Add(this.lbDescuentoSimbolo);
             this.panelSubtotal.Controls.Add(this.lbIVATitulo);
             this.panelSubtotal.Controls.Add(this.lbIVAPrecio);
@@ -136,14 +136,15 @@
             this.lbIVAPorcentaje.TabIndex = 4;
             this.lbIVAPorcentaje.Text = "21.00%";
             // 
-            // textBox1
+            // txtDescuento
             // 
-            this.textBox1.Location = new System.Drawing.Point(494, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(36, 20);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuento.Location = new System.Drawing.Point(494, 44);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.Size = new System.Drawing.Size(36, 20);
+            this.txtDescuento.TabIndex = 11;
+            this.txtDescuento.Text = "0";
+            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);
             // 
             // lbDescuentoSimbolo
             // 
@@ -474,7 +475,7 @@
         private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.DataGridView dgvProductos;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.Label lbDescuentoSimbolo;
         private System.Windows.Forms.Label lbDescuentoTitlo;
         private System.Windows.Forms.CheckBox checkIVA;
