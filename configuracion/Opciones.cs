@@ -25,6 +25,7 @@
             public const string MAIL = "mail_fill.png";
             public const string DATABASE = @"\DataBase\";
             public const string DATA = "data.csv";
+            public const string VENTAS = "ventas.csv";
             public const string DATAMARCA = "marca.csv";
             public const string DATACATEGORIA = "categoria.csv";
         }
