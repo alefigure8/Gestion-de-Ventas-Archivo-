@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using negocio;
 using helper;
+using negocio;
 
 namespace presentación
 {
@@ -17,6 +18,7 @@ namespace presentación
         decimal total;
         decimal iva;
         decimal descuento;
+        Ventas ventaFinal;
 
         public frmVentas()
         {
@@ -39,6 +41,8 @@ namespace presentación
             {
                 new Venta()
             };
+
+            ventaFinal = new Ventas();
             
             cargarGridView();
 
@@ -60,7 +64,7 @@ namespace presentación
             dgvProductos.Columns["Cantidad"].DisplayIndex = 10;
             dgvProductos.Columns["Total"].DisplayIndex = 11;
             dgvProductos.EnableHeadersVisualStyles = false;
-            
+
             cargarTotal();
             editGridView();
         }
@@ -85,7 +89,7 @@ namespace presentación
                     {
                         //Setting
                         aux.Cantidad = cantidad;
-                        aux.Total = cantidad * aux.Precio;
+                        aux.Total = Convert.ToDecimal(cantidad * aux.Precio);
                         
                         //Carhar producto en la lista de venta
                         listaVentas.Add(aux);
@@ -274,6 +278,42 @@ namespace presentación
             actualizarTotal();
             cargarCantidadItems();
             cargarCantidadProducto();
+        }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Guardar la venta final en el archivo de ventas
+                ventaFinal.Total = total;
+                ventaFinal.Fecha = Convert.ToDateTime(txtFecha.Text);
+                ventaFinal.Venta = listaVentas;
+                VentaNegocio ventaNegocio = new VentaNegocio();
+                if(ventaNegocio.agregar(ventaFinal))
+                {
+                    //Actualizar stock en el archivo de Productos
+                    ProductoNegocio productoNegocio = new ProductoNegocio();
+                    List<Producto> listaProductos = productoNegocio.listar();
+
+                    foreach (var item in listaVentas)
+                    {
+                        listaProductos.ForEach(prod =>
+                        {
+                            if (item.Id == prod.Id)
+                            {
+                                prod.Stock -= item.Cantidad;
+                            }
+                        });
+                    }
+
+                    productoNegocio.modificarLista(listaProductos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+               MessageBox.Show(ex.Message);
+            }
         }
     }
 }
