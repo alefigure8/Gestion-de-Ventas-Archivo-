@@ -107,13 +107,12 @@ namespace negocio
                 csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.ImagenURL},{item.Precio.ToString().Replace(",", ".")},{item.Costo.ToString().Replace(",", ".")},{item.Stock},{item.Creado.ToString("dd/MM/yyyy")},{item.Modifiado.ToString("dd/MM/yyyy")},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
                 //Add new line.
                 csv += "\r\n";
-                //Add new line.
             }
 
             //Guardar
             try
             {
-                System.IO.File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                File.WriteAllText(path + Opciones.Folder.DATA, csv);
                 return true;
             }
             catch (Exception ex)
@@ -157,6 +156,33 @@ namespace negocio
                 throw ex;
             }
 
+        }
+
+        public bool modificarLista(List<Producto> listaNueva)
+        {
+            string path = Application.LocalUserAppDataPath + Opciones.Folder.DATABASE;
+            string csv = string.Empty;
+
+            // Adding the Rows
+            foreach (var item in listaNueva)
+            {
+                //Add the Data rows.
+                csv += $"{item.Id},{item.Codigo},{item.Nombre},{item.Descripcion},{item.ImagenURL},{item.Precio.ToString().Replace(",", ".")},{item.Costo.ToString().Replace(",", ".")},{item.Stock},{item.Creado.ToString("dd/MM/yyyy")},{item.Modifiado.ToString("dd/MM/yyyy")},{item.MarcaInfo.Id},{item.CategoriaInfo.Id}";
+                //Add new line.
+                csv += "\r\n";
+                //Add new line.
+            }
+
+            try
+            {
+                File.WriteAllText(path + Opciones.Folder.DATA, csv);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
         }
 
         public bool borrar(int id)
@@ -387,7 +413,6 @@ namespace negocio
                         ventaEncontrada.Precio = aux.Precio;
                         ventaEncontrada.Costo = aux.Costo;
                         ventaEncontrada.Stock = aux.Stock;
-
                         Categoria auxCat = new Categoria();
                         ventaEncontrada.CategoriaInfo = auxCat;
                         ventaEncontrada.CategoriaInfo.Id = aux.CategoriaInfo.Id;
