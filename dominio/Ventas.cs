@@ -11,7 +11,6 @@ namespace dominio
         public int Id{ get; set; }
         public DateTime  Fecha { get; set; }
         public decimal Total { get; set; }
-        public bool Impuesto { get; set; }
         public List<Venta> Venta { get; set; }
 
         public Ventas()
@@ -19,7 +18,6 @@ namespace dominio
             Id = 0;
             Fecha = DateTime.Now;
             Total = 0;
-            Impuesto = false;
             Venta = new List<Venta>();
         }
 
