@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelSubtotal = new System.Windows.Forms.Panel();
+            this.lbTotalDescuento = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.checkIVA = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,7 +60,6 @@
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.lbAgregarCantidad = new System.Windows.Forms.Label();
-            this.lbTotalDescuento = new System.Windows.Forms.Label();
             this.panelSubtotal.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -84,6 +84,17 @@
             this.panelSubtotal.Name = "panelSubtotal";
             this.panelSubtotal.Size = new System.Drawing.Size(879, 76);
             this.panelSubtotal.TabIndex = 3;
+            // 
+            // lbTotalDescuento
+            // 
+            this.lbTotalDescuento.AutoSize = true;
+            this.lbTotalDescuento.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalDescuento.ForeColor = System.Drawing.Color.LightGreen;
+            this.lbTotalDescuento.Location = new System.Drawing.Point(569, 44);
+            this.lbTotalDescuento.Name = "lbTotalDescuento";
+            this.lbTotalDescuento.Size = new System.Drawing.Size(46, 14);
+            this.lbTotalDescuento.TabIndex = 14;
+            this.lbTotalDescuento.Text = "$0.000";
             // 
             // txtDescuento
             // 
@@ -289,6 +300,7 @@
             this.btnFacturar.TabIndex = 8;
             this.btnFacturar.Text = "Finalizar";
             this.btnFacturar.UseVisualStyleBackColor = false;
+            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
             // btnAyuda
             // 
@@ -417,17 +429,6 @@
             this.lbAgregarCantidad.Size = new System.Drawing.Size(229, 14);
             this.lbAgregarCantidad.TabIndex = 13;
             this.lbAgregarCantidad.Text = "Presione F1 para modificar cantidad.";
-            // 
-            // lbTotalDescuento
-            // 
-            this.lbTotalDescuento.AutoSize = true;
-            this.lbTotalDescuento.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalDescuento.ForeColor = System.Drawing.Color.LightGreen;
-            this.lbTotalDescuento.Location = new System.Drawing.Point(569, 44);
-            this.lbTotalDescuento.Name = "lbTotalDescuento";
-            this.lbTotalDescuento.Size = new System.Drawing.Size(46, 14);
-            this.lbTotalDescuento.TabIndex = 14;
-            this.lbTotalDescuento.Text = "$0.000";
             // 
             // frmVentas
             // 
