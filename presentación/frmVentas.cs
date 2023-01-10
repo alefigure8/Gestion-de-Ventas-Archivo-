@@ -256,7 +256,7 @@ namespace presentación
         private void dgvProductos_KeyDown(object sender, KeyEventArgs e)
         {
             //Borrar producto de lista si se preciona delete;
-            if(e.KeyCode == Keys.Delete)
+            if(e.KeyCode == Keys.Delete && dgvProductos.CurrentRow.Index != iCell)
             {
                MessageBoxButtons btn = MessageBoxButtons.OKCancel;
                 DialogResult result = MessageBox.Show("Está por borrar un producto. ¿Está seguro?", "Borrar", btn);
@@ -308,12 +308,44 @@ namespace presentación
 
                     productoNegocio.modificarLista(listaProductos);
                 }
+
+                MessageBox.Show("Venta Generada");
+
+                borrarLista();
             }
             catch (Exception ex)
             {
 
                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void borrarLista()
+        {
+            //Borramos todos
+            listaVentas.Clear();
+
+            //Insertamos un objeto vacío para la búsqueda
+            listaVentas = new List<Venta>()
+            {
+                new Venta()
+            };
+
+            //reset numero de celda
+            iCell = 0;
+
+            //Cargamos grid
+            cargarGUI();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons btn = MessageBoxButtons.OKCancel;
+            DialogResult result = MessageBox.Show("¿Está seguro que quiere cancelar la venta?", "Cancelar Venta", btn);
+
+            //Validar cancelar la venta
+            if (result == DialogResult.OK)
+                borrarLista();
         }
     }
 }
