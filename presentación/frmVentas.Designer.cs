@@ -60,6 +60,7 @@
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.lbAgregarCantidad = new System.Windows.Forms.Label();
+            this.lbBuscador = new System.Windows.Forms.Label();
             this.panelSubtotal.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -140,7 +141,7 @@
             this.lbTotalPrecio.AutoSize = true;
             this.lbTotalPrecio.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotalPrecio.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbTotalPrecio.Location = new System.Drawing.Point(55, 39);
+            this.lbTotalPrecio.Location = new System.Drawing.Point(52, 39);
             this.lbTotalPrecio.Name = "lbTotalPrecio";
             this.lbTotalPrecio.Size = new System.Drawing.Size(56, 23);
             this.lbTotalPrecio.TabIndex = 8;
@@ -360,22 +361,23 @@
             // 
             this.dgvProductos.AllowUserToResizeColumns = false;
             this.dgvProductos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkOrange;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -384,7 +386,7 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
@@ -423,13 +425,24 @@
             // lbAgregarCantidad
             // 
             this.lbAgregarCantidad.AutoSize = true;
-            this.lbAgregarCantidad.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAgregarCantidad.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAgregarCantidad.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbAgregarCantidad.Location = new System.Drawing.Point(40, 99);
             this.lbAgregarCantidad.Name = "lbAgregarCantidad";
-            this.lbAgregarCantidad.Size = new System.Drawing.Size(229, 14);
+            this.lbAgregarCantidad.Size = new System.Drawing.Size(212, 13);
             this.lbAgregarCantidad.TabIndex = 13;
             this.lbAgregarCantidad.Text = "Presione F1 para modificar cantidad.";
+            // 
+            // lbBuscador
+            // 
+            this.lbBuscador.AutoSize = true;
+            this.lbBuscador.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBuscador.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbBuscador.Location = new System.Drawing.Point(265, 99);
+            this.lbBuscador.Name = "lbBuscador";
+            this.lbBuscador.Size = new System.Drawing.Size(202, 13);
+            this.lbBuscador.TabIndex = 14;
+            this.lbBuscador.Text = "Presione F2 para abrir el buscador.";
             // 
             // frmVentas
             // 
@@ -437,6 +450,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
             this.ClientSize = new System.Drawing.Size(955, 515);
+            this.Controls.Add(this.lbBuscador);
             this.Controls.Add(this.lbAgregarCantidad);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.txtCliente);
@@ -456,6 +470,7 @@
             this.Name = "frmVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ventas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmVentas_Load);
             this.panelSubtotal.ResumeLayout(false);
             this.panelSubtotal.PerformLayout();
@@ -495,5 +510,6 @@
         private System.Windows.Forms.Label lbAgregarCantidad;
         private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.Label lbTotalDescuento;
+        private System.Windows.Forms.Label lbBuscador;
     }
 }
