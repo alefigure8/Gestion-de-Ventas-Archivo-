@@ -190,7 +190,7 @@ namespace negocio
                         }
 
                         //Add the Data rows.
-                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(".", ",")},{id_venta},{cantiadad_venta}";
+                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta}";
                         //Add new line.
                         csv += "\r\n";
 
