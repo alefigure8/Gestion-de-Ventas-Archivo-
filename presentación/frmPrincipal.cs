@@ -18,8 +18,10 @@ namespace presentación
         private List<Producto> listaProductos = null;
         private List<Producto> listaProductosAux;
         int pagina;
+        private bool mode;
+        public string codigo { get; set; }
 
-        public frmPrincipal(Form parent)
+        public frmPrincipal(Form parent, bool mode = false)
         {
             this.parent = parent;
             InitializeComponent();
@@ -28,6 +30,9 @@ namespace presentación
             //Cargar las listas solo una vez
             if(listaProductos == null)
                 LoadfrmPrincipal();
+
+            //Default, carga sin borde
+            modoBuscador(mode);
         }
 
         //*****METODOS*****//
@@ -46,6 +51,8 @@ namespace presentación
                 {
                     panelSearch.Size = new Size(307, 75);
                 }
+
+                codigo = null;
             }
             catch (Exception)
             {
@@ -286,14 +293,22 @@ namespace presentación
 
         private void dgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Mostrar productos al hacer doble click sobre uno en el grid view
-            Producto producto = new Producto();
-            if(dgvProductos.CurrentRow != null)
+            if(!this.mode)
             {
-                fmrAgregarProducto screen = new fmrAgregarProducto((Producto)dgvProductos.CurrentRow.DataBoundItem, parent);
-                screen.MdiParent = parent;
-                screen.Show();
-                
+                //Mostrar productos al hacer doble click sobre uno en el grid view
+                Producto producto = new Producto();
+                if (dgvProductos.CurrentRow != null)
+                {
+                    fmrAgregarProducto screen = new fmrAgregarProducto((Producto)dgvProductos.CurrentRow.DataBoundItem, parent);
+                    screen.MdiParent = parent;
+                    screen.Show();
+                }
+            }
+            else
+            {
+                Producto aux = (Producto)dgvProductos.CurrentRow.DataBoundItem;
+                codigo = aux.Codigo;
+                this.Close();
             }
         }
 
@@ -434,6 +449,21 @@ namespace presentación
                         MessageBox.Show("El archivo no se pudo guardar");
                     }
                 }
+            }
+        }
+
+        private void modoBuscador(bool mode)
+        {
+            this.mode = mode;
+
+            if (mode)
+            {
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.ControlBox = true;
+                btnAgregar.Visible = false;
+                btnCSV.Visible = false;
+                labelFrmPrincipalCatalogo.Text = "BUSCAR";
+                this.Text = "Buscador";
             }
         }
     }
