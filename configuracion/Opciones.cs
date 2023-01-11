@@ -23,7 +23,10 @@
             public const string GITHUB = "github_fill.png";
             public const string WEB = "web_fill.png";
             public const string MAIL = "mail_fill.png";
+            public const string CERRAR = "close.png";
+            public const string CONFIGURACIONHOME = "configure_home.png";
             public const string DATABASE = @"\DataBase\";
+            public const string DATABASEBACKUP = @"\DataBaseBackUp\";
             public const string DATA = "data.csv";
             public const string VENTAS = "ventas.csv";
             public const string DATAMARCA = "marca.csv";
