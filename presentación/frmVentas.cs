@@ -19,6 +19,7 @@ namespace presentación
         decimal iva;
         decimal descuento;
         Ventas ventaFinal;
+        frmPrincipal screen;
 
         public frmVentas()
         {
@@ -48,6 +49,7 @@ namespace presentación
 
             //settings
             this.KeyPreview = true;
+            txtCliente.Text = "Cliente Ocasional";
 
         }
 
@@ -115,9 +117,21 @@ namespace presentación
                 screen.ShowDialog();
                 this.cantidad = screen.cantidad;
             }
+
+            if(e.KeyCode.ToString() == "F2")
+            {
+                //Cargar pantalla de busqueda
+                screen = new frmPrincipal(this.screen, true);
+                screen.ShowDialog();
+
+                if(screen.codigo != null)
+                {
+                    editGridView(screen.codigo);
+                }
+            }
         }
 
-        private void editGridView()
+        private void editGridView(string value = "Ingrese Código")
         {
             //Reado only true
             foreach (DataGridViewColumn c in dgvProductos.Columns)
@@ -128,7 +142,7 @@ namespace presentación
             //setting celda de búsqueda
             DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
             this.dgvProductos[Opciones.Campo.CODIGO, iCell] = cell;
-            cell.Value = "Ingrese Código";
+            cell.Value = value;
             cell.ReadOnly = false;
             dgvProductos.BeginEdit(true);
 
@@ -141,6 +155,7 @@ namespace presentación
             //Seleccionar texto en la celda de búsqueda
             dgvProductos.CurrentCell = dgvProductos[Opciones.Campo.CODIGO, iCell];
             dgvProductos.SelectAll();
+            
         }
 
         private void dgvProductos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -237,6 +252,7 @@ namespace presentación
         {
             if (!string.IsNullOrEmpty(txtDescuento.Text) && Validacion.esNumero(txtDescuento.Text))
             {
+                int x = txtDescuento.Text.Length;
                 descuento = decimal.Parse(txtDescuento.Text);
                 decimal totalDescuento = (descuento * total) / 100;
                 total -= totalDescuento;
@@ -284,34 +300,41 @@ namespace presentación
         {
             try
             {
-                //Guardar la venta final en el archivo de ventas
-                ventaFinal.Total = total;
-                ventaFinal.Fecha = Convert.ToDateTime(txtFecha.Text);
-                ventaFinal.Venta = listaVentas;
-                VentaNegocio ventaNegocio = new VentaNegocio();
-                if(ventaNegocio.agregar(ventaFinal))
+                if(listaVentas.Count > 1)
                 {
-                    //Actualizar stock en el archivo de Productos
-                    ProductoNegocio productoNegocio = new ProductoNegocio();
-                    List<Producto> listaProductos = productoNegocio.listar();
-
-                    foreach (var item in listaVentas)
+                    //Guardar la venta final en el archivo de ventas
+                    ventaFinal.Total = total;
+                    ventaFinal.Fecha = Convert.ToDateTime(txtFecha.Text);
+                    ventaFinal.Venta = listaVentas;
+                    VentaNegocio ventaNegocio = new VentaNegocio();
+                    if (ventaNegocio.agregar(ventaFinal))
                     {
-                        listaProductos.ForEach(prod =>
+                        //Actualizar stock en el archivo de Productos
+                        ProductoNegocio productoNegocio = new ProductoNegocio();
+                        List<Producto> listaProductos = productoNegocio.listar();
+
+                        foreach (var item in listaVentas)
                         {
-                            if (item.Id == prod.Id)
+                            listaProductos.ForEach(prod =>
                             {
-                                prod.Stock -= item.Cantidad;
-                            }
-                        });
+                                if (item.Id == prod.Id)
+                                {
+                                    prod.Stock -= item.Cantidad;
+                                }
+                            });
+                        }
+
+                        productoNegocio.modificarLista(listaProductos);
                     }
 
-                    productoNegocio.modificarLista(listaProductos);
+                    MessageBox.Show("Venta Generada");
+
+                    borrarLista();
                 }
-
-                MessageBox.Show("Venta Generada");
-
-                borrarLista();
+                else
+                {
+                    MessageBox.Show("No hay ventas para guardar");
+                }
             }
             catch (Exception ex)
             {
