@@ -20,6 +20,7 @@ namespace presentación
         decimal descuento;
         Ventas ventaFinal;
         frmPrincipal screen;
+        int idCliente;
 
         public frmVentas()
         {
@@ -50,6 +51,7 @@ namespace presentación
             //settings
             this.KeyPreview = true;
             txtCliente.Text = "Cliente Ocasional";
+            idCliente = 0;
 
         }
 
@@ -306,6 +308,7 @@ namespace presentación
                     ventaFinal.Total = total;
                     ventaFinal.Fecha = Convert.ToDateTime(txtFecha.Text);
                     ventaFinal.Venta = listaVentas;
+                    ventaFinal.id_cliente = idCliente;
                     VentaNegocio ventaNegocio = new VentaNegocio();
                     if (ventaNegocio.agregar(ventaFinal))
                     {
@@ -359,6 +362,10 @@ namespace presentación
 
             //Cargamos grid
             cargarGUI();
+
+            //Configuración inicial
+            txtCliente.Text = "Cliente Ocasional";
+            idCliente = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -369,6 +376,15 @@ namespace presentación
             //Validar cancelar la venta
             if (result == DialogResult.OK)
                 borrarLista();
+        }
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            frmCliente screen = new frmCliente();
+            screen.ShowDialog();
+            idCliente = screen.idCliente;
+            txtCliente.Text = null;
+            txtCliente.Text = screen.cliente;
         }
     }
 }
