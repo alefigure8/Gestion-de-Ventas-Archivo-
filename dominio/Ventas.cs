@@ -12,6 +12,7 @@ namespace dominio
         public DateTime  Fecha { get; set; }
         public decimal Total { get; set; }
         public List<Venta> Venta { get; set; }
+        public int id_cliente { get; set; }
 
         public Ventas()
         {
