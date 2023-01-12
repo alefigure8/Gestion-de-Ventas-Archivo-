@@ -63,6 +63,7 @@ namespace negocio
                         aux.Total = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
                         string aux_id_producto = data[icolumn++];
                         string aux_cantidad_venta = data[icolumn++];
+                        aux.id_cliente = int.Parse(data[icolumn++]);
 
                         //Llave con Id de Productos, cargamos uno por uno
                         List<string> id_Producto = new List<string>();
@@ -190,7 +191,7 @@ namespace negocio
                         }
 
                         //Add the Data rows.
-                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta}";
+                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta},{item.id_cliente}";
                         //Add new line.
                         csv += "\r\n";
 
