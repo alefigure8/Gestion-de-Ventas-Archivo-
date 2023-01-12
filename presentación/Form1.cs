@@ -200,26 +200,42 @@ namespace presentación
             {
                 if (File.Exists(original + Opciones.Folder.DATA))
                 {
-                    File.Delete(backup + Opciones.Folder.DATA);
+                    if (File.Exists(backup + Opciones.Folder.DATA))
+                        File.Delete(backup + Opciones.Folder.DATA);
+
                     File.Copy(original + Opciones.Folder.DATA, backup + Opciones.Folder.DATA);
                 }
 
                 if (File.Exists(original + Opciones.Folder.DATAMARCA))
                 {
-                    File.Delete(backup + Opciones.Folder.DATAMARCA);
+                    if (File.Exists(backup + Opciones.Folder.DATAMARCA))
+                        File.Delete(backup + Opciones.Folder.DATAMARCA);
+
                     File.Copy(original + Opciones.Folder.DATAMARCA, backup + Opciones.Folder.DATAMARCA);
                 }
 
                 if (File.Exists(original + Opciones.Folder.DATACATEGORIA))
                 {
-                    File.Delete(backup + Opciones.Folder.DATACATEGORIA);
+                    if (File.Exists(backup + Opciones.Folder.DATACATEGORIA))
+                        File.Delete(backup + Opciones.Folder.DATACATEGORIA);
+
                     File.Copy(original + Opciones.Folder.DATACATEGORIA, backup + Opciones.Folder.DATACATEGORIA);
                 }
 
                 if (File.Exists(original + Opciones.Folder.VENTAS))
                 {
-                    File.Delete(backup + Opciones.Folder.VENTAS);
+                    if (File.Exists(backup + Opciones.Folder.VENTAS))
+                        File.Delete(backup + Opciones.Folder.VENTAS);
+
                     File.Copy(original + Opciones.Folder.VENTAS, backup + Opciones.Folder.VENTAS);
+                }
+
+                if (File.Exists(original + Opciones.Folder.CLIENTE))
+                {
+                    if (File.Exists(backup + Opciones.Folder.CLIENTE))
+                        File.Delete(backup + Opciones.Folder.CLIENTE);
+
+                    File.Copy(original + Opciones.Folder.CLIENTE, backup + Opciones.Folder.CLIENTE);
                 }
             }
             catch (Exception error)
