@@ -31,6 +31,7 @@
             public const string VENTAS = "ventas.csv";
             public const string DATAMARCA = "marca.csv";
             public const string DATACATEGORIA = "categoria.csv";
+            public const string CLIENTE = "cliente.csv";
         }
 
         public struct Buscador
@@ -56,6 +57,7 @@
             public const string STOCK = "Stock";
             public const string MODIFICADO = "Modifiado";
             public const string CREADO = "Creado";
+            public const string ACTIVO = "Activo";
         }
 
         public struct Numero
