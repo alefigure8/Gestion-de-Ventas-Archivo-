@@ -380,11 +380,22 @@ namespace presentación
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            frmCliente screen = new frmCliente();
-            screen.ShowDialog();
-            idCliente = screen.idCliente;
-            txtCliente.Text = null;
-            txtCliente.Text = screen.cliente;
+            if(txtCliente.Text == "Cliente Ocasional" || txtCliente.Text == "")
+            {
+                frmCliente screen = new frmCliente();
+                screen.ShowDialog();
+                idCliente = screen.idCliente;
+                txtCliente.Text = null;
+                txtCliente.Text = screen.cliente;
+                btnAgregarCliente.Text = "Quitar";
+            }
+            else
+            {
+                txtCliente.Text = "Cliente Ocasional";
+                idCliente = 0;
+                btnAgregarCliente.Text = "Agregar";
+
+            }
         }
     }
 }

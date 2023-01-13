@@ -64,9 +64,16 @@ namespace presentación
                 return;
             }
 
+
             cliente.Nombre = txtClienteNombre.Text;
             cliente.Apellido = txtClienteApellido.Text;
             cliente.Empresa = txtClienteEmpresa.Text;
+
+            if(listaCLiente.Exists(cli => (cli.Nombre == cliente.Nombre && cli.Apellido == cliente.Apellido) || (!string.IsNullOrEmpty(cliente.Empresa) && cli.Empresa == cliente.Empresa)))
+            {
+                MessageBox.Show("Ya hay un cliente o Empresa con la misma información.");
+                return;
+            }
 
             try
             {
@@ -132,8 +139,5 @@ namespace presentación
         {
             dvgClientes.DataSource = null;
         }
-        //Busqueda de cliente
-        //Agregar cliente al archivo y actualizar el data grid
-        //Doble click en data grid view para colocarlo en el text box de cliente
     }
 }

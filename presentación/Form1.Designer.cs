@@ -32,6 +32,10 @@ namespace presentación
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(presentacion));
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.picLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.lbFecha = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
@@ -44,10 +48,8 @@ namespace presentación
             this.btnVentas = new System.Windows.Forms.Button();
             this.panelBtnAbout = new System.Windows.Forms.Panel();
             this.btnAbout = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.btnConfiguracion = new System.Windows.Forms.Button();
-            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.panelBtnEstadistica = new System.Windows.Forms.Panel();
+            this.btnEstadistica = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -71,6 +73,63 @@ namespace presentación
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1079, 88);
             this.headerPanel.TabIndex = 5;
+            // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter2.Location = new System.Drawing.Point(931, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(1, 88);
+            this.splitter2.TabIndex = 6;
+            this.splitter2.TabStop = false;
+            // 
+            // btnConfiguracion
+            // 
+            this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConfiguracion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracion.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnConfiguracion.Location = new System.Drawing.Point(932, 0);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(73, 88);
+            this.btnConfiguracion.TabIndex = 5;
+            this.btnConfiguracion.Text = "Config";
+            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConfiguracion.UseVisualStyleBackColor = true;
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter1.Location = new System.Drawing.Point(1005, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(1, 88);
+            this.splitter1.TabIndex = 4;
+            this.splitter1.TabStop = false;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCerrar.Location = new System.Drawing.Point(1006, 0);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(73, 88);
+            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // picLogoEmpresa
             // 
@@ -108,6 +167,8 @@ namespace presentación
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.sidePanel.Controls.Add(this.panelBtnEstadistica);
+            this.sidePanel.Controls.Add(this.btnEstadistica);
             this.sidePanel.Controls.Add(this.panelBtnPresupuesto);
             this.sidePanel.Controls.Add(this.btnPresupuesto);
             this.sidePanel.Controls.Add(this.panelBtnPrincipal);
@@ -235,62 +296,33 @@ namespace presentación
             this.btnAbout.UseVisualStyleBackColor = false;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
-            // btnCerrar
+            // panelBtnEstadistica
             // 
-            this.btnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
-            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCerrar.Location = new System.Drawing.Point(1006, 0);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(73, 88);
-            this.btnCerrar.TabIndex = 3;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            this.panelBtnEstadistica.BackColor = System.Drawing.Color.Cyan;
+            this.panelBtnEstadistica.Location = new System.Drawing.Point(3, 159);
+            this.panelBtnEstadistica.Name = "panelBtnEstadistica";
+            this.panelBtnEstadistica.Size = new System.Drawing.Size(10, 53);
+            this.panelBtnEstadistica.TabIndex = 15;
             // 
-            // splitter1
+            // btnEstadistica
             // 
-            this.splitter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(1005, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1, 88);
-            this.splitter1.TabIndex = 4;
-            this.splitter1.TabStop = false;
-            // 
-            // btnConfiguracion
-            // 
-            this.btnConfiguracion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnConfiguracion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
-            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracion.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfiguracion.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnConfiguracion.Location = new System.Drawing.Point(932, 0);
-            this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(73, 88);
-            this.btnConfiguracion.TabIndex = 5;
-            this.btnConfiguracion.Text = "Config";
-            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnConfiguracion.UseVisualStyleBackColor = true;
-            // 
-            // splitter2
-            // 
-            this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter2.Location = new System.Drawing.Point(931, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(1, 88);
-            this.splitter2.TabIndex = 6;
-            this.splitter2.TabStop = false;
+            this.btnEstadistica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.btnEstadistica.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstadistica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEstadistica.FlatAppearance.BorderSize = 0;
+            this.btnEstadistica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnEstadistica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.btnEstadistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadistica.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadistica.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEstadistica.Location = new System.Drawing.Point(0, 159);
+            this.btnEstadistica.Name = "btnEstadistica";
+            this.btnEstadistica.Size = new System.Drawing.Size(141, 53);
+            this.btnEstadistica.TabIndex = 14;
+            this.btnEstadistica.Text = "     Estadísticas";
+            this.btnEstadistica.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadistica.UseVisualStyleBackColor = false;
+            this.btnEstadistica.Click += new System.EventHandler(this.btnEstadistica_Click);
             // 
             // presentacion
             // 
@@ -338,6 +370,8 @@ namespace presentación
         private Splitter splitter1;
         private Splitter splitter2;
         private Button btnConfiguracion;
+        private Panel panelBtnEstadistica;
+        private Button btnEstadistica;
     }
 }
 

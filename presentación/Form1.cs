@@ -123,6 +123,14 @@ namespace presentación
             propiedadesBtn();
         }
 
+        private void btnEstadistica_Click(object sender, EventArgs e)
+        {
+            frmEstadistica screen = new frmEstadistica();
+            screen.MdiParent = this;
+            screen.Show();
+            propiedadesBtn();
+        }
+
         private void propiedadesBtn()
         {
             Color btnNonSelected = Color.FromArgb(38,62,79);
@@ -136,6 +144,8 @@ namespace presentación
                     panelBtnPresupuesto.Visible = false;
                     panelBtnPrincipal.Visible = true;
                     panelBtnVentas.Visible = false;
+                    panelBtnEstadistica.Visible = false;
+                    btnEstadistica.BackColor = btnNonSelected;
                     btnPresupuesto.BackColor = btnNonSelected;
                     btnAbout.BackColor = btnNonSelected;
                     btnVentas.BackColor = btnNonSelected;
@@ -147,6 +157,8 @@ namespace presentación
                     panelBtnPrincipal.Visible = false;
                     panelBtnPresupuesto.Visible = false;
                     panelBtnVentas.Visible = false;
+                    panelBtnEstadistica.Visible = false;
+                    btnEstadistica.BackColor = btnNonSelected;
                     btnPresupuesto.BackColor = btnNonSelected;
                     btnAbout.BackColor = btnSelected;
                     btnVentas.BackColor = btnNonSelected;
@@ -158,6 +170,8 @@ namespace presentación
                     panelBtnPresupuesto.Visible = true;
                     panelBtnPrincipal.Visible = false;
                     panelBtnVentas.Visible = false;
+                    panelBtnEstadistica.Visible = false;
+                    btnEstadistica.BackColor = btnNonSelected;
                     btnPresupuesto.BackColor = btnSelected;
                     btnAbout.BackColor = btnNonSelected;
                     btnVentas.BackColor = btnNonSelected;
@@ -165,14 +179,30 @@ namespace presentación
                 }
                 else if (views is frmVentas)
                 {
+                    panelBtnEstadistica.Visible = false;
                     panelBtnAbout.Visible = false;
                     panelBtnPresupuesto.Visible = false;
                     panelBtnPrincipal.Visible = false;
                     panelBtnVentas.Visible = true;
+                    btnEstadistica.BackColor = btnNonSelected;
                     btnPresupuesto.BackColor = btnNonSelected;
                     btnAbout.BackColor = btnNonSelected;
                     btnCatalogo.BackColor = btnNonSelected;
                     btnVentas.BackColor = btnSelected;
+
+                }
+                else if (views is frmEstadistica)
+                {
+                    panelBtnAbout.Visible = false;
+                    panelBtnPresupuesto.Visible = false;
+                    panelBtnPrincipal.Visible = false;
+                    panelBtnVentas.Visible = false;
+                    panelBtnEstadistica.Visible = true;
+                    btnEstadistica.BackColor = btnSelected;
+                    btnPresupuesto.BackColor = btnNonSelected;
+                    btnAbout.BackColor = btnNonSelected;
+                    btnCatalogo.BackColor = btnNonSelected;
+                    btnVentas.BackColor = btnNonSelected;
 
                 }
             }
@@ -243,5 +273,7 @@ namespace presentación
                 MessageBox.Show(error.Message);
             }
         }
+
+        
     }
 }
