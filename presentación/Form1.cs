@@ -125,7 +125,7 @@ namespace presentación
 
         private void btnEstadistica_Click(object sender, EventArgs e)
         {
-            frmEstadistica screen = new frmEstadistica();
+            frmEstadistica screen = new frmEstadistica(this);
             screen.MdiParent = this;
             screen.Show();
             propiedadesBtn();
