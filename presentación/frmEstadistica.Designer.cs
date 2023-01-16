@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.panelContainerOprions = new System.Windows.Forms.Panel();
-            this.lbTituloPresupuesto = new System.Windows.Forms.Label();
             this.btnEstadisticaSemanal = new System.Windows.Forms.Button();
+            this.lbTituloPresupuesto = new System.Windows.Forms.Label();
+            this.btnDiario = new System.Windows.Forms.Button();
             this.panelContainerOprions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,12 +39,29 @@
             // 
             this.panelContainerOprions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
             this.panelContainerOprions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContainerOprions.Controls.Add(this.btnDiario);
             this.panelContainerOprions.Controls.Add(this.btnEstadisticaSemanal);
             this.panelContainerOprions.Location = new System.Drawing.Point(193, 102);
             this.panelContainerOprions.Name = "panelContainerOprions";
             this.panelContainerOprions.Size = new System.Drawing.Size(552, 302);
             this.panelContainerOprions.TabIndex = 0;
             this.panelContainerOprions.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnEstadisticaSemanal
+            // 
+            this.btnEstadisticaSemanal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
+            this.btnEstadisticaSemanal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstadisticaSemanal.FlatAppearance.BorderSize = 0;
+            this.btnEstadisticaSemanal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadisticaSemanal.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadisticaSemanal.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEstadisticaSemanal.Location = new System.Drawing.Point(311, 45);
+            this.btnEstadisticaSemanal.Name = "btnEstadisticaSemanal";
+            this.btnEstadisticaSemanal.Size = new System.Drawing.Size(162, 66);
+            this.btnEstadisticaSemanal.TabIndex = 1;
+            this.btnEstadisticaSemanal.Text = "Venta Semanal";
+            this.btnEstadisticaSemanal.UseVisualStyleBackColor = false;
+            this.btnEstadisticaSemanal.Click += new System.EventHandler(this.btnEstadisticaSemanal_Click);
             // 
             // lbTituloPresupuesto
             // 
@@ -56,21 +74,23 @@
             this.lbTituloPresupuesto.TabIndex = 3;
             this.lbTituloPresupuesto.Text = "PRESUPUESTO";
             // 
-            // btnEstadisticaSemanal
+            // btnDiario
             // 
-            this.btnEstadisticaSemanal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.btnEstadisticaSemanal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstadisticaSemanal.FlatAppearance.BorderSize = 0;
-            this.btnEstadisticaSemanal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstadisticaSemanal.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstadisticaSemanal.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnEstadisticaSemanal.Location = new System.Drawing.Point(84, 38);
-            this.btnEstadisticaSemanal.Name = "btnEstadisticaSemanal";
-            this.btnEstadisticaSemanal.Size = new System.Drawing.Size(162, 66);
-            this.btnEstadisticaSemanal.TabIndex = 1;
-            this.btnEstadisticaSemanal.Text = "Venta Semanal";
-            this.btnEstadisticaSemanal.UseVisualStyleBackColor = false;
-            this.btnEstadisticaSemanal.Click += new System.EventHandler(this.btnEstadisticaSemanal_Click);
+            this.btnDiario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDiario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
+            this.btnDiario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDiario.FlatAppearance.BorderSize = 0;
+            this.btnDiario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiario.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiario.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDiario.Location = new System.Drawing.Point(82, 45);
+            this.btnDiario.Name = "btnDiario";
+            this.btnDiario.Size = new System.Drawing.Size(162, 66);
+            this.btnDiario.TabIndex = 1;
+            this.btnDiario.Text = "Venta Diaria";
+            this.btnDiario.UseVisualStyleBackColor = false;
+            this.btnDiario.Click += new System.EventHandler(this.btnEstadisticaSemanal_Click);
             // 
             // frmEstadistica
             // 
@@ -96,5 +116,6 @@
         private System.Windows.Forms.Panel panelContainerOprions;
         private System.Windows.Forms.Label lbTituloPresupuesto;
         private System.Windows.Forms.Button btnEstadisticaSemanal;
+        private System.Windows.Forms.Button btnDiario;
     }
 }
