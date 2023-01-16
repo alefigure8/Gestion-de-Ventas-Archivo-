@@ -40,6 +40,8 @@ namespace presentación
             this.lbFecha = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.sidePanel = new System.Windows.Forms.Panel();
+            this.panelBtnEstadistica = new System.Windows.Forms.Panel();
+            this.btnEstadistica = new System.Windows.Forms.Button();
             this.panelBtnPresupuesto = new System.Windows.Forms.Panel();
             this.btnPresupuesto = new System.Windows.Forms.Button();
             this.panelBtnPrincipal = new System.Windows.Forms.Panel();
@@ -48,8 +50,6 @@ namespace presentación
             this.btnVentas = new System.Windows.Forms.Button();
             this.panelBtnAbout = new System.Windows.Forms.Panel();
             this.btnAbout = new System.Windows.Forms.Button();
-            this.panelBtnEstadistica = new System.Windows.Forms.Panel();
-            this.btnEstadistica = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -147,7 +147,7 @@ namespace presentación
             this.lbFecha.AutoSize = true;
             this.lbFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFecha.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbFecha.Location = new System.Drawing.Point(171, 67);
+            this.lbFecha.Location = new System.Drawing.Point(142, 67);
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.Size = new System.Drawing.Size(221, 16);
             this.lbFecha.TabIndex = 1;
@@ -183,6 +183,34 @@ namespace presentación
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(141, 481);
             this.sidePanel.TabIndex = 6;
+            // 
+            // panelBtnEstadistica
+            // 
+            this.panelBtnEstadistica.BackColor = System.Drawing.Color.Cyan;
+            this.panelBtnEstadistica.Location = new System.Drawing.Point(3, 159);
+            this.panelBtnEstadistica.Name = "panelBtnEstadistica";
+            this.panelBtnEstadistica.Size = new System.Drawing.Size(10, 53);
+            this.panelBtnEstadistica.TabIndex = 15;
+            // 
+            // btnEstadistica
+            // 
+            this.btnEstadistica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.btnEstadistica.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstadistica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEstadistica.FlatAppearance.BorderSize = 0;
+            this.btnEstadistica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnEstadistica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.btnEstadistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadistica.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadistica.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEstadistica.Location = new System.Drawing.Point(0, 159);
+            this.btnEstadistica.Name = "btnEstadistica";
+            this.btnEstadistica.Size = new System.Drawing.Size(141, 53);
+            this.btnEstadistica.TabIndex = 14;
+            this.btnEstadistica.Text = "     Estadísticas";
+            this.btnEstadistica.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEstadistica.UseVisualStyleBackColor = false;
+            this.btnEstadistica.Click += new System.EventHandler(this.btnEstadistica_Click);
             // 
             // panelBtnPresupuesto
             // 
@@ -295,34 +323,6 @@ namespace presentación
             this.btnAbout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAbout.UseVisualStyleBackColor = false;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
-            // panelBtnEstadistica
-            // 
-            this.panelBtnEstadistica.BackColor = System.Drawing.Color.Cyan;
-            this.panelBtnEstadistica.Location = new System.Drawing.Point(3, 159);
-            this.panelBtnEstadistica.Name = "panelBtnEstadistica";
-            this.panelBtnEstadistica.Size = new System.Drawing.Size(10, 53);
-            this.panelBtnEstadistica.TabIndex = 15;
-            // 
-            // btnEstadistica
-            // 
-            this.btnEstadistica.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            this.btnEstadistica.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEstadistica.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEstadistica.FlatAppearance.BorderSize = 0;
-            this.btnEstadistica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnEstadistica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.btnEstadistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEstadistica.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstadistica.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEstadistica.Location = new System.Drawing.Point(0, 159);
-            this.btnEstadistica.Name = "btnEstadistica";
-            this.btnEstadistica.Size = new System.Drawing.Size(141, 53);
-            this.btnEstadistica.TabIndex = 14;
-            this.btnEstadistica.Text = "     Estadísticas";
-            this.btnEstadistica.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEstadistica.UseVisualStyleBackColor = false;
-            this.btnEstadistica.Click += new System.EventHandler(this.btnEstadistica_Click);
             // 
             // presentacion
             // 
