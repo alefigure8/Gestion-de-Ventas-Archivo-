@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartGananciaSemanal = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartSemanalCategoria = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lbVentaTotalPorDia = new System.Windows.Forms.Label();
@@ -72,63 +72,63 @@
             this.chartGananciaSemanal.BackSecondaryColor = System.Drawing.Color.White;
             this.chartGananciaSemanal.BorderlineWidth = 0;
             this.chartGananciaSemanal.BorderSkin.BorderColor = System.Drawing.Color.WhiteSmoke;
-            chartArea1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea1.BorderColor = System.Drawing.Color.WhiteSmoke;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.ShadowColor = System.Drawing.Color.DarkGray;
-            this.chartGananciaSemanal.ChartAreas.Add(chartArea1);
-            legend1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            legend1.Name = "Legend1";
-            this.chartGananciaSemanal.Legends.Add(legend1);
+            chartArea3.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea3.BorderColor = System.Drawing.Color.WhiteSmoke;
+            chartArea3.Name = "ChartArea1";
+            chartArea3.ShadowColor = System.Drawing.Color.DarkGray;
+            this.chartGananciaSemanal.ChartAreas.Add(chartArea3);
+            legend3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            legend3.Name = "Legend1";
+            this.chartGananciaSemanal.Legends.Add(legend3);
             this.chartGananciaSemanal.Location = new System.Drawing.Point(19, 41);
             this.chartGananciaSemanal.Name = "chartGananciaSemanal";
             this.chartGananciaSemanal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series1.ChartArea = "ChartArea1";
-            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsVisibleInLegend = false;
-            series1.LabelBackColor = System.Drawing.Color.Transparent;
-            series1.LabelBorderColor = System.Drawing.Color.Transparent;
-            series1.LabelForeColor = System.Drawing.Color.WhiteSmoke;
-            series1.Legend = "Legend1";
-            series1.MarkerBorderColor = System.Drawing.Color.Transparent;
-            series1.Name = "Semana";
-            this.chartGananciaSemanal.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series3.IsVisibleInLegend = false;
+            series3.LabelBackColor = System.Drawing.Color.Transparent;
+            series3.LabelBorderColor = System.Drawing.Color.Transparent;
+            series3.LabelForeColor = System.Drawing.Color.WhiteSmoke;
+            series3.Legend = "Legend1";
+            series3.MarkerBorderColor = System.Drawing.Color.Transparent;
+            series3.Name = "Semana";
+            this.chartGananciaSemanal.Series.Add(series3);
             this.chartGananciaSemanal.Size = new System.Drawing.Size(606, 291);
             this.chartGananciaSemanal.TabIndex = 1;
             this.chartGananciaSemanal.Text = "chart1";
-            title1.BackColor = System.Drawing.Color.Transparent;
-            title1.BackSecondaryColor = System.Drawing.Color.Transparent;
-            title1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            title1.Name = "Semana";
-            this.chartGananciaSemanal.Titles.Add(title1);
+            title3.BackColor = System.Drawing.Color.Transparent;
+            title3.BackSecondaryColor = System.Drawing.Color.Transparent;
+            title3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            title3.Name = "Semana";
+            this.chartGananciaSemanal.Titles.Add(title3);
             // 
             // chartSemanalCategoria
             // 
             this.chartSemanalCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea2.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea2.Name = "ChartArea1";
-            this.chartSemanalCategoria.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartSemanalCategoria.Legends.Add(legend2);
+            chartArea4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            chartArea4.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            chartArea4.Name = "ChartArea1";
+            this.chartSemanalCategoria.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartSemanalCategoria.Legends.Add(legend4);
             this.chartSemanalCategoria.Location = new System.Drawing.Point(636, 41);
             this.chartSemanalCategoria.Name = "chartSemanalCategoria";
             this.chartSemanalCategoria.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Categorias";
-            this.chartSemanalCategoria.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Categorias";
+            this.chartSemanalCategoria.Series.Add(series4);
             this.chartSemanalCategoria.Size = new System.Drawing.Size(294, 291);
             this.chartSemanalCategoria.TabIndex = 2;
             this.chartSemanalCategoria.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            title2.Name = "Title1";
-            title2.Text = "Categorias";
-            this.chartSemanalCategoria.Titles.Add(title2);
+            title4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            title4.Name = "Title1";
+            title4.Text = "Categorias";
+            this.chartSemanalCategoria.Titles.Add(title4);
             // 
             // lbVentaTotalPorDia
             // 
@@ -137,9 +137,9 @@
             this.lbVentaTotalPorDia.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbVentaTotalPorDia.Location = new System.Drawing.Point(38, 44);
             this.lbVentaTotalPorDia.Name = "lbVentaTotalPorDia";
-            this.lbVentaTotalPorDia.Size = new System.Drawing.Size(38, 15);
+            this.lbVentaTotalPorDia.Size = new System.Drawing.Size(82, 15);
             this.lbVentaTotalPorDia.TabIndex = 3;
-            this.lbVentaTotalPorDia.Text = "label1";
+            this.lbVentaTotalPorDia.Text = "Ventas por día";
             // 
             // lbVentaTotalPorDiaTitulo
             // 
@@ -260,7 +260,7 @@
             this.lbVentasTarjeta.AutoSize = true;
             this.lbVentasTarjeta.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVentasTarjeta.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasTarjeta.Location = new System.Drawing.Point(18, 129);
+            this.lbVentasTarjeta.Location = new System.Drawing.Point(18, 122);
             this.lbVentasTarjeta.Name = "lbVentasTarjeta";
             this.lbVentasTarjeta.Size = new System.Drawing.Size(70, 23);
             this.lbVentasTarjeta.TabIndex = 5;
@@ -271,7 +271,7 @@
             this.lbVentasEfectivo.AutoSize = true;
             this.lbVentasEfectivo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVentasEfectivo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasEfectivo.Location = new System.Drawing.Point(18, 71);
+            this.lbVentasEfectivo.Location = new System.Drawing.Point(18, 70);
             this.lbVentasEfectivo.Name = "lbVentasEfectivo";
             this.lbVentasEfectivo.Size = new System.Drawing.Size(68, 23);
             this.lbVentasEfectivo.TabIndex = 5;
@@ -280,11 +280,11 @@
             // lbVentasTarjetaTitulo
             // 
             this.lbVentasTarjetaTitulo.AutoSize = true;
-            this.lbVentasTarjetaTitulo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVentasTarjetaTitulo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVentasTarjetaTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasTarjetaTitulo.Location = new System.Drawing.Point(19, 103);
+            this.lbVentasTarjetaTitulo.Location = new System.Drawing.Point(17, 101);
             this.lbVentasTarjetaTitulo.Name = "lbVentasTarjetaTitulo";
-            this.lbVentasTarjetaTitulo.Size = new System.Drawing.Size(196, 18);
+            this.lbVentasTarjetaTitulo.Size = new System.Drawing.Size(172, 16);
             this.lbVentasTarjetaTitulo.TabIndex = 5;
             this.lbVentasTarjetaTitulo.Text = "Tarjetas y transferencias";
             // 
@@ -295,18 +295,18 @@
             this.lbVentasTotal.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbVentasTotal.Location = new System.Drawing.Point(37, 14);
             this.lbVentasTotal.Name = "lbVentasTotal";
-            this.lbVentasTotal.Size = new System.Drawing.Size(150, 23);
+            this.lbVentasTotal.Size = new System.Drawing.Size(152, 23);
             this.lbVentasTotal.TabIndex = 4;
-            this.lbVentasTotal.Text = "Ventas por Día";
+            this.lbVentasTotal.Text = "Venta Semanal";
             // 
             // lbVentasEfectivoTitulo
             // 
             this.lbVentasEfectivoTitulo.AutoSize = true;
-            this.lbVentasEfectivoTitulo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVentasEfectivoTitulo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVentasEfectivoTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasEfectivoTitulo.Location = new System.Drawing.Point(19, 44);
+            this.lbVentasEfectivoTitulo.Location = new System.Drawing.Point(19, 47);
             this.lbVentasEfectivoTitulo.Name = "lbVentasEfectivoTitulo";
-            this.lbVentasEfectivoTitulo.Size = new System.Drawing.Size(69, 18);
+            this.lbVentasEfectivoTitulo.Size = new System.Drawing.Size(59, 16);
             this.lbVentasEfectivoTitulo.TabIndex = 3;
             this.lbVentasEfectivoTitulo.Text = "Efectivo";
             // 
