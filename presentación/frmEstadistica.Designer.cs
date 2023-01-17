@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panelContainerOprions = new System.Windows.Forms.Panel();
+            this.btnDiario = new System.Windows.Forms.Button();
             this.btnEstadisticaSemanal = new System.Windows.Forms.Button();
             this.lbTituloPresupuesto = new System.Windows.Forms.Label();
-            this.btnDiario = new System.Windows.Forms.Button();
             this.panelContainerOprions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,24 @@
             this.panelContainerOprions.Size = new System.Drawing.Size(552, 302);
             this.panelContainerOprions.TabIndex = 0;
             this.panelContainerOprions.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnDiario
+            // 
+            this.btnDiario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDiario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
+            this.btnDiario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDiario.FlatAppearance.BorderSize = 0;
+            this.btnDiario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDiario.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiario.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDiario.Location = new System.Drawing.Point(82, 45);
+            this.btnDiario.Name = "btnDiario";
+            this.btnDiario.Size = new System.Drawing.Size(162, 66);
+            this.btnDiario.TabIndex = 1;
+            this.btnDiario.Text = "Venta Diaria";
+            this.btnDiario.UseVisualStyleBackColor = false;
+            this.btnDiario.Click += new System.EventHandler(this.btnDiario_Click);
             // 
             // btnEstadisticaSemanal
             // 
@@ -73,24 +91,6 @@
             this.lbTituloPresupuesto.Size = new System.Drawing.Size(168, 25);
             this.lbTituloPresupuesto.TabIndex = 3;
             this.lbTituloPresupuesto.Text = "PRESUPUESTO";
-            // 
-            // btnDiario
-            // 
-            this.btnDiario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDiario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.btnDiario.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDiario.FlatAppearance.BorderSize = 0;
-            this.btnDiario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiario.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiario.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDiario.Location = new System.Drawing.Point(82, 45);
-            this.btnDiario.Name = "btnDiario";
-            this.btnDiario.Size = new System.Drawing.Size(162, 66);
-            this.btnDiario.TabIndex = 1;
-            this.btnDiario.Text = "Venta Diaria";
-            this.btnDiario.UseVisualStyleBackColor = false;
-            this.btnDiario.Click += new System.EventHandler(this.btnEstadisticaSemanal_Click);
             // 
             // frmEstadistica
             // 
