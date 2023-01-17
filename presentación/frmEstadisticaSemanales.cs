@@ -131,10 +131,17 @@ namespace presentación
 
                 double porcentajeCategoria = (decimal.ToDouble(ventaTotalCategoria) * 100) / decimal.ToDouble(ventaTotal);
                 chartSemanalCategoria.Series["Categorias"].Points.AddXY(i, porcentajeCategoria);
-                chartSemanalCategoria.Series["Categorias"].Points[i-1].Label = listaCategorias[i-1].Descripcion;
-                chartSemanalCategoria.Series["Categorias"].Points[i-1].LabelForeColor = Color.WhiteSmoke;
-                cargarPrecioTotal(ventaTotal);
+                chartSemanalCategoria.Series["Categorias"].Points[i - 1].Label = listaCategorias[i - 1].Descripcion;
+                chartSemanalCategoria.Series["Categorias"].Points[i - 1].LabelForeColor = Color.WhiteSmoke;
+
+                //Si el promedio es 0, no se coloca en el gráfico
+                if(porcentajeCategoria <= 0)
+                {
+                    chartSemanalCategoria.Series["Categorias"].Points[i - 1].LabelForeColor = Color.Transparent;
+                }
+
             }
+                cargarPrecioTotal(ventaTotal);
         }
 
         private decimal cargarVentaSemanal()
@@ -242,7 +249,6 @@ namespace presentación
                 }
             }
         }
-
 
         private List<ventaPorProducto> cargarListaProducto()
         {
@@ -376,5 +382,6 @@ namespace presentación
             y += 40;
             e.Graphics.DrawString($"TOTAL: {Math.Round(ventaTotal, 2)}", font, Brushes.Black, new RectangleF(650, y, width, 40));
         }
+
     }
 }
