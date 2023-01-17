@@ -38,5 +38,12 @@ namespace presentación
         {
             ControlPaint.DrawBorder(e.Graphics, this.panelContainerOprions.ClientRectangle, Color.LightGray, ButtonBorderStyle.Solid);
         }
+
+        private void btnDiario_Click(object sender, EventArgs e)
+        {
+            frmEstadisticaDiaria screen = new frmEstadisticaDiaria();
+            screen.MdiParent = parent;
+            screen.Show();
+        }
     }
 }
