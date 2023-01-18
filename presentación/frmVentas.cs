@@ -310,33 +310,44 @@ namespace presentación
                     ventaFinal.Venta = listaVentas;
                     ventaFinal.id_cliente = idCliente;
                     VentaNegocio ventaNegocio = new VentaNegocio();
-                    if (ventaNegocio.agregar(ventaFinal))
-                    {
-                        //Actualizar stock en el archivo de Productos
-                        ProductoNegocio productoNegocio = new ProductoNegocio();
-                        List<Producto> listaProductos = productoNegocio.listar();
 
-                        foreach (var item in listaVentas)
+                    //Ventana resumen
+                    frmVentaFinalizar screen = new frmVentaFinalizar(ventaFinal, descuento, subTotal, iva);
+                    screen.ShowDialog();
+                    DialogResult result = screen.result;
+                    ventaFinal.Credit = screen.credit;
+
+                    if(result == DialogResult.OK)
+                    {
+                        if (ventaNegocio.agregar(ventaFinal))
                         {
-                            listaProductos.ForEach(prod =>
+                            //Actualizar stock en el archivo de Productos
+                            ProductoNegocio productoNegocio = new ProductoNegocio();
+                            List<Producto> listaProductos = productoNegocio.listar();
+
+                            foreach (var item in listaVentas)
                             {
-                                if (item.Id == prod.Id)
+                                listaProductos.ForEach(prod =>
                                 {
-                                    prod.Stock -= item.Cantidad;
-                                }
-                            });
+                                    if (item.Id == prod.Id)
+                                    {
+                                        prod.Stock -= item.Cantidad;
+                                    }
+                                });
+                            }
+
+                            productoNegocio.modificarLista(listaProductos);
                         }
 
-                        productoNegocio.modificarLista(listaProductos);
+                        MessageBox.Show("Venta Generada con éxito");
+
+                        borrarLista();
                     }
 
-                    MessageBox.Show("Venta Generada");
-
-                    borrarLista();
                 }
                 else
                 {
-                    MessageBox.Show("No hay ventas para guardar");
+                    MessageBox.Show("Aún no hay ventas");
                 }
             }
             catch (Exception ex)
