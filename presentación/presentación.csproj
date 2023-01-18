@@ -250,6 +250,12 @@
     <Compile Include="frmEstadisticaDiaria.Designer.cs">
       <DependentUpon>frmEstadisticaDiaria.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEstadisticaDiariaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEstadisticaDiariaVentas.Designer.cs">
+      <DependentUpon>frmEstadisticaDiariaVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEstadisticaSemanales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,12 @@
     </Compile>
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVentaFinalizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentaFinalizar.Designer.cs">
+      <DependentUpon>frmVentaFinalizar.cs</DependentUpon>
     </Compile>
     <Compile Include="frmVentas.cs">
       <SubType>Form</SubType>
@@ -300,6 +312,9 @@
     <EmbeddedResource Include="frmEstadisticaDiaria.resx">
       <DependentUpon>frmEstadisticaDiaria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEstadisticaDiariaVentas.resx">
+      <DependentUpon>frmEstadisticaDiariaVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEstadisticaSemanales.resx">
       <DependentUpon>frmEstadisticaSemanales.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentaFinalizar.resx">
+      <DependentUpon>frmVentaFinalizar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVentas.resx">
       <DependentUpon>frmVentas.cs</DependentUpon>
