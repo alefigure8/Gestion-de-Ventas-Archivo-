@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +20,9 @@ namespace presentación
         List<Ventas> listaVentasActuales;
         DateTime fechaActual;
         Decimal VentaTotal = Decimal.Zero;
+        Decimal ventaEfectivo = Decimal.Zero;
+        Decimal ventaTarjeta = Decimal.Zero;
+
         public frmEstadisticaDiaria()
         {
             InitializeComponent();
@@ -39,6 +44,9 @@ namespace presentación
 
             //Cargar Categoria
             categoriaSemanal();
+
+            //Cargar imagenes
+            cargarImagenes();
         }
 
         private void cargarFechaActual()
@@ -46,12 +54,23 @@ namespace presentación
             fechaActual = DateTime.Now;
         }
 
+        private void cargarImagenes()
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            btnPrinter.Load(path + Opciones.Folder.IMPRIMIR);
+            btnFile.Load(path + Opciones.Folder.GUARDARARCHIVO);
+        }
+
         private void CargarGUI()
         {
+            cargarTotales();
+
             lbVentasTotal.Text = $"Ventas del {fechaActual.ToString("dd/MM/yyyy")}";
             lbVentasTotales.Text = VentaTotal.ToString("c");
             lbVentasCantidad.Text = listaVentasActuales.Count.ToString();
             lbVentasPromedio.Text = (VentaTotal / listaVentasActuales.Count).ToString("c");
+            lbVentasEfectivo.Text = ventaEfectivo.ToString("c");
+            lbVentasTarjeta.Text = ventaTarjeta.ToString("c");
         }
 
         private List<Ventas> cargarVentas()
@@ -109,9 +128,6 @@ namespace presentación
                 //Id
                 dgvVentas.Rows[index].Cells["Id"].Value = listaVentasActuales[i].Id;
 
-                //Total Ventas
-                VentaTotal += listaVentasActuales[i].Total;
-
             }
 
             dgvVentas.EnableHeadersVisualStyles = false;
@@ -154,6 +170,34 @@ namespace presentación
                 }
 
             }
+        }
+
+        private void cargarTotales()
+        {
+            for(int i = 0; i < listaVentasActuales.Count; i++)
+            {
+                //Total Ventas
+                VentaTotal += listaVentasActuales[i].Total;
+
+                if (listaVentasActuales[i].Credit)
+                {
+                    ventaTarjeta += listaVentasActuales[i].Total;
+                }
+                else
+                {
+                    ventaEfectivo += listaVentasActuales[i].Total;
+                }
+
+            }
+        }
+
+        private void dgvVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataRow = dgvVentas.Rows[e.RowIndex].Cells["Id"].Value;
+           
+
+            frmEstadisticaDiariaVentas screen = new frmEstadisticaDiariaVentas(dataRow.ToString());
+            screen.ShowDialog();
         }
     }
 }
