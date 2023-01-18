@@ -13,6 +13,7 @@ namespace dominio
         public decimal Total { get; set; }
         public List<Venta> Venta { get; set; }
         public int id_cliente { get; set; }
+        public bool Credit { get; set; }
 
         public Ventas()
         {
@@ -20,6 +21,7 @@ namespace dominio
             Fecha = DateTime.Now;
             Total = 0;
             Venta = new List<Venta>();
+            Credit= false;
         }
 
     }
