@@ -28,24 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbVentasTotalesTitulo = new System.Windows.Forms.Label();
+            this.lbVentasTotales = new System.Windows.Forms.Label();
             this.lbVentasCantidad = new System.Windows.Forms.Label();
+            this.lbVentasPromedio = new System.Windows.Forms.Label();
             this.lbVentasTarjeta = new System.Windows.Forms.Label();
             this.lbVentasEfectivo = new System.Windows.Forms.Label();
             this.lbVentasTarjetaTitulo = new System.Windows.Forms.Label();
             this.lbVentasTotal = new System.Windows.Forms.Label();
             this.lbVentasPromedioTitulo = new System.Windows.Forms.Label();
             this.lbVentasCantidadTitulo = new System.Windows.Forms.Label();
-            this.lbVentasTotalesTitulo = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPrinter = new System.Windows.Forms.PictureBox();
             this.btnFile = new System.Windows.Forms.PictureBox();
@@ -54,17 +58,13 @@
             this.lbPrint = new System.Windows.Forms.Label();
             this.chartSemanalCategoria = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
-            this.lbVentasPromedio = new System.Windows.Forms.Label();
-            this.lbVentasTotales = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrinter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartSemanalCategoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -80,10 +80,42 @@
             this.panel3.Controls.Add(this.lbVentasPromedioTitulo);
             this.panel3.Controls.Add(this.lbVentasCantidadTitulo);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(17, 341);
+            this.panel3.Location = new System.Drawing.Point(75, 344);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(530, 159);
             this.panel3.TabIndex = 10;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panel1.Controls.Add(this.lbVentasTotalesTitulo);
+            this.panel1.Controls.Add(this.lbVentasTotales);
+            this.panel1.Location = new System.Drawing.Point(14, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(178, 98);
+            this.panel1.TabIndex = 8;
+            // 
+            // lbVentasTotalesTitulo
+            // 
+            this.lbVentasTotalesTitulo.AutoSize = true;
+            this.lbVentasTotalesTitulo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVentasTotalesTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbVentasTotalesTitulo.Location = new System.Drawing.Point(13, 13);
+            this.lbVentasTotalesTitulo.Name = "lbVentasTotalesTitulo";
+            this.lbVentasTotalesTitulo.Size = new System.Drawing.Size(80, 25);
+            this.lbVentasTotalesTitulo.TabIndex = 3;
+            this.lbVentasTotalesTitulo.Text = "TOTAL";
+            // 
+            // lbVentasTotales
+            // 
+            this.lbVentasTotales.AutoSize = true;
+            this.lbVentasTotales.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVentasTotales.ForeColor = System.Drawing.Color.Lime;
+            this.lbVentasTotales.Location = new System.Drawing.Point(14, 54);
+            this.lbVentasTotales.Name = "lbVentasTotales";
+            this.lbVentasTotales.Size = new System.Drawing.Size(70, 23);
+            this.lbVentasTotales.TabIndex = 5;
+            this.lbVentasTotales.Text = "$ 0,00";
             // 
             // lbVentasCantidad
             // 
@@ -96,12 +128,23 @@
             this.lbVentasCantidad.TabIndex = 5;
             this.lbVentasCantidad.Text = "0";
             // 
+            // lbVentasPromedio
+            // 
+            this.lbVentasPromedio.AutoSize = true;
+            this.lbVentasPromedio.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVentasPromedio.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbVentasPromedio.Location = new System.Drawing.Point(357, 122);
+            this.lbVentasPromedio.Name = "lbVentasPromedio";
+            this.lbVentasPromedio.Size = new System.Drawing.Size(70, 23);
+            this.lbVentasPromedio.TabIndex = 5;
+            this.lbVentasPromedio.Text = "$ 0,00";
+            // 
             // lbVentasTarjeta
             // 
             this.lbVentasTarjeta.AutoSize = true;
             this.lbVentasTarjeta.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVentasTarjeta.ForeColor = System.Drawing.Color.Gold;
-            this.lbVentasTarjeta.Location = new System.Drawing.Point(205, 122);
+            this.lbVentasTarjeta.Location = new System.Drawing.Point(203, 122);
             this.lbVentasTarjeta.Name = "lbVentasTarjeta";
             this.lbVentasTarjeta.Size = new System.Drawing.Size(70, 23);
             this.lbVentasTarjeta.TabIndex = 5;
@@ -125,9 +168,9 @@
             this.lbVentasTarjetaTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbVentasTarjetaTitulo.Location = new System.Drawing.Point(204, 101);
             this.lbVentasTarjetaTitulo.Name = "lbVentasTarjetaTitulo";
-            this.lbVentasTarjetaTitulo.Size = new System.Drawing.Size(50, 16);
+            this.lbVentasTarjetaTitulo.Size = new System.Drawing.Size(63, 16);
             this.lbVentasTarjetaTitulo.TabIndex = 5;
-            this.lbVentasTarjetaTitulo.Text = "OTRAS";
+            this.lbVentasTarjetaTitulo.Text = "TARJETA";
             // 
             // lbVentasTotal
             // 
@@ -162,16 +205,16 @@
             this.lbVentasCantidadTitulo.TabIndex = 3;
             this.lbVentasCantidadTitulo.Text = "VENTAS TOTALES";
             // 
-            // lbVentasTotalesTitulo
+            // label1
             // 
-            this.lbVentasTotalesTitulo.AutoSize = true;
-            this.lbVentasTotalesTitulo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVentasTotalesTitulo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasTotalesTitulo.Location = new System.Drawing.Point(13, 13);
-            this.lbVentasTotalesTitulo.Name = "lbVentasTotalesTitulo";
-            this.lbVentasTotalesTitulo.Size = new System.Drawing.Size(80, 25);
-            this.lbVentasTotalesTitulo.TabIndex = 3;
-            this.lbVentasTotalesTitulo.Text = "TOTAL";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(204, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "EFECTIVO";
             // 
             // panel2
             // 
@@ -181,7 +224,7 @@
             this.panel2.Controls.Add(this.lbDescasFiles);
             this.panel2.Controls.Add(this.lbEscel);
             this.panel2.Controls.Add(this.lbPrint);
-            this.panel2.Location = new System.Drawing.Point(557, 341);
+            this.panel2.Location = new System.Drawing.Point(615, 344);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(250, 159);
             this.panel2.TabIndex = 9;
@@ -242,134 +285,92 @@
             // chartSemanalCategoria
             // 
             this.chartSemanalCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            chartArea1.Name = "ChartArea1";
-            this.chartSemanalCategoria.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartSemanalCategoria.Legends.Add(legend1);
+            chartArea3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            chartArea3.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            chartArea3.Name = "ChartArea1";
+            this.chartSemanalCategoria.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartSemanalCategoria.Legends.Add(legend3);
             this.chartSemanalCategoria.Location = new System.Drawing.Point(636, 41);
             this.chartSemanalCategoria.Name = "chartSemanalCategoria";
             this.chartSemanalCategoria.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Categorias";
-            this.chartSemanalCategoria.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Categorias";
+            this.chartSemanalCategoria.Series.Add(series3);
             this.chartSemanalCategoria.Size = new System.Drawing.Size(294, 291);
             this.chartSemanalCategoria.TabIndex = 8;
             this.chartSemanalCategoria.Text = "chart1";
-            title1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            title1.Name = "Title1";
-            title1.Text = "Categorias";
-            this.chartSemanalCategoria.Titles.Add(title1);
+            title3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            title3.Name = "Title1";
+            title3.Text = "Categorias";
+            this.chartSemanalCategoria.Titles.Add(title3);
             // 
             // dgvVentas
             // 
             this.dgvVentas.AllowUserToResizeColumns = false;
             this.dgvVentas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvVentas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvVentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVentas.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvVentas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVentas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvVentas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.NullValue = null;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvVentas.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle13.NullValue = null;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvVentas.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvVentas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvVentas.GridColor = System.Drawing.SystemColors.WindowText;
             this.dgvVentas.Location = new System.Drawing.Point(17, 41);
             this.dgvVentas.MultiSelect = false;
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVentas.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvVentas.RowHeadersVisible = false;
             this.dgvVentas.RowHeadersWidth = 35;
             this.dgvVentas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvVentas.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvVentas.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvVentas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVentas.Size = new System.Drawing.Size(606, 291);
             this.dgvVentas.TabIndex = 13;
             this.dgvVentas.TabStop = false;
-            // 
-            // lbVentasPromedio
-            // 
-            this.lbVentasPromedio.AutoSize = true;
-            this.lbVentasPromedio.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVentasPromedio.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbVentasPromedio.Location = new System.Drawing.Point(357, 122);
-            this.lbVentasPromedio.Name = "lbVentasPromedio";
-            this.lbVentasPromedio.Size = new System.Drawing.Size(70, 23);
-            this.lbVentasPromedio.TabIndex = 5;
-            this.lbVentasPromedio.Text = "$ 0,00";
-            // 
-            // lbVentasTotales
-            // 
-            this.lbVentasTotales.AutoSize = true;
-            this.lbVentasTotales.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVentasTotales.ForeColor = System.Drawing.Color.Lime;
-            this.lbVentasTotales.Location = new System.Drawing.Point(14, 54);
-            this.lbVentasTotales.Name = "lbVentasTotales";
-            this.lbVentasTotales.Size = new System.Drawing.Size(70, 23);
-            this.lbVentasTotales.TabIndex = 5;
-            this.lbVentasTotales.Text = "$ 0,00";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(204, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "EFECTIVO";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.panel1.Controls.Add(this.lbVentasTotalesTitulo);
-            this.panel1.Controls.Add(this.lbVentasTotales);
-            this.panel1.Location = new System.Drawing.Point(14, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(178, 98);
-            this.panel1.TabIndex = 8;
+            this.dgvVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVentas_CellContentClick);
             // 
             // frmEstadisticaDiaria
             // 
@@ -387,14 +388,14 @@
             this.Load += new System.EventHandler(this.frmEstadisticaDiaria_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrinter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartSemanalCategoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
