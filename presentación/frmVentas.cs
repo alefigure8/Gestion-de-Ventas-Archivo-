@@ -336,6 +336,7 @@ namespace presentación
                                 });
                             }
 
+                            //Actualiza toda la lista general para modficar el stock luego de una venta
                             productoNegocio.modificarLista(listaProductos);
                         }
 

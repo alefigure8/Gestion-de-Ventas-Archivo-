@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using helper;
 
 namespace presentación
 {
@@ -15,7 +16,9 @@ namespace presentación
         {
             this.frmAgregarProducto = frmAgregarProducto;
             frmParent = parent;
-            this.producto= producto;
+
+            if(producto != null)
+                this.producto = producto;
 
             InitializeComponent();
             if (configuracion.GetType() == typeof(Marca))
@@ -82,18 +85,28 @@ namespace presentación
             {
                 if (this.configuracion.GetType() == typeof(Marca))
                 {
-                    MarcaNegocio marcaNegocio = new MarcaNegocio();
-                    if (marcaNegocio.eliminar((Marca)this.configuracion))
-                            MessageBox.Show("La marca se eliminó con éxito");
+                    Marca aux = (Marca)this.configuracion;
+
+                    if (!Validacion.marcaUtilizada(aux.Id))
+                    {
+                        MarcaNegocio marcaNegocio = new MarcaNegocio();
+                        if (marcaNegocio.eliminar((Marca)this.configuracion))
+                                MessageBox.Show("La marca se eliminó con éxito");
+                    }
                     else
                         MessageBox.Show("La Marca que intenta eliminar es utilizada por otros aritíuclos");
                 }
                 else
                 {
-                    CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+                    Categoria aux = (Categoria)this.configuracion;
 
-                    if (categoriaNegocio.eliminar((Categoria)this.configuracion))
-                        MessageBox.Show("La categoria se elimino con éxito");
+                    if(!Validacion.categoriaUtilizada(aux.Id))
+                    {
+                        CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
+                        if (categoriaNegocio.eliminar(aux))
+                            MessageBox.Show("La categoria se elimino con éxito");
+                    }
                     else
                         MessageBox.Show("La Categoria que intenta eliminar es utilizada por otros aritíuclos");
                 }

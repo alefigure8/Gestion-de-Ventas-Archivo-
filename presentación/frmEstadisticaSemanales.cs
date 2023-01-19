@@ -16,6 +16,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Drawing.Printing;
 using Microsoft.Office.Interop.Excel;
+using configuracion;
 
 
 namespace presentación
@@ -24,6 +25,9 @@ namespace presentación
     {
         List<Ventas> listaVentas;
         List<Categoria> listaCategorias;
+        decimal ventaTotal;
+        decimal ventaTarjeta;
+        decimal ventaEfectivo;
 
         private Form parent;
         public frmEstadisticaSemanales(Form parent)
@@ -35,9 +39,11 @@ namespace presentación
         private void frmEstadisticaSemanales_Load(object sender, EventArgs e)
         {
             cargarListas();
+            cargarVentaSemanal();
             gananciaSemanal();
             categoriaSemanal();
             cargarImagenes();
+            cargarPrecioTotal();
         }
 
         private void cargarImagenes()
@@ -57,7 +63,7 @@ namespace presentación
             for (int i = 0; i < 7; i++)
             {
 
-                decimal VentaTotal = 0;
+                decimal VentaTotalDiaria = 0;
 
                 //Primer dia del chart
                 fechaAnterior = fechaAnterior.AddDays(-7);
@@ -66,22 +72,22 @@ namespace presentación
                 {
                     if (ventas.Fecha.ToString("dd/MM/yyyy") == fechaAnterior.ToString("dd/MM/yyyy"))
                     {
-                        VentaTotal += ventas.Total;
+                        VentaTotalDiaria += ventas.Total;
                     }
                 }
 
                 //Concatenar ventas en string
-                ventaPorDia += $"{fechaAnterior.ToString("dd/MM/yyyy")}: {VentaTotal.ToString("c")}";
+                ventaPorDia += $"{fechaAnterior.ToString("dd/MM/yyyy")}: {VentaTotalDiaria.ToString("c")}";
                 ventaPorDia += "\r\n";
 
                 //Random Color
                 Color c = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
 
                 //Cargar al chart
-                chartGananciaSemanal.Series["Semana"].Points.Add(Convert.ToDouble(VentaTotal));
+                chartGananciaSemanal.Series["Semana"].Points.Add(Convert.ToDouble(VentaTotalDiaria));
                 chartGananciaSemanal.Series["Semana"].Points[i].Color = c;
                 chartGananciaSemanal.Series["Semana"].Points[i].AxisLabel = fechaAnterior.ToString("dd/MM");
-                chartGananciaSemanal.Series["Semana"].Points[i].Label = VentaTotal.ToString("c");
+                chartGananciaSemanal.Series["Semana"].Points[i].Label = VentaTotalDiaria.ToString("c");
 
                 //Agregar días para agregar de forma ascendente
                 fechaAnterior = fechaAnterior.AddDays(8);
@@ -97,9 +103,6 @@ namespace presentación
 
         private void categoriaSemanal()
         {
-            //Venta total
-            decimal ventaTotal = cargarVentaSemanal();
-
             //Por cada Categoria
             for (int i = 1; i <= listaCategorias.Count; i++)
             {
@@ -141,13 +144,14 @@ namespace presentación
                 }
 
             }
-                cargarPrecioTotal(ventaTotal);
         }
 
-        private decimal cargarVentaSemanal()
+        private void cargarVentaSemanal()
         {
-            decimal ventaTotal = 0;
- 
+            decimal ventaTotalSemanal = 0;
+            decimal ventaTarjetaSemanal = 0;
+            decimal ventaEfectivoSemanal = 0;
+
             //Cargar ganancias semanales
             DateTime fechaAnterior = DateTime.Now;
             for (int j = 0; j < 7; j++)
@@ -158,13 +162,25 @@ namespace presentación
                 {
                     if (ventas.Fecha.Date == fechaAnterior.Date)
                     {
-                        ventaTotal += ventas.Total;
+                        ventaTotalSemanal += ventas.Total;
+
+                        if(ventas.Credit)
+                        {
+                            ventaTarjetaSemanal += ventas.Total;
+                        }
+                        else
+                        {
+                            ventaEfectivoSemanal += ventas.Total;
+                        }
                     }
                 }
 
             }
 
-            return ventaTotal;
+            //Cargar ventas
+            ventaTotal = ventaTotalSemanal;
+            ventaTarjeta = ventaTarjetaSemanal;
+            ventaEfectivo = ventaEfectivoSemanal;
         }
 
         private void cargarListas()
@@ -175,9 +191,11 @@ namespace presentación
             listaCategorias = categoriaNegocio.listar();
         }
 
-        private void cargarPrecioTotal(decimal total)
+        private void cargarPrecioTotal()
         {
-            lbVentasEfectivo.Text = total.ToString("c");
+            lbVentasTotales.Text = ventaTotal.ToString("c");
+            lbVentasTarjeta.Text = ventaTarjeta.ToString("c");
+            lbVentasEfectivo.Text = ventaEfectivo.ToString("c");
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -186,9 +204,6 @@ namespace presentación
             {
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Venta semanal
-                    decimal ventaTotal = cargarVentaSemanal();
-
                     //Configuraciones Workbooks
                     string fileName = saveDialog.FileName;
                     Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
@@ -218,15 +233,15 @@ namespace presentación
                     ws.Cells[1, 6] = "Precio Total";
 
                     //Crear lista por producto
-                    List<ventaPorProducto> listaPorProducto = cargarListaProducto();
+                    List<Struct.ventaPorProducto> listaPorProducto = cargarListaProducto();
 
                     //Guardar en archivos
                     foreach (var producto in listaPorProducto)
                     {
                         ws.Cells[index, 1] = producto.Codigo;
                         ws.Cells[index, 2] = producto.Nombre;
-                        ws.Cells[index, 3] = producto.Description;
-                        ws.Cells[index, 4] = producto.Categorio;
+                        ws.Cells[index, 3] = producto.Descripcion;
+                        ws.Cells[index, 4] = producto.Categoria;
                         ws.Cells[index, 5] = producto.Cantidad;
                         ws.Cells[index, 6] = Math.Round(producto.Total, 2);
                         index++;
@@ -250,10 +265,10 @@ namespace presentación
             }
         }
 
-        private List<ventaPorProducto> cargarListaProducto()
+        private List<Struct.ventaPorProducto> cargarListaProducto()
         {
             //Crear lista por producto
-            List<ventaPorProducto> listaPorProducto = new List<ventaPorProducto>();
+            List<Struct.ventaPorProducto> listaPorProducto = new List<Struct.ventaPorProducto>();
 
             //Fecha
             DateTime fechaAnterior_Ventas = DateTime.Now;
@@ -276,7 +291,7 @@ namespace presentación
 
                             if (listaPorProducto.Exists(x => x.Id == venta.Id))
                             {
-                                ventaPorProducto aux = new ventaPorProducto();
+                                Struct.ventaPorProducto aux = new Struct.ventaPorProducto();
 
                                 //Modifica el item que es igual
                                 aux = listaPorProducto.Find(x => x.Id == venta.Id);
@@ -284,7 +299,7 @@ namespace presentación
                                 aux.Total += venta.Total;
 
                                 //Lista auxiliar sin el producto anterior
-                                List<ventaPorProducto> auxListaProProdcuto = new List<ventaPorProducto>();
+                                List<Struct.ventaPorProducto> auxListaProProdcuto = new List<Struct.ventaPorProducto>();
                                 auxListaProProdcuto = listaPorProducto.FindAll(x => x.Id != venta.Id);
                                 auxListaProProdcuto.Add(aux);
 
@@ -295,12 +310,12 @@ namespace presentación
                             else
                             {
                                 //Creamos un nuevo elemento para la lista
-                                ventaPorProducto aux = new ventaPorProducto();
+                                Struct.ventaPorProducto aux = new Struct.ventaPorProducto();
                                 aux.Id = venta.Id;
                                 aux.Codigo = venta.Codigo;
                                 aux.Nombre = venta.Nombre;
-                                aux.Description = venta.Descripcion;
-                                aux.Categorio = venta.CategoriaInfo.Descripcion;
+                                aux.Descripcion = venta.Descripcion;
+                                aux.Categoria = venta.CategoriaInfo.Descripcion;
                                 aux.Cantidad = venta.Cantidad;
                                 aux.Total = venta.Total;
 
@@ -316,18 +331,6 @@ namespace presentación
             return listaPorProducto;
         }
         
-
-        private struct ventaPorProducto
-        {
-            public int Id;
-            public string Codigo;
-            public string Nombre;
-            public string Description;
-            public string Categorio;
-            public int Cantidad;
-            public decimal Total;
-        }
-
         private void btnPrinter_Click(object sender, EventArgs e)
         {
             printProdcuctosSemanal = new PrintDocument();
@@ -347,11 +350,8 @@ namespace presentación
 
         private void printPresupuesto_PrintPage(object sender, PrintPageEventArgs e)
         {
-            //Venta semanal
-            decimal ventaTotal = cargarVentaSemanal();
-
             //Crear lista por producto
-            List<ventaPorProducto> listaPorProducto = cargarListaProducto();
+            List<Struct.ventaPorProducto> listaPorProducto = cargarListaProducto();
 
             System.Drawing.Font font = new System.Drawing.Font("Tahoma", 14, FontStyle.Bold);
             System.Drawing.Font fontProductos = new System.Drawing.Font("Tahoma", 14);
@@ -373,7 +373,7 @@ namespace presentación
                 y += 20;
                 e.Graphics.DrawString($"{item.Codigo}", fontProductos, Brushes.Black, new RectangleF(40, y, 100, 20));
                 e.Graphics.DrawString($"{item.Nombre}", fontProductos, Brushes.Black, new RectangleF(140, y, 200, 20));
-                e.Graphics.DrawString($"{item.Description}", fontProductos, Brushes.Black, new RectangleF(350, y, 300, 20));
+                e.Graphics.DrawString($"{item.Descripcion}", fontProductos, Brushes.Black, new RectangleF(350, y, 300, 20));
                 e.Graphics.DrawString($"{item.Cantidad}", fontProductos, Brushes.Black, new RectangleF(650, y, 100, 20));
                 e.Graphics.DrawString($"{item.Total}", fontProductos, Brushes.Black, new RectangleF(700, y, 100, 20));
             }

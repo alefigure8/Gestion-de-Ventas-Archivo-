@@ -32,7 +32,11 @@ namespace presentación
         public fmrAgregarProducto(Producto producto, Form parent, bool vista = true)
         {
             InitializeComponent();
-            this.producto = producto;
+
+
+            if(producto != null)
+                this.producto = producto;
+
             this.vista = vista;
             this.parent = parent;
         }
@@ -40,21 +44,23 @@ namespace presentación
         //**** METODOS ****//
         private void modoVista()
         {
+            this.vista = true;
+
             btnCancelar.Text = Opciones.Btn.REGRESAR;
             pbDeleteImage.Visible = false;
             btnBorrar.Visible = false;
-            lbTituloCargarProducto.Text = "VISTA PRODUCTO";
+            lbTituloCargarProducto.Text = "PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.EDITAR;
             btnAgregarImagen.Visible = false;
             Metodos.textBoxReadOnly(listaTxt);
             Metodos.disableComboBox(cbMarca);
             Metodos.disableComboBox(cbCategoria);
-
-            this.vista = true;
         }
 
         private void modoModificar()
         {
+            this.vista = false;
+
             btnCancelar.Text = Opciones.Btn.CANCELAR;
             pbDeleteImage.Visible = true;
             btnBorrar.Visible = true;
@@ -65,7 +71,21 @@ namespace presentación
             Metodos.enableComboBox(cbMarca);
             Metodos.enableComboBox(cbCategoria);
 
-            this.vista = false;
+        }
+
+        private void modoAgregar()
+        {
+            producto = null;
+
+            btnCancelar.Text = Opciones.Btn.CANCELAR;
+            pbDeleteImage.Visible = false;
+            btnBorrar.Visible = false;
+            lbTituloCargarProducto.Text = "AGREGAR PRODUCTO";
+            btnAgregarProducto.Text = Opciones.Btn.AGREGAR;
+            btnAgregarImagen.Visible = true;
+            Metodos.textBoxReadOnly(listaTxt, false);
+            Metodos.enableComboBox(cbMarca);
+            Metodos.enableComboBox(cbCategoria);
         }
 
         private void clonarObjeto()
@@ -192,23 +212,26 @@ namespace presentación
                 Metodos.cargarimagen(pbCargarProducto, producto.ImagenURL);
 
                 clonarObjeto();
-
                 //Modo vista o edición
                 if (this.vista)
                     modoVista();
                 else
                     modoModificar();
-
             }
-            //Modo Agregar
             else
             {
-                producto = new Producto();
+                modoAgregar();
             }
+
         }
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
+
+            //Crear producto si no es una modificación
+            if(producto == null)
+                 producto = new Producto();
+
             //Habilitar campos para editar
             if (this.vista)
             {
@@ -319,16 +342,17 @@ namespace presentación
                         return;
                     }
 
-                    //Crear ID //TODO PASAR A METODO
-                    int ultimoID = listaProducto.Count > 0 ? listaProducto[listaProducto.Count - 1].Id + 1 : 1;
-                    producto.Id = ultimoID;
-                    producto.Modifiado = DateTime.Now;
-
                     // Guardar producto en la base de datos
                     if (productoNegocio.agregar(producto))
                     {
                         //Reset Formulario
                         Metodos.vaciarTextBox(listaTxt);
+
+                        //Permanecer en modo Agregar
+                        modoAgregar();
+
+                        //Mensaje de producto agregado
+                        MessageBox.Show("El producto fue agregado con éxito");
                     }
                 }
                 catch (Exception)
@@ -357,6 +381,10 @@ namespace presentación
 
                     if (productoNegocio.modificar(producto))
                     {
+
+                        //Cambiar vista de edición a vista
+                        modoVista();
+
                         MessageBox.Show("El producto fue modificado");
                     }
                 }
@@ -370,8 +398,6 @@ namespace presentación
                     MessageBox.Show("El producto no pudo ser modificar");
                 }
             }
-
-            modoVista();
         }
 
         private void btnAgregarCategoria_Click(object sender, EventArgs e)
