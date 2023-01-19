@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using negocio;
+using dominio;
+using System;
 
 namespace helper
 {
@@ -46,5 +49,24 @@ namespace helper
             return true;
         }
 
+        public static bool marcaUtilizada(int id)
+        {
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            List<Producto> listaProducto = productoNegocio.listar();
+
+            bool result = listaProducto.Exists(x => x.MarcaInfo.Id == id);
+
+            return result;
+        }
+
+        public static bool categoriaUtilizada(int id)
+        {
+            ProductoNegocio productoNegocio = new ProductoNegocio();
+            List<Producto> listaProducto = productoNegocio.listar();
+
+            bool result = listaProducto.Exists(x => x.CategoriaInfo.Id == id);
+
+            return result;
+        }
     }
 }
