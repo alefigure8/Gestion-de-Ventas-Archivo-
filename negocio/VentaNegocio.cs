@@ -160,14 +160,7 @@ namespace negocio
                     listaVentas = this.listar();
 
                     //Gnerar Id
-                    if (listaVentas.Count != 0)
-                    {
-                        venta.Id = listaVentas[listaVentas.Count - 1].Id + 1;
-                    }
-                    else
-                    {
-                        venta.Id = 1;
-                    }
+                    venta.Id = Utils.generarIdRandom();
 
                     //Agregamos la venta a la lista de venta
                     listaVentas.Add(venta);

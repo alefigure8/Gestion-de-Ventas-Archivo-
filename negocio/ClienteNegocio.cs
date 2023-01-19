@@ -72,8 +72,7 @@ namespace negocio
 
             if(agregarCliente == null)
             {
-                //Agregar
-                cliente.Id = this.generarId();
+                cliente.Id = Utils.generarIdRandom();
                 listaCliente.Add(cliente);
 
                 //Agregar filas a la variable csv
@@ -133,18 +132,6 @@ namespace negocio
             //Validar con lista de ventas que no haya Id cliente en ventas. Caso no contrario no se puede borrar.
             //Buscamos cliente por id y se lo pasamos a Modificar con Activo en 0
             return true;
-        }
-
-        private int generarId()
-        {
-            List<Cliente> listaCliente = this.Listar();
-
-            if(listaCliente.Count > 0)
-            {
-                return listaCliente[listaCliente.Count - 1].Id + 1;
-            }
-
-            return 1;
         }
     }
 }

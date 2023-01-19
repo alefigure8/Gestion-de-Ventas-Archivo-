@@ -68,10 +68,12 @@ namespace negocio
             List<Marca> listaMarca = new List<Marca>();
             listaMarca = this.listar();
 
+            //Crear objeto
             Marca aux = new Marca();
-            aux.Id = listaMarca.Count > 0 ? listaMarca[listaMarca.Count - 1].Id + 1 : 1;
+            aux.Id = Utils.generarIdRandom();
             aux.Descripcion = keyword;
 
+            //Listar nuevo objeto
             listaMarca.Add(aux);
 
             string csv = string.Empty;

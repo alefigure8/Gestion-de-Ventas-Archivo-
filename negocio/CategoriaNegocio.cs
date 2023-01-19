@@ -65,10 +65,12 @@ namespace negocio
             List<Categoria> listaCategoria = new List<Categoria>();
             listaCategoria = this.listar();
 
+            //Crear objeto
             Categoria aux = new Categoria();
-            aux.Id = listaCategoria.Count > 0 ? listaCategoria[listaCategoria.Count - 1].Id + 1 : 1;
+            aux.Id = Utils.generarIdRandom();
             aux.Descripcion = keyword;
 
+            //Listar objeto
             listaCategoria.Add(aux);
 
             string csv = string.Empty;

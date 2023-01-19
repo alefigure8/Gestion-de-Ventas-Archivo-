@@ -5,7 +5,7 @@ using configuracion;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-
+using configuracion;
 
 namespace negocio
 {
@@ -98,6 +98,13 @@ namespace negocio
             List<Producto> listaProductos = new List<Producto>();
             listaProductos = this.listar();
 
+            //Generar Random Id
+            producto.Id = Utils.generarIdRandom();
+
+            //Cambiar fecha de modificación
+            producto.Modifiado = DateTime.Now;
+
+            //Listar producto
             listaProductos.Add(producto);
 
             //Adding the Rows
