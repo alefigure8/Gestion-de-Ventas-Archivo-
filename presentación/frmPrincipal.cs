@@ -374,6 +374,7 @@ namespace presentación
                     {
                         listaProductos =  productos.busquedaSimple(busqueda);
                         listaProductosAux = listaProductos;
+
                         //Poner pagina en cero
                         pagina = 0;
 

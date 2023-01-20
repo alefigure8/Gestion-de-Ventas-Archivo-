@@ -21,6 +21,7 @@ namespace presentación
                 this.producto = producto;
 
             InitializeComponent();
+
             if (configuracion.GetType() == typeof(Marca))
             {
                 this.configuracion = (Marca)configuracion;
