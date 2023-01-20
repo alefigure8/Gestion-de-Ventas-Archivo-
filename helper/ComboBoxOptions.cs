@@ -1,8 +1,9 @@
 ﻿using configuracion;
 using System;
 using System.Linq;
-
+using dominio;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 
 namespace helper
@@ -14,8 +15,16 @@ namespace helper
             try
             {
                 listaDesplegable listaMarca = new listaDesplegable();
-                combo.DataSource = listaMarca.cargarMarcas(todos).OrderBy((x) => x.Descripcion).ToList();
-                combo.SelectedIndex = 0;
+                List<Marca> aux = listaMarca.cargarMarcas(todos);
+                Console.WriteLine(aux.Count);
+                Console.WriteLine(aux);
+
+                //Solo carga si hay elementos encontrados para evitar errores
+                if (aux.Count > 0)
+                {
+                    combo.DataSource = aux.OrderBy((x) => x.Descripcion).ToList(); ;
+                    combo.SelectedIndex = 0;
+                }
             }
             catch (Exception)
             {
@@ -28,8 +37,14 @@ namespace helper
             try
             {
                 listaDesplegable listaCategoria = new listaDesplegable();
-                combo.DataSource = listaCategoria.cargarCategorias(todos).OrderBy((x) => x.Descripcion).ToList();
-                combo.SelectedIndex = 0;
+                List<Categoria> aux = listaCategoria.cargarCategorias(todos);
+
+                //Solo carga si hay elementos encontrados para evitar errores
+                if(aux.Count > 0)
+                {
+                    combo.DataSource = aux.OrderBy((x) => x.Descripcion).ToList();
+                    combo.SelectedIndex = 0;
+                }
             }
             catch (Exception)
             {
@@ -41,7 +56,13 @@ namespace helper
         {
             listaDesplegable listaProducto = new listaDesplegable();
             combo.DisplayMember = "Nombre";
-            combo.DataSource = listaProducto.cargarProductos().OrderBy(x => x.Nombre).ToList();
+            List<Producto> aux = listaProducto.cargarProductos();
+
+            //Solo carga si hay elementos encontrados para evitar errores
+            if(aux.Count > 0)
+            {
+                combo.DataSource = aux.OrderBy(x => x.Nombre).ToList();
+            }
         }
 
         public static void comboBoxCamposBusquedaAvanzada(ComboBox combo)
@@ -62,8 +83,8 @@ namespace helper
         {
             try
             {
-                listaDesplegable listaCantidad = new listaDesplegable();
-                combo.DataSource = listaCantidad.cargarBusqueraColumnas();
+                listaDesplegable listaOrdenadoPor = new listaDesplegable();
+                combo.DataSource = listaOrdenadoPor.cargarBusqueraColumnas();
                 combo.SelectedIndex = 0;
             }
             catch (Exception)
