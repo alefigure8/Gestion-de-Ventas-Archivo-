@@ -154,7 +154,7 @@ namespace helper
 
         public static void buscarEnLista<T>(List<T> listaCategoria, ComboBox combo, Button btn)
         {
-            if ((listaCategoria.Any(x => x.ToString() == combo.Text)))
+            if ((listaCategoria.Any(x => x.ToString() == combo.Text)) && string.IsNullOrEmpty(combo.Text))
             {
                 btn.Visible = true;
             }
