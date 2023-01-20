@@ -169,6 +169,7 @@ namespace presentación
             listaCategoria = categoriaNegocio.listar();
 
             cargarImagenes();
+            cargarGUI();
 
             listaTxt = new List<TextBox>()
             {
@@ -212,6 +213,7 @@ namespace presentación
                 Metodos.cargarimagen(pbCargarProducto, producto.ImagenURL);
 
                 clonarObjeto();
+
                 //Modo vista o edición
                 if (this.vista)
                     modoVista();
@@ -565,15 +567,23 @@ namespace presentación
         private void btnConfigureMarca_Click(object sender, EventArgs e)
         {
             Marca aux = listaMarca.Find(c => c.ToString() == cbAgregarMarca.Text);
-            frmConfiguracionCategoriaMarca screen = new frmConfiguracionCategoriaMarca(aux, this.producto, this.parent, this);
-            screen.ShowDialog();
+
+            if(aux != null)
+            {
+                frmConfiguracionCategoriaMarca screen = new frmConfiguracionCategoriaMarca(aux, this.producto, this.parent, this);
+                screen.ShowDialog();
+            }
         }
 
         private void btnConfigureCategoria_Click(object sender, EventArgs e)
         {
             Categoria aux = listaCategoria.Find(c => c.ToString() == cbAgregarcategoria.Text);
-            frmConfiguracionCategoriaMarca screen = new frmConfiguracionCategoriaMarca(aux, this.producto, this.parent, this);
-            screen.ShowDialog();
+
+            if(aux != null)
+            {
+                frmConfiguracionCategoriaMarca screen = new frmConfiguracionCategoriaMarca(aux, this.producto, this.parent, this);
+                screen.ShowDialog();
+            }
         }
 
         private void cbAgregarcategoria_TextChanged(object sender, EventArgs e)
@@ -586,6 +596,15 @@ namespace presentación
         {
             if (listaMarca != null)
              Metodos.buscarEnLista<Marca>(listaMarca, cbAgregarMarca, btnConfigureMarca);
+        }
+
+        private void cargarGUI()
+        {
+            if (listaCategoria != null)
+                Metodos.buscarEnLista<Categoria>(listaCategoria, cbAgregarcategoria, btnConfigureCategoria);
+
+            if (listaMarca != null)
+                Metodos.buscarEnLista<Marca>(listaMarca, cbAgregarMarca, btnConfigureMarca);
         }
     }
 }
