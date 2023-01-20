@@ -72,6 +72,7 @@ namespace negocio
                             listaProducto.Add(aux);
                         }
                     }
+
                 }
                 else
                 {
@@ -386,8 +387,8 @@ namespace negocio
             {
                 if (!string.IsNullOrEmpty(filtro))
                     listaProducto = listaProducto.FindAll(x => x.Nombre.ToLower().Contains(filtro));
-                else
-                    listaProducto.Clear();
+                //else
+                //    listaProducto.Clear();
                 
                 return listaProducto;
             }
