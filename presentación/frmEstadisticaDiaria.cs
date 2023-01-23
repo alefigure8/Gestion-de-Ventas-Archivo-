@@ -185,16 +185,13 @@ namespace presentación
             for(int i = 0; i < listaVentasActuales.Count; i++)
             {
                 //Total Ventas
-                VentaTotal += listaVentasActuales[i].Total;
+                VentaTotal += listaVentasActuales[i].Total + ((listaVentasActuales[i].Total - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100))) * (listaVentasActuales[i].Impuesto / 100)) - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100));
+
 
                 if (listaVentasActuales[i].Credit)
-                {
-                    ventaTarjeta += listaVentasActuales[i].Total;
-                }
+                    ventaTarjeta += listaVentasActuales[i].Total + ((listaVentasActuales[i].Total - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100))) * (listaVentasActuales[i].Impuesto / 100)) - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100));
                 else
-                {
-                    ventaEfectivo += listaVentasActuales[i].Total;
-                }
+                    ventaEfectivo += listaVentasActuales[i].Total + ((listaVentasActuales[i].Total - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100))) * (listaVentasActuales[i].Impuesto / 100)) - (listaVentasActuales[i].Total * (listaVentasActuales[i].Descuento / 100));
 
             }
         }

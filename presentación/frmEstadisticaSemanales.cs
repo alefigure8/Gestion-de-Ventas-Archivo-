@@ -163,8 +163,10 @@ namespace presentación
                     if (ventas.Fecha.Date == fechaAnterior.Date)
                     {
                         ventaTotalSemanal += ventas.Total;
+                        ventaTotalSemanal += ventas.Total * (ventas.Impuesto / 100);
+                        ventaTotalSemanal -= ventas.Total * (ventas.Descuento / 100);
 
-                        if(ventas.Credit)
+                        if (ventas.Credit)
                         {
                             ventaTarjetaSemanal += ventas.Total;
                         }
