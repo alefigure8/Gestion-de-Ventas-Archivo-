@@ -125,7 +125,8 @@ namespace presentación
                 dgvVentas.Rows[index].Cells["Posicion"].Style.ForeColor = Color.Black;
 
                 //Precio
-                dgvVentas.Rows[index].Cells["Precio"].Value = listaVentasActuales[i].Total.ToString("c");
+                decimal total = listaVentasActuales[i].Total - ((listaVentasActuales[i].Descuento / 100) * (listaVentasActuales[i].Total + (listaVentasActuales[i].Impuesto / 100) * listaVentasActuales[i].Total)) + ((listaVentasActuales[i].Impuesto / 100) * listaVentasActuales[i].Total);
+                dgvVentas.Rows[index].Cells["Precio"].Value = total.ToString("c");
                 dgvVentas.Rows[index].Cells["Precio"].Style.ForeColor = Color.Black;
 
                 //Cliente
