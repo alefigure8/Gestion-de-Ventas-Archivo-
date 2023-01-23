@@ -410,7 +410,7 @@ namespace negocio
             {
                 if (!string.IsNullOrEmpty(filtro))
                 {
-                    aux = listaAux.Find(x => x.Codigo.ToLower().Contains(filtro));
+                    aux = listaAux.Find(x => x.Codigo.ToLower().Contains(filtro.ToLower()));
                     
                    if(aux != null)
                     {
