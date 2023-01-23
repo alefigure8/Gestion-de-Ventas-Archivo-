@@ -85,16 +85,16 @@ namespace presentación
                     Venta aux = new Venta();
                     ProductoNegocio productoNegocio = new ProductoNegocio();
 
-                    //Buscar el prodicto por codigo
+                    //Buscar el producto por codigo
                     aux = productoNegocio.busquedaCodigo(dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString());
 
                     //Agregar producto a la lista
-                    if (aux.Codigo == dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString())
+                    if (aux.Codigo.ToLower() == dgvProductos[Opciones.Campo.CODIGO, iCell].Value.ToString().ToLower())
                     {
                         //Setting
                         aux.Cantidad = cantidad;
-                        aux.Total = Convert.ToDecimal(cantidad * aux.Precio);
-                        
+                        aux.Total = (cantidad * aux.Precio);
+
                         //Carhar producto en la lista de venta
                         listaVentas.Add(aux);
                         Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
@@ -184,8 +184,8 @@ namespace presentación
                 total = subTotal;
             }
 
-            cargarIVA();
             cargarDescuento();
+            cargarIVA();
             cargarTotal();
         }
 
@@ -207,14 +207,28 @@ namespace presentación
 
             if (checkIVA.Checked)
             {
-                decimal aux = subTotal;
+                decimal aux = total;
                 total = aux * 1.210M;
                 iva = total - aux;
             }
             else
             {
-                total = subTotal;
                 iva = 0;
+            }
+        }
+
+        private void cargarDescuento()
+        {
+            if (!string.IsNullOrEmpty(txtDescuento.Text) && Validacion.esNumero(txtDescuento.Text))
+            {
+                descuento = decimal.Parse(txtDescuento.Text);
+                decimal totalDescuento = (descuento * subTotal) / 100;
+                total -= totalDescuento;
+                descuento = totalDescuento;
+            }
+            else
+            {
+                descuento = 0;
             }
         }
 
@@ -248,22 +262,6 @@ namespace presentación
             }
 
             lbCantidadProductosTotal.Text = total.ToString();
-        }
-
-        private void cargarDescuento()
-        {
-            if (!string.IsNullOrEmpty(txtDescuento.Text) && Validacion.esNumero(txtDescuento.Text))
-            {
-                int x = txtDescuento.Text.Length;
-                descuento = decimal.Parse(txtDescuento.Text);
-                decimal totalDescuento = (descuento * total) / 100;
-                total -= totalDescuento;
-                descuento = totalDescuento;
-            }
-            else
-            {
-                descuento = 0;
-            }
         }
 
         private void txtDescuento_TextChanged(object sender, EventArgs e)
@@ -305,10 +303,22 @@ namespace presentación
                 if(listaVentas.Count > 1)
                 {
                     //Guardar la venta final en el archivo de ventas
-                    ventaFinal.Total = total;
+                    //ventaFinal.Total = total;
+                    ventaFinal.Total = subTotal;
                     ventaFinal.Fecha = Convert.ToDateTime(txtFecha.Text);
                     ventaFinal.Venta = listaVentas;
                     ventaFinal.id_cliente = idCliente;
+
+                    string auxImpuesto = lbIVAPorcentaje.Text.Replace(".", ",");
+                    decimal auxImpuestoParse = decimal.Parse(auxImpuesto);
+                    if (checkIVA.Checked)
+                        ventaFinal.Impuesto = Convert.ToDecimal(auxImpuesto);
+                    else
+                        ventaFinal.Impuesto = 0m;
+
+                    if(!string.IsNullOrEmpty(txtDescuento.Text))
+                        ventaFinal.Descuento = Convert.ToDecimal(txtDescuento.Text);
+
                     VentaNegocio ventaNegocio = new VentaNegocio();
 
                     //Ventana resumen
