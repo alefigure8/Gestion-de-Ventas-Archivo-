@@ -65,6 +65,8 @@ namespace negocio
                         string aux_cantidad_venta = data[icolumn++];
                         aux.id_cliente = int.Parse(data[icolumn++]);
                         aux.Credit = int.Parse(data[icolumn++]) == 1 ? true : false;
+                        aux.Impuesto = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
+                        aux.Descuento = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
 
                         //Llave con Id de Productos, cargamos uno por uno
                         List<string> id_Producto = new List<string>();
@@ -187,7 +189,7 @@ namespace negocio
                         string credit = item.Credit ? "1": "0";
 
                         //Add the Data rows.
-                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta},{item.id_cliente},{credit}";
+                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta},{item.id_cliente},{credit},{item.Impuesto.ToString().Replace(",", ".")},{item.Descuento.ToString().Replace(",", ".")}";
                         //Add new line.
                         csv += "\r\n";
 
