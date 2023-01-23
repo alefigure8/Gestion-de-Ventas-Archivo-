@@ -93,8 +93,14 @@ namespace presentación
                     lbClienteNombre.Text = "Cliente Ocasional";
                 }
 
-               //Precio Total
-               lbTotalPrecio.Text = aux.Total.ToString("c");
+                //Precio Total
+                lbTotalPrecio.Text = (aux.Total - ((aux.Descuento / 100) * (aux.Total + (aux.Impuesto / 100) * aux.Total)) + ((aux.Impuesto / 100) * aux.Total)).ToString("c");
+
+                //Impuesto
+                lbImpuestoTotal.Text = ((aux.Total - (aux.Total * (aux.Descuento / 100))) * (aux.Impuesto / 100)).ToString("c");
+
+                //Descuento
+                lbDescuentoTotal.Text = (aux.Total * (aux.Descuento / 100)).ToString("c");
 
                 //Tarjeta o Credito
                 string tarjetoEfectivo = aux.Credit ? "Crédito" : "Efectivo";
