@@ -64,7 +64,7 @@
             this.lbDateTimeEnd.AutoSize = true;
             this.lbDateTimeEnd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDateTimeEnd.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDateTimeEnd.Location = new System.Drawing.Point(228, 186);
+            this.lbDateTimeEnd.Location = new System.Drawing.Point(278, 186);
             this.lbDateTimeEnd.Name = "lbDateTimeEnd";
             this.lbDateTimeEnd.Size = new System.Drawing.Size(45, 16);
             this.lbDateTimeEnd.TabIndex = 4;
@@ -101,7 +101,7 @@
             this.lbDateTimeStart.AutoSize = true;
             this.lbDateTimeStart.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDateTimeStart.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDateTimeStart.Location = new System.Drawing.Point(79, 186);
+            this.lbDateTimeStart.Location = new System.Drawing.Point(129, 186);
             this.lbDateTimeStart.Name = "lbDateTimeStart";
             this.lbDateTimeStart.Size = new System.Drawing.Size(47, 16);
             this.lbDateTimeStart.TabIndex = 4;
@@ -127,7 +127,7 @@
             // 
             this.dateStart.CalendarFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateStart.CustomFormat = "";
-            this.dateStart.Location = new System.Drawing.Point(132, 182);
+            this.dateStart.Location = new System.Drawing.Point(182, 182);
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(90, 20);
             this.dateStart.TabIndex = 2;
@@ -143,7 +143,7 @@
             this.btnPeriodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPeriodo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeriodo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPeriodo.Location = new System.Drawing.Point(82, 235);
+            this.btnPeriodo.Location = new System.Drawing.Point(197, 223);
             this.btnPeriodo.Name = "btnPeriodo";
             this.btnPeriodo.Size = new System.Drawing.Size(162, 66);
             this.btnPeriodo.TabIndex = 1;
@@ -154,7 +154,7 @@
             // dateEnd
             // 
             this.dateEnd.CalendarFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEnd.Location = new System.Drawing.Point(279, 182);
+            this.dateEnd.Location = new System.Drawing.Point(329, 182);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(90, 20);
             this.dateEnd.TabIndex = 3;
