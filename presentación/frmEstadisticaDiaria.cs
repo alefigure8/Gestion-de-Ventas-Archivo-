@@ -20,8 +20,13 @@ namespace presentación
 {
     public partial class frmEstadisticaDiaria : Form
     {
+        //Lista ventas
         List<Ventas> listaVentasActuales;
+
+        //Fecha
         DateTime fechaActual;
+
+        //Datos Totales
         Decimal VentaTotal = Decimal.Zero;
         Decimal ventaEfectivo = Decimal.Zero;
         Decimal ventaTarjeta = Decimal.Zero;
@@ -200,7 +205,6 @@ namespace presentación
         {
             var dataRow = dgvVentas.Rows[e.RowIndex].Cells["Id"].Value;
            
-
             frmEstadisticaDiariaVentas screen = new frmEstadisticaDiariaVentas(dataRow.ToString());
             screen.ShowDialog();
         }
