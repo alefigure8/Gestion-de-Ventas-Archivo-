@@ -72,7 +72,8 @@ namespace presentación
                 {
                     if (ventas.Fecha.ToString("dd/MM/yyyy") == fechaAnterior.ToString("dd/MM/yyyy"))
                     {
-                        VentaTotalDiaria += ventas.Total;
+                        VentaTotalDiaria += ventas.Total + ((ventas.Total - (ventas.Total * (ventas.Descuento / 100))) * (ventas.Impuesto / 100)) - (ventas.Total * (ventas.Descuento / 100)); ;
+
                     }
                 }
 
@@ -98,7 +99,7 @@ namespace presentación
             lbVentaTotalPorDia.Text = ventaPorDia;
 
             //Fecha en el titulo de venta por semana
-            lbVentaSemanaTitulo.Text = $"Semana: {DateTime.Now.AddDays(-1).ToString("dd/MM")} al {fechaAnterior.ToString("dd/MM")}";
+            lbVentaSemanaTitulo.Text = $"Semana: {DateTime.Now.AddDays(-1).ToString("dd/MM")} al {DateTime.Now.AddDays(-7).ToString("dd/MM")}";
         }
 
         private void categoriaSemanal()
@@ -125,7 +126,7 @@ namespace presentación
                             {
                                 if(venta.CategoriaInfo.Descripcion == listaCategorias[i - 1].Descripcion)
                                 {
-                                    ventaTotalCategoria += venta.Total;
+                                    ventaTotalCategoria += ventas.Total + ((ventas.Total - (ventas.Total * (ventas.Descuento / 100))) * (ventas.Impuesto / 100)) - (ventas.Total * (ventas.Descuento / 100));
                                 }
                             }
                         }
@@ -162,17 +163,15 @@ namespace presentación
                 {
                     if (ventas.Fecha.Date == fechaAnterior.Date)
                     {
-                        ventaTotalSemanal += ventas.Total;
-                        ventaTotalSemanal += ventas.Total * (ventas.Impuesto / 100);
-                        ventaTotalSemanal -= ventas.Total * (ventas.Descuento / 100);
-
+                        ventaTotalSemanal += ventas.Total + ((ventas.Total - (ventas.Total * (ventas.Descuento / 100))) * (ventas.Impuesto / 100)) - (ventas.Total * (ventas.Descuento / 100));
+ 
                         if (ventas.Credit)
                         {
-                            ventaTarjetaSemanal += ventas.Total;
+                            ventaTarjetaSemanal += ventas.Total + ((ventas.Total - (ventas.Total * (ventas.Descuento / 100))) * (ventas.Impuesto / 100)) - (ventas.Total * (ventas.Descuento / 100));
                         }
                         else
                         {
-                            ventaEfectivoSemanal += ventas.Total;
+                            ventaEfectivoSemanal += ventas.Total + ((ventas.Total - (ventas.Total * (ventas.Descuento / 100))) * (ventas.Impuesto / 100)) - (ventas.Total * (ventas.Descuento / 100));
                         }
                     }
                 }
