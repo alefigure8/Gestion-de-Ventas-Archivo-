@@ -68,5 +68,13 @@ namespace helper
 
             return result;
         }
+
+        public static bool esMayorLaFechaDeInicio(DateTimePicker start, DateTimePicker end)
+        {
+            if (start.Value > end.Value)
+                return true;
+
+            return false;
+        }
     }
 }
