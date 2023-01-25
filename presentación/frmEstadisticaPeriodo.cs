@@ -212,6 +212,10 @@ namespace presentación
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
 
+                    //Date
+                    TimeSpan diff = end - start;
+                    DateTime date = start;
+
                     //Configuraciones Workbooks
                     string fileName = saveDialog.FileName;
                     Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
@@ -220,41 +224,75 @@ namespace presentación
                     excel.Visible = false;
 
                     //Inicio de fila
-                    int index = 2;
+                    int index = 1;
 
                     //Range
                     Range formatRange;
 
-                    //Header
-                    formatRange = ws.get_Range("a1", $"f1");
-                    formatRange.BorderAround(XlLineStyle.xlContinuous,
-                    XlBorderWeight.xlMedium, XlColorIndex.xlColorIndexAutomatic,
-                    XlColorIndex.xlColorIndexAutomatic);
-                    formatRange.Interior.Color = ColorTranslator.ToOle(Color.LightGray);
-                    formatRange.Font.Bold = true;
 
-                    ws.Cells[1, 1] = "Código";
-                    ws.Cells[1, 2] = "Nombre";
-                    ws.Cells[1, 3] = "Descripción";
-                    ws.Cells[1, 4] = "Categoria";
-                    ws.Cells[1, 5] = "Cantidad";
-                    ws.Cells[1, 6] = "Precio Total";
-
-                    //Guardar en archivos
-                    List<Struct.ventaPorProducto> listaPorProducto = cargarListaProducto(listaVentaPeriodo);
-
-                    foreach (var venta in listaPorProducto)
+                    for(int i = 0; i <= diff.Days; i++)
                     {
-                        //TODO UNIFICAR PRODUCTOS
-                        ws.Cells[index, 1] = venta.Codigo;
-                        ws.Cells[index, 2] = venta.Nombre;
-                        ws.Cells[index, 3] = venta.Descripcion;
-                        ws.Cells[index, 4] = venta.Categoria;
-                        ws.Cells[index, 5] = venta.Cantidad;
-                        ws.Cells[index, 6] = Math.Round(venta.Total, 2);
-                        index++;
+                        //Guardar en archivos
+                        List<Ventas> aux = listaVentaPeriodo.FindAll(x => x.Fecha.ToString("dd/MM/yyyy") == date.ToString("dd/MM/yyyy"));
+
+                        if (aux != null && aux.Count !=0)
+                        {
+                            List<Struct.ventaPorProducto> listaPorProducto = cargarListaProducto(aux);
+
+                            if (listaPorProducto != null && listaPorProducto.Count != 0)
+                            {
+                                index++;
+
+                                //Date
+                                formatRange = ws.get_Range($"a{index}", $"f{index}");
+                                formatRange.BorderAround(XlLineStyle.xlContinuous,
+                                XlBorderWeight.xlMedium, XlColorIndex.xlColorIndexAutomatic,
+                                XlColorIndex.xlColorIndexAutomatic);
+                                formatRange.Interior.Color = ColorTranslator.ToOle(Color.LightGray);
+                                formatRange.Font.Bold = true;
+                                ws.Cells[index, 1] = $"{date.ToString("dd/MM/yyyy")}";
+
+                                index++;
+
+                                //Header
+                                formatRange = ws.get_Range($"a{index}", $"f{index}");
+                                formatRange.BorderAround(XlLineStyle.xlContinuous,
+                                XlBorderWeight.xlMedium, XlColorIndex.xlColorIndexAutomatic,
+                                XlColorIndex.xlColorIndexAutomatic);
+                                formatRange.Interior.Color = ColorTranslator.ToOle(Color.LightGray);
+                                formatRange.Font.Bold = true;
+
+                                //Columns
+                                ws.Cells[index, 1] = "Código";
+                                ws.Cells[index, 2] = "Nombre";
+                                ws.Cells[index, 3] = "Descripción";
+                                ws.Cells[index, 4] = "Categoria";
+                                ws.Cells[index, 5] = "Cantidad";
+                                ws.Cells[index, 6] = "Precio Total";
+
+                                index++;
+
+                                foreach (var venta in listaPorProducto)
+                                {
+                                    
+                                    //TODO UNIFICAR PRODUCTOS
+                                    ws.Cells[index, 1] = venta.Codigo;
+                                    ws.Cells[index, 2] = venta.Nombre;
+                                    ws.Cells[index, 3] = venta.Descripcion;
+                                    ws.Cells[index, 4] = venta.Categoria;
+                                    ws.Cells[index, 5] = venta.Cantidad;
+                                    ws.Cells[index, 6] = Math.Round(venta.Total, 2);
+                                    index++;
+
+                                }
+                            }
+                        }
+
+                        date = date.AddDays(1);
                     }
 
+
+                    index++;
                     ws.Cells[index, 6] = Math.Round(VentaTotal, 2);
 
                     //Guardar
