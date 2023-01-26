@@ -122,6 +122,14 @@
             public const string ARTICULOS = "ARTICULOS";
         }
 
+        public struct OpcionesDescargas
+        {
+            public const string MARCAS = "Marcas";
+            public const string CATEGORIAS = "Categorias";
+            public const string ARTICULOS = "Artículos";
+            public const string DIA = "Día";
+        }
+
         public struct Btn
         {
             public const string AGREGAR = "Agregar";
