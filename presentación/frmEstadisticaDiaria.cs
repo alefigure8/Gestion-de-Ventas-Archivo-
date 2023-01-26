@@ -128,15 +128,20 @@ namespace presentación
                 //Posicion
                 dgvVentas.Rows[index].Cells["Posicion"].Value = i + 1;
                 dgvVentas.Rows[index].Cells["Posicion"].Style.ForeColor = Color.Black;
+                dgvVentas.Rows[index].Cells["Posicion"].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 //Precio
                 decimal total = listaVentasActuales[i].Total - ((listaVentasActuales[i].Descuento / 100) * (listaVentasActuales[i].Total + (listaVentasActuales[i].Impuesto / 100) * listaVentasActuales[i].Total)) + ((listaVentasActuales[i].Impuesto / 100) * listaVentasActuales[i].Total);
                 dgvVentas.Rows[index].Cells["Precio"].Value = total.ToString("c");
                 dgvVentas.Rows[index].Cells["Precio"].Style.ForeColor = Color.Black;
+                dgvVentas.Rows[index].Cells["Precio"].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
 
                 //Cliente
                 dgvVentas.Rows[index].Cells["Cliente"].Value = rowCliente;
                 dgvVentas.Rows[index].Cells["Cliente"].Style.ForeColor = Color.Black;
+                dgvVentas.Rows[index].Cells["Cliente"].Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
 
                 //Id
                 dgvVentas.Rows[index].Cells["Id"].Value = listaVentasActuales[i].Id;
