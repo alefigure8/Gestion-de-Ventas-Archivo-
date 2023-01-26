@@ -54,11 +54,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPrinter = new System.Windows.Forms.PictureBox();
             this.btnFile = new System.Windows.Forms.PictureBox();
-            this.lbDescasFiles = new System.Windows.Forms.Label();
             this.lbEscel = new System.Windows.Forms.Label();
             this.lbPrint = new System.Windows.Forms.Label();
             this.chartSemanalCategoria = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.printProdcuctosPeriodo = new System.Drawing.Printing.PrintDocument();
+            this.cbOpcionesDescarga = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -284,9 +284,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panel2.Controls.Add(this.cbOpcionesDescarga);
             this.panel2.Controls.Add(this.btnPrinter);
             this.panel2.Controls.Add(this.btnFile);
-            this.panel2.Controls.Add(this.lbDescasFiles);
             this.panel2.Controls.Add(this.lbEscel);
             this.panel2.Controls.Add(this.lbPrint);
             this.panel2.Location = new System.Drawing.Point(680, 344);
@@ -315,17 +315,6 @@
             this.btnFile.TabIndex = 5;
             this.btnFile.TabStop = false;
             this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
-            // 
-            // lbDescasFiles
-            // 
-            this.lbDescasFiles.AutoSize = true;
-            this.lbDescasFiles.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDescasFiles.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDescasFiles.Location = new System.Drawing.Point(81, 17);
-            this.lbDescasFiles.Name = "lbDescasFiles";
-            this.lbDescasFiles.Size = new System.Drawing.Size(91, 19);
-            this.lbDescasFiles.TabIndex = 4;
-            this.lbDescasFiles.Text = "Descargar";
             // 
             // lbEscel
             // 
@@ -375,6 +364,15 @@
             title2.Text = "Categorias";
             this.chartSemanalCategoria.Titles.Add(title2);
             // 
+            // cbOpcionesDescarga
+            // 
+            this.cbOpcionesDescarga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOpcionesDescarga.FormattingEnabled = true;
+            this.cbOpcionesDescarga.Location = new System.Drawing.Point(59, 15);
+            this.cbOpcionesDescarga.Name = "cbOpcionesDescarga";
+            this.cbOpcionesDescarga.Size = new System.Drawing.Size(144, 21);
+            this.cbOpcionesDescarga.TabIndex = 6;
+            // 
             // frmEstadisticaPeriodo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,10 +420,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox btnPrinter;
         private System.Windows.Forms.PictureBox btnFile;
-        private System.Windows.Forms.Label lbDescasFiles;
         private System.Windows.Forms.Label lbEscel;
         private System.Windows.Forms.Label lbPrint;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartSemanalCategoria;
         private System.Drawing.Printing.PrintDocument printProdcuctosPeriodo;
+        private System.Windows.Forms.ComboBox cbOpcionesDescarga;
     }
 }
