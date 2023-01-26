@@ -12,6 +12,7 @@ namespace helper
         private List<string> cantidadPorPagina;
         private List<string> criterioBusquedaTexto;
         private List<string> criterioBusquedaNumero;
+        private List<string> opcionesDescargas;
 
         public List<string>  cargarBusqueraColumnas()
         {
@@ -57,6 +58,19 @@ namespace helper
                 Opciones.CriterioNumero.MENOR
             };
             return criterioBusquedaNumero;
+        }
+
+        public List<string> cargarOpcionesDescarga()
+        {
+            opcionesDescargas = new List<string>()
+            {
+                Opciones.OpcionesDescargas.MARCAS,
+                Opciones.OpcionesDescargas.CATEGORIAS,
+                Opciones.OpcionesDescargas.ARTICULOS,
+                Opciones.OpcionesDescargas.DIA,
+
+            };
+            return opcionesDescargas;
         }
 
         public List<Producto> cargarProductos()
