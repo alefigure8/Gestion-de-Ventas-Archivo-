@@ -29,54 +29,31 @@
         private void InitializeComponent()
         {
             this.panelContainerOprions = new System.Windows.Forms.Panel();
-            this.lbDateTimeEnd = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnDiario = new System.Windows.Forms.Button();
-            this.lbDateTimeStart = new System.Windows.Forms.Label();
             this.btnEstadisticaSemanal = new System.Windows.Forms.Button();
+            this.lbDateTimeEnd = new System.Windows.Forms.Label();
+            this.panelContainerOprions2 = new System.Windows.Forms.Panel();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
-            this.btnPeriodo = new System.Windows.Forms.Button();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
+            this.btnPeriodo = new System.Windows.Forms.Button();
+            this.lbDateTimeStart = new System.Windows.Forms.Label();
             this.lbTituloPresupuesto = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelContainerOprions.SuspendLayout();
+            this.panelContainerOprions2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelContainerOprions
             // 
-            this.panelContainerOprions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelContainerOprions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             this.panelContainerOprions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelContainerOprions.Controls.Add(this.lbDateTimeEnd);
-            this.panelContainerOprions.Controls.Add(this.panel1);
             this.panelContainerOprions.Controls.Add(this.btnDiario);
-            this.panelContainerOprions.Controls.Add(this.lbDateTimeStart);
             this.panelContainerOprions.Controls.Add(this.btnEstadisticaSemanal);
-            this.panelContainerOprions.Controls.Add(this.dateStart);
-            this.panelContainerOprions.Controls.Add(this.btnPeriodo);
-            this.panelContainerOprions.Controls.Add(this.dateEnd);
             this.panelContainerOprions.Location = new System.Drawing.Point(193, 102);
             this.panelContainerOprions.Name = "panelContainerOprions";
-            this.panelContainerOprions.Size = new System.Drawing.Size(552, 326);
+            this.panelContainerOprions.Size = new System.Drawing.Size(552, 152);
             this.panelContainerOprions.TabIndex = 0;
             this.panelContainerOprions.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // lbDateTimeEnd
-            // 
-            this.lbDateTimeEnd.AutoSize = true;
-            this.lbDateTimeEnd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDateTimeEnd.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDateTimeEnd.Location = new System.Drawing.Point(278, 186);
-            this.lbDateTimeEnd.Name = "lbDateTimeEnd";
-            this.lbDateTimeEnd.Size = new System.Drawing.Size(45, 16);
-            this.lbDateTimeEnd.TabIndex = 4;
-            this.lbDateTimeEnd.Text = "Hasta";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
-            this.panel1.Location = new System.Drawing.Point(26, 150);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 3);
-            this.panel1.TabIndex = 4;
             // 
             // btnDiario
             // 
@@ -96,17 +73,6 @@
             this.btnDiario.UseVisualStyleBackColor = false;
             this.btnDiario.Click += new System.EventHandler(this.btnDiario_Click);
             // 
-            // lbDateTimeStart
-            // 
-            this.lbDateTimeStart.AutoSize = true;
-            this.lbDateTimeStart.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDateTimeStart.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbDateTimeStart.Location = new System.Drawing.Point(129, 186);
-            this.lbDateTimeStart.Name = "lbDateTimeStart";
-            this.lbDateTimeStart.Size = new System.Drawing.Size(47, 16);
-            this.lbDateTimeStart.TabIndex = 4;
-            this.lbDateTimeStart.Text = "Desde";
-            // 
             // btnEstadisticaSemanal
             // 
             this.btnEstadisticaSemanal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
@@ -123,15 +89,50 @@
             this.btnEstadisticaSemanal.UseVisualStyleBackColor = false;
             this.btnEstadisticaSemanal.Click += new System.EventHandler(this.btnEstadisticaSemanal_Click);
             // 
+            // lbDateTimeEnd
+            // 
+            this.lbDateTimeEnd.AutoSize = true;
+            this.lbDateTimeEnd.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateTimeEnd.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbDateTimeEnd.Location = new System.Drawing.Point(256, 27);
+            this.lbDateTimeEnd.Name = "lbDateTimeEnd";
+            this.lbDateTimeEnd.Size = new System.Drawing.Size(45, 16);
+            this.lbDateTimeEnd.TabIndex = 4;
+            this.lbDateTimeEnd.Text = "Hasta";
+            // 
+            // panelContainerOprions2
+            // 
+            this.panelContainerOprions2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panelContainerOprions2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelContainerOprions2.Controls.Add(this.lbDateTimeEnd);
+            this.panelContainerOprions2.Controls.Add(this.dateStart);
+            this.panelContainerOprions2.Controls.Add(this.dateEnd);
+            this.panelContainerOprions2.Controls.Add(this.btnPeriodo);
+            this.panelContainerOprions2.Controls.Add(this.lbDateTimeStart);
+            this.panelContainerOprions2.Location = new System.Drawing.Point(193, 301);
+            this.panelContainerOprions2.Name = "panelContainerOprions2";
+            this.panelContainerOprions2.Size = new System.Drawing.Size(552, 152);
+            this.panelContainerOprions2.TabIndex = 4;
+            this.panelContainerOprions2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainerOprions2_Paint);
+            // 
             // dateStart
             // 
             this.dateStart.CalendarFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateStart.CustomFormat = "";
-            this.dateStart.Location = new System.Drawing.Point(182, 182);
+            this.dateStart.Location = new System.Drawing.Point(160, 27);
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(90, 20);
             this.dateStart.TabIndex = 2;
             this.dateStart.Value = new System.DateTime(2023, 1, 25, 0, 0, 0, 0);
+            // 
+            // dateEnd
+            // 
+            this.dateEnd.CalendarFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEnd.Location = new System.Drawing.Point(307, 27);
+            this.dateEnd.Name = "dateEnd";
+            this.dateEnd.Size = new System.Drawing.Size(90, 20);
+            this.dateEnd.TabIndex = 3;
+            this.dateEnd.Value = new System.DateTime(2023, 1, 25, 0, 0, 0, 0);
             // 
             // btnPeriodo
             // 
@@ -143,7 +144,7 @@
             this.btnPeriodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPeriodo.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeriodo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPeriodo.Location = new System.Drawing.Point(197, 223);
+            this.btnPeriodo.Location = new System.Drawing.Point(196, 66);
             this.btnPeriodo.Name = "btnPeriodo";
             this.btnPeriodo.Size = new System.Drawing.Size(162, 66);
             this.btnPeriodo.TabIndex = 1;
@@ -151,32 +152,47 @@
             this.btnPeriodo.UseVisualStyleBackColor = false;
             this.btnPeriodo.Click += new System.EventHandler(this.btnPeriodo_Click);
             // 
-            // dateEnd
+            // lbDateTimeStart
             // 
-            this.dateEnd.CalendarFont = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEnd.Location = new System.Drawing.Point(329, 182);
-            this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Size = new System.Drawing.Size(90, 20);
-            this.dateEnd.TabIndex = 3;
-            this.dateEnd.Value = new System.DateTime(2023, 1, 25, 0, 0, 0, 0);
+            this.lbDateTimeStart.AutoSize = true;
+            this.lbDateTimeStart.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateTimeStart.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbDateTimeStart.Location = new System.Drawing.Point(107, 27);
+            this.lbDateTimeStart.Name = "lbDateTimeStart";
+            this.lbDateTimeStart.Size = new System.Drawing.Size(47, 16);
+            this.lbDateTimeStart.TabIndex = 4;
+            this.lbDateTimeStart.Text = "Desde";
             // 
             // lbTituloPresupuesto
             // 
             this.lbTituloPresupuesto.AutoSize = true;
             this.lbTituloPresupuesto.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTituloPresupuesto.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbTituloPresupuesto.Location = new System.Drawing.Point(386, 62);
+            this.lbTituloPresupuesto.Location = new System.Drawing.Point(397, 74);
             this.lbTituloPresupuesto.Name = "lbTituloPresupuesto";
-            this.lbTituloPresupuesto.Size = new System.Drawing.Size(168, 25);
+            this.lbTituloPresupuesto.Size = new System.Drawing.Size(155, 25);
             this.lbTituloPresupuesto.TabIndex = 3;
-            this.lbTituloPresupuesto.Text = "PRESUPUESTO";
+            this.lbTituloPresupuesto.Text = "ESTADÍSTICA";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(332, 273);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(281, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ESTADÍSTICA POR FECHA";
             // 
             // frmEstadistica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.panelContainerOprions2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbTituloPresupuesto);
             this.Controls.Add(this.panelContainerOprions);
             this.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -185,7 +201,8 @@
             this.Text = "frmEstadistica";
             this.Load += new System.EventHandler(this.frmEstadistica_Load);
             this.panelContainerOprions.ResumeLayout(false);
-            this.panelContainerOprions.PerformLayout();
+            this.panelContainerOprions2.ResumeLayout(false);
+            this.panelContainerOprions2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,8 +217,9 @@
         private System.Windows.Forms.DateTimePicker dateEnd;
         private System.Windows.Forms.DateTimePicker dateStart;
         private System.Windows.Forms.Button btnPeriodo;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelContainerOprions2;
         private System.Windows.Forms.Label lbDateTimeEnd;
         private System.Windows.Forms.Label lbDateTimeStart;
+        private System.Windows.Forms.Label label1;
     }
 }
