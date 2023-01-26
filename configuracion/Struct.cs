@@ -25,6 +25,7 @@ namespace configuracion
             public string Nombre;
             public string Descripcion;
             public string Categoria;
+            public string Marca;
             public int Cantidad;
             public decimal Total;
         }
