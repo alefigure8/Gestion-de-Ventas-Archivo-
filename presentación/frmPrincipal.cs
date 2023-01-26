@@ -106,13 +106,19 @@ namespace presentación
             //OPCIONES GRID
             if(listaProductos != null)
             {
+                //Cargar Data
                 dgvProductos.DataSource = listaProductosAux;
+
+                //Columnas
                 dgvProductos.Columns[Opciones.Campo.ID].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.URLIMAGEN].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.MODIFICADO].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.CREADO].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.COSTO].Visible = false;
+
+                //Estilos
                 dgvProductos.EnableHeadersVisualStyles = false;
+                dgvProductos.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 //SORT
                 if (sort)
