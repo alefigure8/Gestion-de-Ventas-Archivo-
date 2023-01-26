@@ -40,6 +40,11 @@ namespace presentación
             ControlPaint.DrawBorder(e.Graphics, this.panelContainerOprions.ClientRectangle, Color.LightGray, ButtonBorderStyle.Solid);
         }
 
+        private void panelContainerOprions2_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.panelContainerOprions2.ClientRectangle, Color.LightGray, ButtonBorderStyle.Solid);
+        }
+
         private void btnDiario_Click(object sender, EventArgs e)
         {
             frmEstadisticaDiaria screen = new frmEstadisticaDiaria();
@@ -50,6 +55,8 @@ namespace presentación
         private void cargarDateTimePicker()
         {
             string dateFormat = "dd/MM/yyyy";
+            dateStart.Value = DateTime.Now;
+            dateEnd.Value = DateTime.Now;
             dateStart.Format = DateTimePickerFormat.Custom;
             dateStart.CustomFormat = dateFormat;
             dateEnd.Format = DateTimePickerFormat.Custom;
