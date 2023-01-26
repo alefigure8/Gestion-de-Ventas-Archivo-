@@ -79,6 +79,20 @@ namespace helper
             }
         }
 
+        public static void comboBoxOpcionesDescarga(ComboBox combo)
+        {
+            try
+            {
+                listaDesplegable listaCampos = new listaDesplegable();
+                combo.DataSource = listaCampos.cargarOpcionesDescarga();
+                combo.SelectedIndex = 0;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Opciones.MensajeError.LISTAERROR);
+            }
+        }
+
         public static void comboBoxOrdenarPor(ComboBox combo)
         {
             try
@@ -92,6 +106,7 @@ namespace helper
                 MessageBox.Show(Opciones.MensajeError.LISTAERROR);
             }
         }
+
 
         public static void comboBoxCantidad(ComboBox combo)
         {
