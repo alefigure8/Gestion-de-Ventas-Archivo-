@@ -58,6 +58,9 @@ namespace presentación
 
                 //Opciones visuales
                 dgvProductos.EnableHeadersVisualStyles = false;
+
+                //Estilos
+                dgvProductos.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
         }
 
