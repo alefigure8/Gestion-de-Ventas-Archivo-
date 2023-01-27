@@ -53,6 +53,46 @@ namespace helper
             }
         }
 
+        static public bool guardarLogo(OpenFileDialog file)
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            
+            //Validar si existe la carpeta
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            try
+            {
+                if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                {
+                    DialogResult result = MessageBox.Show("El archivo ya existe. ¿Desea Remplazarlo?", "Ya existe", MessageBoxButtons.OKCancel);
+                    
+                    if (result == DialogResult.OK)
+                    {
+                        File.Delete(path + Opciones.Folder.LOGOPERSONAL);
+                        File.Copy(file.FileName, path + file.SafeFileName);
+                        File.Move(path + file.SafeFileName, path + Opciones.Folder.LOGOPERSONAL);
+                        return true;
+                    }
+
+                    return false;
+                }
+                else
+                {
+                    File.Copy(file.FileName, path + file.SafeFileName);
+                    File.Move(path + file.SafeFileName, path + Opciones.Folder.LOGOPERSONAL);
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         static public bool borrarImagen(Producto producto, TextBox txtImagen)
         {
             try
@@ -154,7 +194,7 @@ namespace helper
 
         public static void buscarEnLista<T>(List<T> listaCategoria, ComboBox combo, Button btn)
         {
-            if ((listaCategoria.Any(x => x.ToString() == combo.Text)) && string.IsNullOrEmpty(combo.Text))
+            if ((listaCategoria.Any(x => x.ToString() == combo.Text)) && !string.IsNullOrEmpty(combo.Text))
             {
                 btn.Visible = true;
             }
