@@ -115,6 +115,7 @@ namespace presentación
                 dgvProductos.Columns[Opciones.Campo.MODIFICADO].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.CREADO].Visible = false;
                 dgvProductos.Columns[Opciones.Campo.COSTO].Visible = false;
+                dgvProductos.Columns[Opciones.Campo.STOCKMODIFICADO].Visible = false;
 
                 //Estilos
                 dgvProductos.EnableHeadersVisualStyles = false;
