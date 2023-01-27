@@ -21,6 +21,7 @@ namespace dominio
         public int Stock{ get; set; }
         public DateTime Creado { get; set; }
         public DateTime Modifiado { get; set; }
+        public DateTime StockModificado { get; set; }
 
         public Producto()
         { 
@@ -33,6 +34,7 @@ namespace dominio
             this.Stock = 0;
             this.Creado = DateTime.Now;
             this.Modifiado = DateTime.Now;
+            this.StockModificado= DateTime.Now;
         }
     }
 }
