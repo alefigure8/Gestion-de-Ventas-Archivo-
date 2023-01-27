@@ -35,8 +35,16 @@ namespace presentación
         private void cargarImagenes()
         {
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            picLogo.Load(path + Opciones.Folder.ICONO);
-            picLogoEmpresa.Load(path + Opciones.Folder.LOGO);
+
+            //Icono
+            picLogo.Image = Image.FromFile(path + Opciones.Folder.ICONO);
+
+            //Logo
+            if(File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                picLogoEmpresa.Image = Image.FromFile(path + Opciones.Folder.LOGOPERSONAL);
+            else
+                picLogoEmpresa.Image = Image.FromFile(path + Opciones.Folder.LOGO);
+
             this.Icon = new Icon(path + Opciones.Folder.ICONO);
 
             //Boton cerrar aplicación
@@ -205,6 +213,19 @@ namespace presentación
                     btnVentas.BackColor = btnNonSelected;
 
                 }
+                else
+                {
+                    panelBtnAbout.Visible = false;
+                    panelBtnPresupuesto.Visible = false;
+                    panelBtnPrincipal.Visible = false;
+                    panelBtnVentas.Visible = false;
+                    panelBtnEstadistica.Visible = false;
+                    btnEstadistica.BackColor = btnNonSelected;
+                    btnPresupuesto.BackColor = btnNonSelected;
+                    btnAbout.BackColor = btnNonSelected;
+                    btnCatalogo.BackColor = btnNonSelected;
+                    btnVentas.BackColor = btnNonSelected;
+                }
             }
         }
 
@@ -274,6 +295,12 @@ namespace presentación
             }
         }
 
-        
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            frmConfiguracion screen = new frmConfiguracion(this);
+            screen.MdiParent = this;
+            screen.Show();
+            propiedadesBtn();
+        }
     }
 }
