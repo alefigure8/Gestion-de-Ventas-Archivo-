@@ -49,6 +49,12 @@ namespace presentación
             btnCancelar.Text = Opciones.Btn.REGRESAR;
             pbDeleteImage.Visible = false;
             btnBorrar.Visible = false;
+            lbCheckStock.Visible = false;
+            checkStockUpdate.Visible = false;
+            lbModificado.Visible = true;
+            lbStockModificado.Visible = true;
+            lbTextoModificado.Visible = true;
+            lbTextStockModificado.Visible = true;
             lbTituloCargarProducto.Text = "PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.EDITAR;
             btnAgregarImagen.Visible = false;
@@ -64,6 +70,12 @@ namespace presentación
             btnCancelar.Text = Opciones.Btn.CANCELAR;
             pbDeleteImage.Visible = true;
             btnBorrar.Visible = true;
+            lbCheckStock.Visible = true;
+            checkStockUpdate.Visible = true;
+            lbModificado.Visible = true;
+            lbStockModificado.Visible = true;
+            lbTextoModificado.Visible = true;
+            lbTextStockModificado.Visible = true;
             lbTituloCargarProducto.Text = "MODIFICAR PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.MODIFICAR;
             btnAgregarImagen.Visible = true;
@@ -71,6 +83,7 @@ namespace presentación
             Metodos.enableComboBox(cbMarca);
             Metodos.enableComboBox(cbCategoria);
 
+            enbableStockUpdate();
         }
 
         private void modoAgregar()
@@ -80,6 +93,12 @@ namespace presentación
             btnCancelar.Text = Opciones.Btn.CANCELAR;
             pbDeleteImage.Visible = false;
             btnBorrar.Visible = false;
+            lbCheckStock.Visible = false;
+            checkStockUpdate.Visible = false;
+            lbModificado.Visible = false;
+            lbStockModificado.Visible = false;
+            lbTextoModificado.Visible = false;
+            lbTextStockModificado.Visible = false;
             lbTituloCargarProducto.Text = "AGREGAR PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.AGREGAR;
             btnAgregarImagen.Visible = true;
@@ -97,6 +116,7 @@ namespace presentación
             productoAux.Descripcion = producto.Descripcion;
             productoAux.Precio = producto.Precio;
             productoAux.ImagenURL = producto.ImagenURL;
+            productoAux.Stock = producto.Stock;
             Categoria categoriaAux = new Categoria();
             categoriaAux.Id = producto.CategoriaInfo.Id;
             categoriaAux.Descripcion = producto.CategoriaInfo.Descripcion;
@@ -117,6 +137,7 @@ namespace presentación
 
         private void cargarFormulario()
         {
+            //TextBoxes
             lbID.Text = productoAux.Id.ToString();
             txtAgregarCodigo.Text = productoAux.Codigo;
             txtAgregarArticulo.Text = productoAux.Nombre;
@@ -125,8 +146,11 @@ namespace presentación
             txtCosto.Text = productoAux.Costo.ToString();
             txtStock.Text = productoAux.Stock.ToString();
             txtAgregarImagen.Text = productoAux.ImagenURL;
-            cbCategoria.SelectedValue = productoAux.MarcaInfo.Id;
-            cbMarca.SelectedValue = productoAux.CategoriaInfo.Id;
+
+            //ComboBoxes
+            cbCategoria.SelectedItem = productoAux.CategoriaInfo.Id;
+            cbMarca.SelectedItem = productoAux.MarcaInfo.Id;
+            //cbMarca.SelectedValue = productoAux.CategoriaInfo.Id;
 
             Metodos.cargarimagen(pbCargarProducto, productoAux.ImagenURL);
         }
@@ -154,7 +178,7 @@ namespace presentación
             cbMarca.ValueMember = Opciones.Campo.ID;
             cbMarca.DisplayMember = Opciones.Campo.DESCRIPCION; 
 
-            cbAgregarMarca.DisplayMember = Opciones.Campo.ID;
+            cbAgregarMarca.ValueMember = Opciones.Campo.ID;
             cbAgregarMarca.DisplayMember = Opciones.Campo.DESCRIPCION;
 
             cbCategoria.ValueMember = Opciones.Campo.ID;
@@ -169,6 +193,7 @@ namespace presentación
             listaCategoria = categoriaNegocio.listar();
 
             cargarImagenes();
+
             cargarGUI();
 
             listaTxt = new List<TextBox>()
@@ -210,6 +235,7 @@ namespace presentación
                 cbCategoria.SelectedValue = producto.CategoriaInfo.Id;
                 cbMarca.SelectedValue = producto.MarcaInfo.Id;
                 lbModificado.Text = producto.Modifiado.ToString("dd/MM/yyyy");
+                lbStockModificado.Text = producto.StockModificado.ToString("dd/MM/yyyy");
                 Metodos.cargarimagen(pbCargarProducto, producto.ImagenURL);
 
                 clonarObjeto();
@@ -380,6 +406,10 @@ namespace presentación
                         file = null;
                         return;
                     }
+
+                    //Actualizar fecha de Stock
+                    if(checkStockUpdate.Checked)
+                        producto.StockModificado = DateTime.Now;
 
                     if (productoNegocio.modificar(producto))
                     {
@@ -605,6 +635,19 @@ namespace presentación
 
             if (listaMarca != null)
                 Metodos.buscarEnLista<Marca>(listaMarca, cbAgregarMarca, btnConfigureMarca);
+        }
+
+        private void checkStockUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            enbableStockUpdate();
+        }
+
+        private void enbableStockUpdate()
+        {
+            if(checkStockUpdate.Checked)
+                txtStock.ReadOnly = false;
+            else
+                txtStock.ReadOnly = true;
         }
     }
 }
