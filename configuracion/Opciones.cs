@@ -17,6 +17,7 @@
             public const string EXPORTAR = "export_medium_icon.png";
             public const string CONFIGURACION = "configure.png";
             public const string LOGO = "logo_generic.jpg";
+            public const string LOGOPERSONAL = "logo_personal.jpg";
             public const string ELIMINAR = "delete.png";
             public const string VERSION = "version_fill.png";
             public const string AUTOR = "user_3_fill.png";
@@ -58,6 +59,7 @@
             public const string MODIFICADO = "Modifiado";
             public const string CREADO = "Creado";
             public const string ACTIVO = "Activo";
+            public const string STOCKMODIFICADO = "StockModificado";
         }
 
         public struct Numero
