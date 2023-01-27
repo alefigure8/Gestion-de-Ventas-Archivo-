@@ -101,6 +101,7 @@ namespace presentación
             this.btnConfiguracion.Text = "Config";
             this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnConfiguracion.UseVisualStyleBackColor = true;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // splitter1
             // 
@@ -361,7 +362,7 @@ namespace presentación
         private Label lbFecha;
         private Panel panelBtnVentas;
         private Button btnVentas;
-        private PictureBox picLogoEmpresa;
+        public PictureBox picLogoEmpresa;
         private Panel panelBtnPresupuesto;
         private Button btnPresupuesto;
         private Panel panelBtnPrincipal;

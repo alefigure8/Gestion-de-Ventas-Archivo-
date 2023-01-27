@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmrAgregarProducto));
             this.lbTituloCargarProducto = new System.Windows.Forms.Label();
             this.panelCargaProducto = new System.Windows.Forms.Panel();
+            this.lbErrorStock = new System.Windows.Forms.Label();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.lbStock = new System.Windows.Forms.Label();
+            this.lbErrorCosto = new System.Windows.Forms.Label();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.lbCosto = new System.Windows.Forms.Label();
             this.lbID = new System.Windows.Forms.Label();
             this.lbErrorImagen = new System.Windows.Forms.Label();
             this.lbErrorCodigo = new System.Windows.Forms.Label();
@@ -72,14 +78,12 @@
             this.lbAgregarCategoria = new System.Windows.Forms.Label();
             this.panelTituloCargarCategoria = new System.Windows.Forms.Panel();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.lbErrorCosto = new System.Windows.Forms.Label();
-            this.txtCosto = new System.Windows.Forms.TextBox();
-            this.lbCosto = new System.Windows.Forms.Label();
-            this.txtStock = new System.Windows.Forms.TextBox();
-            this.lbStock = new System.Windows.Forms.Label();
             this.lbTextoModificado = new System.Windows.Forms.Label();
             this.lbModificado = new System.Windows.Forms.Label();
-            this.lbErrorStock = new System.Windows.Forms.Label();
+            this.checkStockUpdate = new System.Windows.Forms.CheckBox();
+            this.lbCheckStock = new System.Windows.Forms.Label();
+            this.lbTextStockModificado = new System.Windows.Forms.Label();
+            this.lbStockModificado = new System.Windows.Forms.Label();
             this.panelCargaProducto.SuspendLayout();
             this.panelCargarCategoria.SuspendLayout();
             this.panelCargarMarca.SuspendLayout();
@@ -105,6 +109,7 @@
             // panelCargaProducto
             // 
             this.panelCargaProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelCargaProducto.Controls.Add(this.checkStockUpdate);
             this.panelCargaProducto.Controls.Add(this.lbErrorStock);
             this.panelCargaProducto.Controls.Add(this.txtStock);
             this.panelCargaProducto.Controls.Add(this.lbStock);
@@ -131,11 +136,73 @@
             this.panelCargaProducto.Controls.Add(this.lbAgregarPrecio);
             this.panelCargaProducto.Controls.Add(this.lbAgregarDescripcion);
             this.panelCargaProducto.Controls.Add(this.lbAgregarArticulo);
+            this.panelCargaProducto.Controls.Add(this.lbCheckStock);
             this.panelCargaProducto.Controls.Add(this.lbAgregarCodigo);
             this.panelCargaProducto.Location = new System.Drawing.Point(42, 91);
             this.panelCargaProducto.Name = "panelCargaProducto";
             this.panelCargaProducto.Size = new System.Drawing.Size(371, 262);
             this.panelCargaProducto.TabIndex = 1;
+            // 
+            // lbErrorStock
+            // 
+            this.lbErrorStock.AutoSize = true;
+            this.lbErrorStock.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbErrorStock.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbErrorStock.Location = new System.Drawing.Point(192, 231);
+            this.lbErrorStock.Name = "lbErrorStock";
+            this.lbErrorStock.Size = new System.Drawing.Size(18, 18);
+            this.lbErrorStock.TabIndex = 26;
+            this.lbErrorStock.Text = "*";
+            // 
+            // txtStock
+            // 
+            this.txtStock.Location = new System.Drawing.Point(110, 226);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(58, 20);
+            this.txtStock.TabIndex = 25;
+            this.txtStock.Text = "0";
+            // 
+            // lbStock
+            // 
+            this.lbStock.AutoSize = true;
+            this.lbStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbStock.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStock.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbStock.Location = new System.Drawing.Point(48, 227);
+            this.lbStock.Name = "lbStock";
+            this.lbStock.Size = new System.Drawing.Size(43, 16);
+            this.lbStock.TabIndex = 24;
+            this.lbStock.Text = "Stock";
+            // 
+            // lbErrorCosto
+            // 
+            this.lbErrorCosto.AutoSize = true;
+            this.lbErrorCosto.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbErrorCosto.ForeColor = System.Drawing.Color.LightCoral;
+            this.lbErrorCosto.Location = new System.Drawing.Point(322, 114);
+            this.lbErrorCosto.Name = "lbErrorCosto";
+            this.lbErrorCosto.Size = new System.Drawing.Size(18, 18);
+            this.lbErrorCosto.TabIndex = 23;
+            this.lbErrorCosto.Text = "*";
+            // 
+            // txtCosto
+            // 
+            this.txtCosto.Location = new System.Drawing.Point(257, 109);
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Size = new System.Drawing.Size(58, 20);
+            this.txtCosto.TabIndex = 21;
+            // 
+            // lbCosto
+            // 
+            this.lbCosto.AutoSize = true;
+            this.lbCosto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbCosto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCosto.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbCosto.Location = new System.Drawing.Point(207, 110);
+            this.lbCosto.Name = "lbCosto";
+            this.lbCosto.Size = new System.Drawing.Size(44, 16);
+            this.lbCosto.TabIndex = 22;
+            this.lbCosto.Text = "Costo";
             // 
             // lbID
             // 
@@ -609,56 +676,6 @@
             this.btnBorrar.UseVisualStyleBackColor = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // lbErrorCosto
-            // 
-            this.lbErrorCosto.AutoSize = true;
-            this.lbErrorCosto.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbErrorCosto.ForeColor = System.Drawing.Color.LightCoral;
-            this.lbErrorCosto.Location = new System.Drawing.Point(322, 114);
-            this.lbErrorCosto.Name = "lbErrorCosto";
-            this.lbErrorCosto.Size = new System.Drawing.Size(18, 18);
-            this.lbErrorCosto.TabIndex = 23;
-            this.lbErrorCosto.Text = "*";
-            // 
-            // txtCosto
-            // 
-            this.txtCosto.Location = new System.Drawing.Point(257, 109);
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(58, 20);
-            this.txtCosto.TabIndex = 21;
-            // 
-            // lbCosto
-            // 
-            this.lbCosto.AutoSize = true;
-            this.lbCosto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbCosto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCosto.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbCosto.Location = new System.Drawing.Point(207, 110);
-            this.lbCosto.Name = "lbCosto";
-            this.lbCosto.Size = new System.Drawing.Size(44, 16);
-            this.lbCosto.TabIndex = 22;
-            this.lbCosto.Text = "Costo";
-            // 
-            // txtStock
-            // 
-            this.txtStock.Location = new System.Drawing.Point(110, 226);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(58, 20);
-            this.txtStock.TabIndex = 25;
-            this.txtStock.Text = "0";
-            // 
-            // lbStock
-            // 
-            this.lbStock.AutoSize = true;
-            this.lbStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbStock.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStock.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbStock.Location = new System.Drawing.Point(48, 227);
-            this.lbStock.Name = "lbStock";
-            this.lbStock.Size = new System.Drawing.Size(43, 16);
-            this.lbStock.TabIndex = 24;
-            this.lbStock.Text = "Stock";
-            // 
             // lbTextoModificado
             // 
             this.lbTextoModificado.AutoSize = true;
@@ -680,16 +697,48 @@
             this.lbModificado.Size = new System.Drawing.Size(0, 16);
             this.lbModificado.TabIndex = 8;
             // 
-            // lbErrorStock
+            // checkStockUpdate
             // 
-            this.lbErrorStock.AutoSize = true;
-            this.lbErrorStock.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbErrorStock.ForeColor = System.Drawing.Color.LightCoral;
-            this.lbErrorStock.Location = new System.Drawing.Point(174, 230);
-            this.lbErrorStock.Name = "lbErrorStock";
-            this.lbErrorStock.Size = new System.Drawing.Size(18, 18);
-            this.lbErrorStock.TabIndex = 26;
-            this.lbErrorStock.Text = "*";
+            this.checkStockUpdate.AutoSize = true;
+            this.checkStockUpdate.Location = new System.Drawing.Point(174, 230);
+            this.checkStockUpdate.Name = "checkStockUpdate";
+            this.checkStockUpdate.Size = new System.Drawing.Size(15, 14);
+            this.checkStockUpdate.TabIndex = 27;
+            this.checkStockUpdate.UseVisualStyleBackColor = true;
+            this.checkStockUpdate.CheckedChanged += new System.EventHandler(this.checkStockUpdate_CheckedChanged);
+            // 
+            // lbCheckStock
+            // 
+            this.lbCheckStock.AutoSize = true;
+            this.lbCheckStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbCheckStock.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCheckStock.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbCheckStock.Location = new System.Drawing.Point(210, 231);
+            this.lbCheckStock.Name = "lbCheckStock";
+            this.lbCheckStock.Size = new System.Drawing.Size(120, 13);
+            this.lbCheckStock.TabIndex = 0;
+            this.lbCheckStock.Text = "Check para editar stock";
+            // 
+            // lbTextStockModificado
+            // 
+            this.lbTextStockModificado.AutoSize = true;
+            this.lbTextStockModificado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTextStockModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbTextStockModificado.Location = new System.Drawing.Point(332, 360);
+            this.lbTextStockModificado.Name = "lbTextStockModificado";
+            this.lbTextStockModificado.Size = new System.Drawing.Size(174, 16);
+            this.lbTextStockModificado.TabIndex = 7;
+            this.lbTextStockModificado.Text = "Última Modificación Stock:";
+            // 
+            // lbStockModificado
+            // 
+            this.lbStockModificado.AutoSize = true;
+            this.lbStockModificado.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStockModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbStockModificado.Location = new System.Drawing.Point(510, 361);
+            this.lbStockModificado.Name = "lbStockModificado";
+            this.lbStockModificado.Size = new System.Drawing.Size(0, 16);
+            this.lbStockModificado.TabIndex = 9;
             // 
             // fmrAgregarProducto
             // 
@@ -697,7 +746,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
             this.ClientSize = new System.Drawing.Size(954, 450);
+            this.Controls.Add(this.lbStockModificado);
             this.Controls.Add(this.lbModificado);
+            this.Controls.Add(this.lbTextStockModificado);
             this.Controls.Add(this.lbTextoModificado);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.panel1);
@@ -785,5 +836,9 @@
         private System.Windows.Forms.Label lbTextoModificado;
         private System.Windows.Forms.Label lbModificado;
         private System.Windows.Forms.Label lbErrorStock;
+        private System.Windows.Forms.CheckBox checkStockUpdate;
+        private System.Windows.Forms.Label lbCheckStock;
+        private System.Windows.Forms.Label lbTextStockModificado;
+        private System.Windows.Forms.Label lbStockModificado;
     }
 }
