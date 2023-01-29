@@ -68,7 +68,7 @@ namespace helper
                 if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
                 {
                     DialogResult result = MessageBox.Show("El archivo ya existe. ¿Desea Remplazarlo?", "Ya existe", MessageBoxButtons.OKCancel);
-                    
+
                     if (result == DialogResult.OK)
                     {
                         File.Delete(path + Opciones.Folder.LOGOPERSONAL);
@@ -85,7 +85,6 @@ namespace helper
                     File.Move(path + file.SafeFileName, path + Opciones.Folder.LOGOPERSONAL);
                     return true;
                 }
-
             }
             catch (Exception ex)
             {
