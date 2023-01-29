@@ -44,8 +44,10 @@ namespace presentación
                 new Venta()
             };
 
+            //Iniciar Ventas
             ventaFinal = new Ventas();
             
+            //Cargar view
             cargarGridView();
 
             //settings

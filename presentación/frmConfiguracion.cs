@@ -47,7 +47,9 @@ namespace presentación
             {
                 try
                 {
+                    //Borrar imagen del pictureBox
                     picLogoEmpresa.Image.Dispose();
+
                     Metodos.cargarimagen(picLogoEmpresa, file.FileName);
                 }
                 catch (Exception)
@@ -66,7 +68,7 @@ namespace presentación
                 {
                     string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
 
-                    //Borrar imagen actual
+                    //Borrar imagen actual del Panel Form1
                     System.Drawing.Image pic = parent.picLogoEmpresa.Image;
                     pic.Dispose();
 
@@ -74,12 +76,13 @@ namespace presentación
                     if (Metodos.guardarLogo(file))
                     {
                         Metodos.cargarimagen(parent.picLogoEmpresa, path + Opciones.Folder.LOGOPERSONAL);
+                        MessageBox.Show("La imagen se ha guardado satisfactoriamente");
+                        file = null;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    MessageBox.Show("Error al cargar la imagen");
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
