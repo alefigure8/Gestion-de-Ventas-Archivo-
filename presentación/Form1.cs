@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using helper;
 
 namespace presentación
 {
@@ -40,10 +41,17 @@ namespace presentación
             picLogo.Image = Image.FromFile(path + Opciones.Folder.ICONO);
 
             //Logo
-            if(File.Exists(path + Opciones.Folder.LOGOPERSONAL))
-                picLogoEmpresa.Image = Image.FromFile(path + Opciones.Folder.LOGOPERSONAL);
+            if (!File.Exists(path + Opciones.Folder.NOLOGO))
+            {
+                if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                    Metodos.cargarimagen(picLogoEmpresa, path + Opciones.Folder.LOGOPERSONAL);
+                else
+                    Metodos.cargarimagen(picLogoEmpresa, path + Opciones.Folder.LOGO);
+            }
             else
-                picLogoEmpresa.Image = Image.FromFile(path + Opciones.Folder.LOGO);
+            {
+                Metodos.cargarimagen(picLogoEmpresa, path + Opciones.Folder.NOLOGO);
+            }
 
             this.Icon = new Icon(path + Opciones.Folder.ICONO);
 
