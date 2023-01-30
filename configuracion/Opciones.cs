@@ -18,6 +18,8 @@
             public const string CONFIGURACION = "configure.png";
             public const string LOGO = "logo_generic.jpg";
             public const string LOGOPERSONAL = "logo_personal.jpg";
+            public const string LOGOTRANSPARENT = "logo_transparent.png";
+            public const string NOLOGO = "nologo.png";
             public const string ELIMINAR = "delete.png";
             public const string VERSION = "version_fill.png";
             public const string AUTOR = "user_3_fill.png";
@@ -139,6 +141,8 @@
             public const string EDITAR = "Editar";
             public const string CANCELAR = "Cancelar";
             public const string REGRESAR = "Regresar";
+            public const string SINLOGO = "Sin logo";
+            public const string CONLOGO = "Con logo";
         }
 
     }
