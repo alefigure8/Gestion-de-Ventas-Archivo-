@@ -6,6 +6,10 @@ using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
 using configuracion;
+using System.Drawing;
+using System.Threading;
+using System.Text;
+using static configuracion.Opciones;
 
 namespace helper
 {
@@ -28,11 +32,16 @@ namespace helper
                     DialogResult result = MessageBox.Show("El archivo ya existe. ¿Desea Remplazarlo?", "Ya existe", MessageBoxButtons.OKCancel);
 
                     if (result == DialogResult.OK)
-                    {
-                        File.Delete(path + file.SafeFileName);
-                        File.Copy(file.FileName, path + file.SafeFileName);
+                    {                      
+                        //Copiar archivo
+                        File.Copy(file.FileName, path + file.SafeFileName, true);
+
+                        //Guardar imagen en objeto
                         producto.ImagenURL = path + file.SafeFileName;
+
+                        //Colocar imagen en textBox
                         txtImagen.Text = path + file.SafeFileName;
+
                         return true;
                     }
 
@@ -40,8 +49,13 @@ namespace helper
                 }
                 else
                 {
-                    File.Copy(file.FileName, path + file.SafeFileName);
+                    //Copiar archivo
+                    File.Copy(file.FileName, path + file.SafeFileName, true);
+                    
+                    //Guardar imagen en objeto
                     producto.ImagenURL = path + file.SafeFileName;
+                    
+                    //Colocar imagen en textBox
                     txtImagen.Text = path + file.SafeFileName;
                     return true;
                 }
@@ -56,24 +70,23 @@ namespace helper
         static public bool guardarLogo(OpenFileDialog file)
         {
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            
+            string logoPersonal = path + Opciones.Folder.LOGOPERSONAL;
+
             //Validar si existe la carpeta
             if (!Directory.Exists(path))
-            {
                 Directory.CreateDirectory(path);
-            }
 
             try
             {
-                if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                if (File.Exists(logoPersonal))
                 {
                     DialogResult result = MessageBox.Show("El archivo ya existe. ¿Desea Remplazarlo?", "Ya existe", MessageBoxButtons.OKCancel);
 
                     if (result == DialogResult.OK)
                     {
-                        File.Delete(path + Opciones.Folder.LOGOPERSONAL);
-                        File.Copy(file.FileName, path + file.SafeFileName);
-                        File.Move(path + file.SafeFileName, path + Opciones.Folder.LOGOPERSONAL);
+                        File.Copy(file.FileName, logoPersonal, true);
+                        file = null;
+
                         return true;
                     }
 
@@ -82,8 +95,14 @@ namespace helper
                 else
                 {
                     File.Copy(file.FileName, path + file.SafeFileName);
-                    File.Move(path + file.SafeFileName, path + Opciones.Folder.LOGOPERSONAL);
-                    return true;
+                    File.Move(path + file.SafeFileName, logoPersonal);
+                    file = null;
+                    
+                    if (File.Exists(logoPersonal))
+                        return true;
+
+                    
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -106,19 +125,28 @@ namespace helper
                 return false;
                 throw ex;
             }
-
         }
 
         public static void cargarimagen(PictureBox pictureBox, string image)
         {
             try
             {
-                pictureBox.Load(image);
+                //Utilizar using para liberar el recurso
+                using (FileStream fs = new FileStream(image, FileMode.Open))
+                {
+                    pictureBox.Image = Image.FromStream(fs);
+                }
+                
             }
             catch (Exception)
             {
                 string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-                pictureBox.Load(path + Opciones.Folder.PLACEHOLDER);
+
+                //Utilizar using para liberar el recurso
+                using (FileStream fs = new FileStream(Opciones.Folder.PLACEHOLDER, FileMode.Open))
+                {
+                    pictureBox.Image = Image.FromStream(fs);
+                }
             }
         }
 
