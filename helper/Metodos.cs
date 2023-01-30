@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Configuration;
 using configuracion;
 using System.Drawing;
-using System.Threading;
-using System.Text;
-using static configuracion.Opciones;
+
 
 namespace helper
 {
@@ -143,12 +140,39 @@ namespace helper
                 string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
 
                 //Utilizar using para liberar el recurso
-                using (FileStream fs = new FileStream(Opciones.Folder.PLACEHOLDER, FileMode.Open))
+                using (FileStream fs = new FileStream(path + Opciones.Folder.PLACEHOLDER, FileMode.Open))
                 {
                     pictureBox.Image = Image.FromStream(fs);
                 }
             }
         }
+
+        public static void logoTransparente(PictureBox pictureBox)
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            
+            if(File.Exists(path + Opciones.Folder.LOGOTRANSPARENT))
+            {
+                File.Copy(path + Opciones.Folder.LOGOTRANSPARENT, path + Opciones.Folder.NOLOGO, true);
+                cargarimagen(pictureBox, path + Opciones.Folder.NOLOGO);
+            }
+        }
+
+        public static void defaultLogo(PictureBox pictureBox)
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            
+            if (File.Exists(path + Opciones.Folder.NOLOGO))
+            {
+                File.Delete(path + Opciones.Folder.NOLOGO);
+                
+                if(!File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                    cargarimagen(pictureBox, path + Opciones.Folder.LOGO);
+                else
+                    cargarimagen(pictureBox, path + Opciones.Folder.LOGOPERSONAL);
+            }
+        }
+
 
         public static void vaciarTextBox(List<TextBox> lista)
         {
@@ -222,13 +246,9 @@ namespace helper
         public static void buscarEnLista<T>(List<T> listaCategoria, ComboBox combo, Button btn)
         {
             if ((listaCategoria.Any(x => x.ToString() == combo.Text)) && !string.IsNullOrEmpty(combo.Text))
-            {
                 btn.Visible = true;
-            }
             else
-            {
                 btn.Visible = false;
-            }
         }
     }
 }
