@@ -136,7 +136,7 @@ namespace presentación
             // 
             this.picLogoEmpresa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picLogoEmpresa.InitialImage = null;
-            this.picLogoEmpresa.Location = new System.Drawing.Point(420, 9);
+            this.picLogoEmpresa.Location = new System.Drawing.Point(420, 6);
             this.picLogoEmpresa.Name = "picLogoEmpresa";
             this.picLogoEmpresa.Size = new System.Drawing.Size(314, 76);
             this.picLogoEmpresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -148,7 +148,7 @@ namespace presentación
             this.lbFecha.AutoSize = true;
             this.lbFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFecha.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbFecha.Location = new System.Drawing.Point(142, 67);
+            this.lbFecha.Location = new System.Drawing.Point(168, 65);
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.Size = new System.Drawing.Size(221, 16);
             this.lbFecha.TabIndex = 1;
@@ -158,7 +158,7 @@ namespace presentación
             // 
             this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picLogo.InitialImage = null;
-            this.picLogo.Location = new System.Drawing.Point(30, 7);
+            this.picLogo.Location = new System.Drawing.Point(30, 5);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(78, 76);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

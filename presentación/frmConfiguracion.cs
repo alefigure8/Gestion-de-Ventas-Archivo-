@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace presentación
 {
@@ -24,7 +23,10 @@ namespace presentación
         {
             InitializeComponent();
             cargarImagenes();    
+            
             this.parent = parent;
+
+            configuracionGUI();
         }
 
         private void cargarImagenes()
@@ -49,7 +51,7 @@ namespace presentación
                 {
                     //Borrar imagen del pictureBox
                     picLogoEmpresa.Image.Dispose();
-
+                    
                     Metodos.cargarimagen(picLogoEmpresa, file.FileName);
                 }
                 catch (Exception)
@@ -67,17 +69,15 @@ namespace presentación
                 try
                 {
                     string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-
-                    //Borrar imagen actual del Panel Form1
-                    System.Drawing.Image pic = parent.picLogoEmpresa.Image;
-                    pic.Dispose();
-
+                    
+                    //Quitar imagen actual del picture box del Panel Form1
+                    parent.picLogoEmpresa.Image.Dispose();
+                    
                     //Guardar imagen nueva
                     if (Metodos.guardarLogo(file))
                     {
                         Metodos.cargarimagen(parent.picLogoEmpresa, path + Opciones.Folder.LOGOPERSONAL);
                         MessageBox.Show("La imagen se ha guardado satisfactoriamente");
-                        file = null;
                     }
                 }
                 catch (Exception ex)
@@ -85,6 +85,26 @@ namespace presentación
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (btnLogo.Text == Opciones.Btn.SINLOGO)
+                Metodos.logoTransparente(parent.picLogoEmpresa);
+            else
+                Metodos.defaultLogo(parent.picLogoEmpresa);
+
+            configuracionGUI();
+        }
+
+        private void configuracionGUI()
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+
+            if (File.Exists(path + Opciones.Folder.NOLOGO))
+                btnLogo.Text = Opciones.Btn.CONLOGO;
+            else
+                btnLogo.Text = Opciones.Btn.SINLOGO;
         }
     }
 }
