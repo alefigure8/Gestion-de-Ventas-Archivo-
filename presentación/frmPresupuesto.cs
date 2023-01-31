@@ -10,6 +10,7 @@ using configuracion;
 using System.IO;
 using System.Drawing.Printing;
 using Microsoft.Office.Interop.Excel;
+using System.Text;
 
 namespace presentación
 {
@@ -21,6 +22,10 @@ namespace presentación
         bool GridViewOpen = false;
         Presupuesto auxModificar = null;
         PrintPreviewDialog printPreview = null;
+        frmPrincipal screen;
+        int iCell;
+        int cantidad;
+        decimal total;
 
         public frmPresupuesto()
         {
@@ -30,15 +35,19 @@ namespace presentación
         private void frmPresupuesto_Load(object sender, EventArgs e)
         {
             listaPresupuesto = new List<Presupuesto>();
+            
             productoNegocio = new ProductoNegocio();
+            
             panelPrespuesto.Height = 50;
 
             fechaPresupuesto.Text = DateTime.Now.ToShortDateString();
 
-            ComboBoxOptions.comboBoxProductos(cbAgregarPresupuesto);
-
             listaProducto = productoNegocio.listar();
 
+            this.iCell = 0;
+            this.cantidad = 1;
+            this.total = 0;
+            
             OptionGridViewOpen(GridViewOpen);
             opcionModificar();
             cargarImagenes();
@@ -71,6 +80,7 @@ namespace presentación
                 if(result == DialogResult.OK)
                 {
                     OptionGridViewOpen(GridViewOpen);
+                    iCell = 0;
                 }
                 else
                 {
@@ -83,85 +93,27 @@ namespace presentación
             OptionGridViewOpen(GridViewOpen);
         }
 
-        private void btnAgregarPrespuesto_Click(object sender, EventArgs e)
-        {
-            if(GridViewOpen)
-            {
-                if (listaProducto.Any(x => x.Nombre == cbAgregarPresupuesto.Text))
-                {
-                    //Producto existente
-                    Producto producto = (Producto)cbAgregarPresupuesto.SelectedValue;
-                    decimal cantidad = numericPrespuesto.Value;
-                    Presupuesto productoAux = new Presupuesto();
-
-                    productoAux.Id = producto.Id;
-                    productoAux.Codigo = producto.Codigo;
-                    productoAux.Nombre = producto.Nombre;
-                    productoAux.Descripcion = producto.Descripcion;
-                    productoAux.Precio = producto.Precio;
-                    productoAux.ImagenURL = producto.ImagenURL;
-                    Categoria categoriaAux = new Categoria();
-                    categoriaAux.Id = producto.CategoriaInfo.Id;
-                    categoriaAux.Descripcion = producto.CategoriaInfo.Descripcion;
-                    Marca marcaAux = new Marca();
-                    marcaAux.Id = producto.MarcaInfo.Id;
-                    marcaAux.Descripcion = producto.MarcaInfo.Descripcion;
-                    productoAux.CategoriaInfo = categoriaAux;
-                    productoAux.MarcaInfo = marcaAux;
-                    productoAux.total = producto.Precio * cantidad;
-                    productoAux.cantidad = (int)numericPrespuesto.Value;
-
-                    listaPresupuesto.Add(productoAux);
-                    numericPrespuesto.Value = 1;
-
-                    cargarGridView();
-                    Total();
-                }
-                else
-                {
-                    //Producto Custom
-                    Presupuesto aux = new Presupuesto();
-                    Marca marca = new Marca();
-                    Categoria categoria = new Categoria();
-                    aux.Nombre = cbAgregarPresupuesto.Text;
-                    aux.cantidad = 1;
-                    aux.total = 0;
-                    aux.MarcaInfo = marca;
-                    aux.CategoriaInfo = categoria;
-                    listaPresupuesto.Add(aux);
-
-                    cargarGridView();
-                    Total();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe crear un presupuesto primero");
-            }
-
-        }
-
         private void OptionGridViewOpen(bool isOpen)
         {
             panelDescarga.Visible = isOpen;
             panelPrecioTotal.Visible = isOpen;
             fechaPresupuesto.Visible = isOpen;
             panelCargarArchivo.Visible = isOpen;
-            btnAgregarPrespuesto.Visible = isOpen;
 
             if(isOpen)
             {
                 lbAgregarPresupuesto.Text = "PRESUPUESTO";
-                panelPrespuesto.Height = 300;
-                panelBuscadorPresupuesto.Width = 396;
+                panelPrespuesto.Height = 320;
                 btnAgregarGrid.Text = "-";
+                Presupuesto aux = new Presupuesto();
+                listaPresupuesto.Add(aux);
+                cargarGridView();
             }
             else
             {
                 lbAgregarPresupuesto.Text = "Iniciar nuevo presupuesto";
                 btnAgregarGrid.Text = "+";
                 panelPrespuesto.Height = 50;
-                panelBuscadorPresupuesto.Width = 350;
                 dgvPresupuesto.DataSource = null;
                 lbDescuentoPrecio.Text = "";
                 lbPrecio.Text = "";
@@ -172,11 +124,12 @@ namespace presentación
 
         private void btEliminarProducto_Click(object sender, EventArgs e)
         {
-            if(listaPresupuesto.Count > 0)
+            if(listaPresupuesto.Count > 0 && dgvPresupuesto.CurrentRow.Index != iCell)
             {
                 auxModificar = (Presupuesto)dgvPresupuesto.CurrentRow.DataBoundItem;
                 listaPresupuesto.Remove(auxModificar);
                 auxModificar = null;
+                iCell--;
 
                 cargarGridView();
                 opcionModificar();
@@ -212,7 +165,7 @@ namespace presentación
 
         }
 
-        private void cargarGridView()
+        private void cargarGridView(bool edit = true)
         {
             dgvPresupuesto.DataSource = null;
             dgvPresupuesto.DataSource = listaPresupuesto;
@@ -234,6 +187,127 @@ namespace presentación
             dgvPresupuesto.Columns["Total"].DisplayIndex = 7;
 
             dgvPresupuesto.EnableHeadersVisualStyles = false;
+
+            if(edit)
+                editGridView();
+        }
+
+        private void editGridView(string value = "Ingrese Código")
+        {
+            //Reado only true
+            foreach (DataGridViewColumn c in dgvPresupuesto.Columns)
+            {
+                c.ReadOnly = true;
+            }
+
+            //setting celda de búsqueda
+            DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
+            this.dgvPresupuesto[Opciones.Campo.CODIGO, iCell] = cell;
+            cell.Value = value;
+            cell.ReadOnly = false;
+            dgvPresupuesto.BeginEdit(true);
+
+            //Edit mode
+            if (listaPresupuesto.Count < 2)
+                dgvPresupuesto.EditMode = DataGridViewEditMode.EditOnF2;
+            else
+                dgvPresupuesto.EditMode = DataGridViewEditMode.EditOnEnter;
+
+            //Seleccionar texto en la celda de búsqueda
+            dgvPresupuesto.CurrentCell = dgvPresupuesto[Opciones.Campo.CODIGO, iCell];
+            dgvPresupuesto.SelectAll();
+
+        }
+
+        private void dgvProductos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is DataGridViewTextBoxEditingControl txt)
+            {
+                txt.PreviewKeyDown -= new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
+                txt.PreviewKeyDown += new PreviewKeyDownEventHandler(dgvProductos_PreviewKeyDown);
+            }
+        }
+        
+        private void dgvProductos_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Finalizar editado para poder tomar valores de la celda
+                dgvPresupuesto.EndEdit();
+                string codigo = dgvPresupuesto[Opciones.Campo.CODIGO, iCell].Value.ToString();
+
+                if (!string.IsNullOrEmpty(codigo))
+                {
+                    Producto producto = new Producto();
+                    ProductoNegocio productoNegocio = new ProductoNegocio();
+
+                    //Buscar el producto por codigo
+                    producto = listaProducto.Find(x => x.Codigo.ToLower() == codigo.ToLower());
+
+                    if (producto != null)
+                    {
+                        //Agregar producto a la lista
+                        if (producto.Codigo.ToLower() == codigo.ToLower())
+                        {
+                            //Setting
+                            Presupuesto productoAux = new Presupuesto();
+
+                            productoAux.Id = producto.Id;
+                            productoAux.Codigo = producto.Codigo;
+                            productoAux.Nombre = producto.Nombre;
+                            productoAux.Descripcion = producto.Descripcion;
+                            productoAux.Precio = producto.Precio;
+                            productoAux.ImagenURL = producto.ImagenURL;
+                            Categoria categoriaAux = new Categoria();
+                            categoriaAux.Id = producto.CategoriaInfo.Id;
+                            categoriaAux.Descripcion = producto.CategoriaInfo.Descripcion;
+                            Marca marcaAux = new Marca();
+                            marcaAux.Id = producto.MarcaInfo.Id;
+                            marcaAux.Descripcion = producto.MarcaInfo.Descripcion;
+                            productoAux.CategoriaInfo = categoriaAux;
+                            productoAux.MarcaInfo = marcaAux;
+                            productoAux.total = producto.Precio * cantidad;
+                            productoAux.cantidad = cantidad;
+                            productoAux.total = (cantidad * producto.Precio);
+
+                            //Carhar producto en la lista de venta
+                            listaPresupuesto.Add(productoAux);
+                            Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
+
+                            //Colocar último el objeto tipo para búsqueda
+                            listaPresupuesto.Remove(eraser);
+                            listaPresupuesto.Add(new Presupuesto());
+
+                            this.cantidad = 1;
+                            iCell++;
+                        }
+
+                        //Cargar la lista en el gridview
+                        cargarGridView();
+                        Total();
+                    }
+                }
+            }
+
+            if (e.KeyCode.ToString() == "F1")
+            {
+                //Cargar ventana de cantidad de items por producto
+                frmCantidadVentas screen = new frmCantidadVentas();
+                screen.ShowDialog();
+                this.cantidad = screen.cantidad;
+            }
+
+            if (e.KeyCode.ToString() == "F2")
+            {
+                //Cargar pantalla de busqueda
+                screen = new frmPrincipal(this.screen, true);
+                screen.ShowDialog();
+
+                if (screen.codigo != null)
+                {
+                    editGridView(screen.codigo);
+                }
+            }
         }
 
         private void dgvPresupuesto_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -241,9 +315,12 @@ namespace presentación
            if(listaPresupuesto.Count > 0)
             {
                 auxModificar = (Presupuesto)dgvPresupuesto.CurrentRow.DataBoundItem;
-                numericModificarPresupuesto.Value = auxModificar.cantidad;
-                txtModificarPrecio.Text = auxModificar.Precio.ToString("N2");
-                opcionModificar(true);
+                if(auxModificar.cantidad != 0)
+                {
+                    numericModificarPresupuesto.Value = auxModificar.cantidad;
+                    txtModificarPrecio.Text = auxModificar.Precio.ToString("N2");
+                    opcionModificar(true);
+                }
             }
         }
 
@@ -256,11 +333,16 @@ namespace presentación
                 auxModificar.Precio = Convert.ToDecimal(txtModificarPrecio.Text);
                 auxModificar.total = auxModificar.cantidad * auxModificar.Precio;
 
+                //Remover y cargar el producto modificado
                 listaPresupuesto.Remove(auxModificar);
                 listaPresupuesto.Add(auxModificar);
 
-                cargarGridView();
+                //Colocar último el objeto tipo para búsqueda
+                Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
+                listaPresupuesto.Remove(eraser);
+                listaPresupuesto.Add(new Presupuesto());
 
+                cargarGridView();
                 Total();
                 opcionModificar();
             }
@@ -273,6 +355,7 @@ namespace presentación
             lbModificarcantidad.Visible = isModicado;
             lbModificarPrecio.Visible = isModicado;
             txtModificarPrecio.Visible = isModicado;
+            btEliminarProducto.Visible = isModicado;
         }
 
         private void btnFile_Click(object sender, EventArgs e)
@@ -329,16 +412,19 @@ namespace presentación
                     //Lista de Productos
                     foreach (var item in listaPresupuesto)
                     {
-                        ws.Cells[index, 1] = item.Codigo;
-                        ws.Cells[index, 2] = item.Nombre;
-                        ws.Cells[index, 3] = item.Descripcion;
-                        ws.Cells[index, 4] = item.MarcaInfo.Descripcion;
-                        ws.Cells[index, 5] = item.CategoriaInfo.Descripcion;
-                        ws.Cells[index, 6] = Math.Round(item.Precio, 2);
-                        ws.Cells[index, 7] = item.cantidad;
-                        ws.Cells[index, 8] = Math.Round(item.total, 2);
+                        if(item.Codigo != "Ingrese Código")
+                        {
+                            ws.Cells[index, 1] = item.Codigo;
+                            ws.Cells[index, 2] = item.Nombre;
+                            ws.Cells[index, 3] = item.Descripcion;
+                            ws.Cells[index, 4] = item.MarcaInfo.Descripcion;
+                            ws.Cells[index, 5] = item.CategoriaInfo.Descripcion;
+                            ws.Cells[index, 6] = Math.Round(item.Precio, 2);
+                            ws.Cells[index, 7] = item.cantidad;
+                            ws.Cells[index, 8] = Math.Round(item.total, 2);
 
-                        index++;
+                            index++;
+                        }
                     }
 
                     //Recuadro a la grilla
@@ -420,11 +506,14 @@ namespace presentación
             y += 40;
             foreach (var item in listaPresupuesto)
             {
-                y += 20;
-                e.Graphics.DrawString($"{item.Nombre}", fontProductos, Brushes.Black, new RectangleF(40, y, width, 20));
-                e.Graphics.DrawString($"{item.Precio}", fontProductos, Brushes.Black, new RectangleF(240, y, width, 20));
-                e.Graphics.DrawString($"{item.cantidad}", fontProductos, Brushes.Black, new RectangleF(440, y, width, 20));
-                e.Graphics.DrawString($"{item.total}", fontProductos, Brushes.Black, new RectangleF(640, y, width, 20));
+                if(item.Codigo != "Ingrese Código")
+                {
+                    y += 20;
+                    e.Graphics.DrawString($"{item.Nombre}", fontProductos, Brushes.Black, new RectangleF(40, y, width, 20));
+                    e.Graphics.DrawString($"{item.Precio}", fontProductos, Brushes.Black, new RectangleF(240, y, width, 20));
+                    e.Graphics.DrawString($"{item.cantidad}", fontProductos, Brushes.Black, new RectangleF(440, y, width, 20));
+                    e.Graphics.DrawString($"{item.total}", fontProductos, Brushes.Black, new RectangleF(640, y, width, 20));
+                }
             }
 
             y += 80;
@@ -464,8 +553,15 @@ namespace presentación
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            //Borrar última fila antes de importar a Excel
+            Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
+            listaPresupuesto.Remove(eraser);
+            cargarGridView(false);
+
             dgvPresupuesto.SelectAll();
+
             DataObject copyData = dgvPresupuesto.GetClipboardContent();
+
             if (copyData != null)
             {
                 Clipboard.SetDataObject(copyData);
@@ -480,9 +576,13 @@ namespace presentación
                 xlsheet = (Worksheet)xlwbook.Worksheets.get_Item(1);
                 Range xlr = (Range)xlsheet.Cells[1, 1];
                 xlr.Select();
-
+               
                 xlsheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
             }
+
+            //Volver a colocar última fila
+            listaPresupuesto.Add(new Presupuesto());
+            cargarGridView();
         }
 
         private void btnCargarArchivo_Click(object sender, EventArgs e)
@@ -497,6 +597,10 @@ namespace presentación
                 try
                 {
                     importarPresupuestoExcel(oFile.FileName);
+                    Presupuesto aux = new Presupuesto();
+                    listaPresupuesto.Add(aux);
+                    iCell = listaPresupuesto.Count - 1;
+                    
                 }
                 catch (Exception)
                 {
