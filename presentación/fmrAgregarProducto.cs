@@ -51,10 +51,7 @@ namespace presentación
             btnBorrar.Visible = false;
             lbCheckStock.Visible = false;
             checkStockUpdate.Visible = false;
-            lbModificado.Visible = true;
-            lbStockModificado.Visible = true;
-            lbTextoModificado.Visible = true;
-            lbTextStockModificado.Visible = true;
+            cargarFechas(true);
             lbTituloCargarProducto.Text = "PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.EDITAR;
             btnAgregarImagen.Visible = false;
@@ -72,10 +69,7 @@ namespace presentación
             btnBorrar.Visible = true;
             lbCheckStock.Visible = true;
             checkStockUpdate.Visible = true;
-            lbModificado.Visible = true;
-            lbStockModificado.Visible = true;
-            lbTextoModificado.Visible = true;
-            lbTextStockModificado.Visible = true;
+            cargarFechas(true);
             lbTituloCargarProducto.Text = "MODIFICAR PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.MODIFICAR;
             btnAgregarImagen.Visible = true;
@@ -95,10 +89,7 @@ namespace presentación
             btnBorrar.Visible = false;
             lbCheckStock.Visible = false;
             checkStockUpdate.Visible = false;
-            lbModificado.Visible = false;
-            lbStockModificado.Visible = false;
-            lbTextoModificado.Visible = false;
-            lbTextStockModificado.Visible = false;
+            cargarFechas();
             lbTituloCargarProducto.Text = "AGREGAR PRODUCTO";
             btnAgregarProducto.Text = Opciones.Btn.AGREGAR;
             btnAgregarImagen.Visible = true;
@@ -236,6 +227,7 @@ namespace presentación
                 cbMarca.SelectedValue = producto.MarcaInfo.Id;
                 lbModificado.Text = producto.Modifiado.ToString("dd/MM/yyyy");
                 lbStockModificado.Text = producto.StockModificado.ToString("dd/MM/yyyy");
+                lbFechaCreacion.Text = producto.Creado.ToString("dd/MM/yyyy");
                 Metodos.cargarimagen(pbCargarProducto, producto.ImagenURL);
 
                 clonarObjeto();
@@ -648,6 +640,19 @@ namespace presentación
                 txtStock.ReadOnly = false;
             else
                 txtStock.ReadOnly = true;
+        }
+
+        private void cargarFechas(bool visible = false)
+        {
+            panelFechas.Visible = visible;
+            panelFechasTitulo.Visible = visible;
+            lbFechaTitulo.Visible = visible;
+            lbModificado.Visible = visible;
+            lbStockModificado.Visible = visible;
+            lbTextoModificado.Visible = visible;
+            lbTextoFechaCreacion.Visible = visible;
+            lbFechaCreacion.Visible = visible;
+            lbTextStockModificado.Visible = visible;
         }
     }
 }
