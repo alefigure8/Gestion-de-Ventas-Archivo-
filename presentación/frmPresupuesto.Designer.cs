@@ -34,11 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTituloPresupuesto = new System.Windows.Forms.Label();
-            this.lbPrespuestoArticulo = new System.Windows.Forms.Label();
-            this.numericPrespuesto = new System.Windows.Forms.NumericUpDown();
-            this.btnAgregarPrespuesto = new System.Windows.Forms.Button();
-            this.panelBuscadorPresupuesto = new System.Windows.Forms.Panel();
-            this.cbAgregarPresupuesto = new System.Windows.Forms.ComboBox();
             this.panelPrespuesto = new System.Windows.Forms.Panel();
             this.lbModificarcantidad = new System.Windows.Forms.Label();
             this.lbModificarPrecio = new System.Windows.Forms.Label();
@@ -64,8 +59,8 @@
             this.printPresupuesto = new System.Drawing.Printing.PrintDocument();
             this.panelCargarArchivo = new System.Windows.Forms.Panel();
             this.btnCargarArchivo = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrespuesto)).BeginInit();
-            this.panelBuscadorPresupuesto.SuspendLayout();
+            this.lbBuscador = new System.Windows.Forms.Label();
+            this.lbAgregarCantidad = new System.Windows.Forms.Label();
             this.panelPrespuesto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericModificarPresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPresupuesto)).BeginInit();
@@ -88,76 +83,12 @@
             this.lbTituloPresupuesto.TabIndex = 2;
             this.lbTituloPresupuesto.Text = "PRESUPUESTO";
             // 
-            // lbPrespuestoArticulo
-            // 
-            this.lbPrespuestoArticulo.AutoSize = true;
-            this.lbPrespuestoArticulo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrespuestoArticulo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbPrespuestoArticulo.Location = new System.Drawing.Point(13, 19);
-            this.lbPrespuestoArticulo.Name = "lbPrespuestoArticulo";
-            this.lbPrespuestoArticulo.Size = new System.Drawing.Size(55, 14);
-            this.lbPrespuestoArticulo.TabIndex = 2;
-            this.lbPrespuestoArticulo.Text = "Artículo";
-            // 
-            // numericPrespuesto
-            // 
-            this.numericPrespuesto.Location = new System.Drawing.Point(297, 17);
-            this.numericPrespuesto.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericPrespuesto.Name = "numericPrespuesto";
-            this.numericPrespuesto.Size = new System.Drawing.Size(41, 20);
-            this.numericPrespuesto.TabIndex = 1;
-            this.numericPrespuesto.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // btnAgregarPrespuesto
-            // 
-            this.btnAgregarPrespuesto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.btnAgregarPrespuesto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregarPrespuesto.FlatAppearance.BorderSize = 0;
-            this.btnAgregarPrespuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarPrespuesto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPrespuesto.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAgregarPrespuesto.Location = new System.Drawing.Point(349, 14);
-            this.btnAgregarPrespuesto.Name = "btnAgregarPrespuesto";
-            this.btnAgregarPrespuesto.Size = new System.Drawing.Size(27, 23);
-            this.btnAgregarPrespuesto.TabIndex = 2;
-            this.btnAgregarPrespuesto.Text = "+";
-            this.btnAgregarPrespuesto.UseVisualStyleBackColor = false;
-            this.btnAgregarPrespuesto.Click += new System.EventHandler(this.btnAgregarPrespuesto_Click);
-            // 
-            // panelBuscadorPresupuesto
-            // 
-            this.panelBuscadorPresupuesto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            this.panelBuscadorPresupuesto.Controls.Add(this.cbAgregarPresupuesto);
-            this.panelBuscadorPresupuesto.Controls.Add(this.lbPrespuestoArticulo);
-            this.panelBuscadorPresupuesto.Controls.Add(this.btnAgregarPrespuesto);
-            this.panelBuscadorPresupuesto.Controls.Add(this.numericPrespuesto);
-            this.panelBuscadorPresupuesto.Location = new System.Drawing.Point(42, 89);
-            this.panelBuscadorPresupuesto.Name = "panelBuscadorPresupuesto";
-            this.panelBuscadorPresupuesto.Size = new System.Drawing.Size(396, 49);
-            this.panelBuscadorPresupuesto.TabIndex = 10;
-            // 
-            // cbAgregarPresupuesto
-            // 
-            this.cbAgregarPresupuesto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbAgregarPresupuesto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbAgregarPresupuesto.FormattingEnabled = true;
-            this.cbAgregarPresupuesto.Location = new System.Drawing.Point(74, 16);
-            this.cbAgregarPresupuesto.Name = "cbAgregarPresupuesto";
-            this.cbAgregarPresupuesto.Size = new System.Drawing.Size(212, 21);
-            this.cbAgregarPresupuesto.TabIndex = 0;
-            // 
             // panelPrespuesto
             // 
             this.panelPrespuesto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelPrespuesto.Controls.Add(this.lbBuscador);
             this.panelPrespuesto.Controls.Add(this.lbModificarcantidad);
+            this.panelPrespuesto.Controls.Add(this.lbAgregarCantidad);
             this.panelPrespuesto.Controls.Add(this.lbModificarPrecio);
             this.panelPrespuesto.Controls.Add(this.txtModificarPrecio);
             this.panelPrespuesto.Controls.Add(this.numericModificarPresupuesto);
@@ -167,9 +98,9 @@
             this.panelPrespuesto.Controls.Add(this.dgvPresupuesto);
             this.panelPrespuesto.Controls.Add(this.lbAgregarPresupuesto);
             this.panelPrespuesto.Controls.Add(this.btnAgregarGrid);
-            this.panelPrespuesto.Location = new System.Drawing.Point(42, 144);
+            this.panelPrespuesto.Location = new System.Drawing.Point(42, 82);
             this.panelPrespuesto.Name = "panelPrespuesto";
-            this.panelPrespuesto.Size = new System.Drawing.Size(505, 294);
+            this.panelPrespuesto.Size = new System.Drawing.Size(662, 318);
             this.panelPrespuesto.TabIndex = 11;
             // 
             // lbModificarcantidad
@@ -177,7 +108,7 @@
             this.lbModificarcantidad.AutoSize = true;
             this.lbModificarcantidad.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbModificarcantidad.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbModificarcantidad.Location = new System.Drawing.Point(298, 263);
+            this.lbModificarcantidad.Location = new System.Drawing.Point(447, 290);
             this.lbModificarcantidad.Name = "lbModificarcantidad";
             this.lbModificarcantidad.Size = new System.Drawing.Size(62, 14);
             this.lbModificarcantidad.TabIndex = 19;
@@ -188,7 +119,7 @@
             this.lbModificarPrecio.AutoSize = true;
             this.lbModificarPrecio.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbModificarPrecio.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbModificarPrecio.Location = new System.Drawing.Point(187, 263);
+            this.lbModificarPrecio.Location = new System.Drawing.Point(336, 290);
             this.lbModificarPrecio.Name = "lbModificarPrecio";
             this.lbModificarPrecio.Size = new System.Drawing.Size(44, 14);
             this.lbModificarPrecio.TabIndex = 18;
@@ -196,14 +127,14 @@
             // 
             // txtModificarPrecio
             // 
-            this.txtModificarPrecio.Location = new System.Drawing.Point(237, 261);
+            this.txtModificarPrecio.Location = new System.Drawing.Point(386, 288);
             this.txtModificarPrecio.Name = "txtModificarPrecio";
             this.txtModificarPrecio.Size = new System.Drawing.Size(48, 20);
             this.txtModificarPrecio.TabIndex = 3;
             // 
             // numericModificarPresupuesto
             // 
-            this.numericModificarPresupuesto.Location = new System.Drawing.Point(366, 261);
+            this.numericModificarPresupuesto.Location = new System.Drawing.Point(515, 288);
             this.numericModificarPresupuesto.Minimum = new decimal(new int[] {
             1,
             0,
@@ -226,7 +157,7 @@
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnModificar.Location = new System.Drawing.Point(413, 259);
+            this.btnModificar.Location = new System.Drawing.Point(562, 286);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(77, 23);
             this.btnModificar.TabIndex = 5;
@@ -242,7 +173,7 @@
             this.btEliminarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btEliminarProducto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btEliminarProducto.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btEliminarProducto.Location = new System.Drawing.Point(17, 259);
+            this.btEliminarProducto.Location = new System.Drawing.Point(17, 285);
             this.btEliminarProducto.Name = "btEliminarProducto";
             this.btEliminarProducto.Size = new System.Drawing.Size(77, 23);
             this.btEliminarProducto.TabIndex = 2;
@@ -267,7 +198,7 @@
             this.dgvPresupuesto.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             this.dgvPresupuesto.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPresupuesto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -275,12 +206,12 @@
             this.dgvPresupuesto.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvPresupuesto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkOrange;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPresupuesto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPresupuesto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -289,13 +220,13 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowFrame;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPresupuesto.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPresupuesto.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPresupuesto.GridColor = System.Drawing.SystemColors.WindowText;
-            this.dgvPresupuesto.Location = new System.Drawing.Point(17, 55);
+            this.dgvPresupuesto.Location = new System.Drawing.Point(17, 81);
             this.dgvPresupuesto.Name = "dgvPresupuesto";
             this.dgvPresupuesto.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -310,16 +241,17 @@
             this.dgvPresupuesto.RowHeadersWidth = 35;
             this.dgvPresupuesto.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGray;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPresupuesto.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPresupuesto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPresupuesto.Size = new System.Drawing.Size(473, 193);
+            this.dgvPresupuesto.Size = new System.Drawing.Size(624, 193);
             this.dgvPresupuesto.TabIndex = 1;
             this.dgvPresupuesto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPresupuesto_CellContentClick);
+            this.dgvPresupuesto.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvProductos_EditingControlShowing);
             // 
             // lbAgregarPresupuesto
             // 
@@ -375,7 +307,7 @@
             this.panelDescarga.Controls.Add(this.btnExportar);
             this.panelDescarga.Controls.Add(this.btnPrinter);
             this.panelDescarga.Controls.Add(this.btnFile);
-            this.panelDescarga.Location = new System.Drawing.Point(553, 144);
+            this.panelDescarga.Location = new System.Drawing.Point(710, 82);
             this.panelDescarga.Name = "panelDescarga";
             this.panelDescarga.Size = new System.Drawing.Size(212, 86);
             this.panelDescarga.TabIndex = 0;
@@ -422,7 +354,7 @@
             this.panelPrecioTotal.Controls.Add(this.label1);
             this.panelPrecioTotal.Controls.Add(this.lbPrecio);
             this.panelPrecioTotal.Controls.Add(this.lbTotal);
-            this.panelPrecioTotal.Location = new System.Drawing.Point(553, 289);
+            this.panelPrecioTotal.Location = new System.Drawing.Point(710, 227);
             this.panelPrecioTotal.Name = "panelPrecioTotal";
             this.panelPrecioTotal.Size = new System.Drawing.Size(212, 116);
             this.panelPrecioTotal.TabIndex = 13;
@@ -476,7 +408,7 @@
             // 
             this.panelCargarArchivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
             this.panelCargarArchivo.Controls.Add(this.btnCargarArchivo);
-            this.panelCargarArchivo.Location = new System.Drawing.Point(553, 235);
+            this.panelCargarArchivo.Location = new System.Drawing.Point(710, 173);
             this.panelCargarArchivo.Name = "panelCargarArchivo";
             this.panelCargarArchivo.Size = new System.Drawing.Size(212, 50);
             this.panelCargarArchivo.TabIndex = 14;
@@ -497,25 +429,43 @@
             this.btnCargarArchivo.UseVisualStyleBackColor = false;
             this.btnCargarArchivo.Click += new System.EventHandler(this.btnCargarArchivo_Click);
             // 
+            // lbBuscador
+            // 
+            this.lbBuscador.AutoSize = true;
+            this.lbBuscador.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBuscador.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbBuscador.Location = new System.Drawing.Point(244, 64);
+            this.lbBuscador.Name = "lbBuscador";
+            this.lbBuscador.Size = new System.Drawing.Size(202, 13);
+            this.lbBuscador.TabIndex = 16;
+            this.lbBuscador.Text = "Presione F2 para abrir el buscador.";
+            // 
+            // lbAgregarCantidad
+            // 
+            this.lbAgregarCantidad.AutoSize = true;
+            this.lbAgregarCantidad.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAgregarCantidad.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbAgregarCantidad.Location = new System.Drawing.Point(19, 64);
+            this.lbAgregarCantidad.Name = "lbAgregarCantidad";
+            this.lbAgregarCantidad.Size = new System.Drawing.Size(212, 13);
+            this.lbAgregarCantidad.TabIndex = 15;
+            this.lbAgregarCantidad.Text = "Presione F1 para modificar cantidad.";
+            // 
             // frmPresupuesto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(955, 515);
             this.Controls.Add(this.panelCargarArchivo);
             this.Controls.Add(this.panelPrecioTotal);
             this.Controls.Add(this.panelDescarga);
             this.Controls.Add(this.panelPrespuesto);
-            this.Controls.Add(this.panelBuscadorPresupuesto);
             this.Controls.Add(this.lbTituloPresupuesto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPresupuesto";
             this.Text = "frmPresupuesto";
             this.Load += new System.EventHandler(this.frmPresupuesto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrespuesto)).EndInit();
-            this.panelBuscadorPresupuesto.ResumeLayout(false);
-            this.panelBuscadorPresupuesto.PerformLayout();
             this.panelPrespuesto.ResumeLayout(false);
             this.panelPrespuesto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericModificarPresupuesto)).EndInit();
@@ -535,15 +485,10 @@
         #endregion
 
         private System.Windows.Forms.Label lbTituloPresupuesto;
-        private System.Windows.Forms.Label lbPrespuestoArticulo;
-        private System.Windows.Forms.NumericUpDown numericPrespuesto;
-        private System.Windows.Forms.Button btnAgregarPrespuesto;
-        private System.Windows.Forms.Panel panelBuscadorPresupuesto;
         private System.Windows.Forms.Panel panelPrespuesto;
         private System.Windows.Forms.Label lbAgregarPresupuesto;
         private System.Windows.Forms.Button btnAgregarGrid;
         private System.Windows.Forms.Panel panelDescarga;
-        private System.Windows.Forms.ComboBox cbAgregarPresupuesto;
         private System.Windows.Forms.DataGridView dgvPresupuesto;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label lbPrecio;
@@ -565,5 +510,7 @@
         private System.Windows.Forms.TextBox txtModificarPrecio;
         private System.Windows.Forms.Panel panelCargarArchivo;
         private System.Windows.Forms.Button btnCargarArchivo;
+        private System.Windows.Forms.Label lbBuscador;
+        private System.Windows.Forms.Label lbAgregarCantidad;
     }
 }
