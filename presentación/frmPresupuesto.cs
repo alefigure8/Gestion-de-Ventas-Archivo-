@@ -223,6 +223,7 @@ namespace presentación
             dgvPresupuesto.Columns[Opciones.Campo.CREADO].Visible = false;
             dgvPresupuesto.Columns[Opciones.Campo.COSTO].Visible = false;
             dgvPresupuesto.Columns[Opciones.Campo.STOCK].Visible = false;
+            dgvPresupuesto.Columns[Opciones.Campo.STOCKMODIFICADO].Visible = false;
             dgvPresupuesto.Columns[Opciones.Campo.CODIGO].DisplayIndex = 0;
             dgvPresupuesto.Columns[Opciones.Campo.NOMBRE].DisplayIndex = 1;
             dgvPresupuesto.Columns[Opciones.Campo.DESCRIPCION].DisplayIndex = 2;
@@ -296,9 +297,8 @@ namespace presentación
 
                     int index = 6;
 
-                    //Logo de la empresa
-                    string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-                    ws.Shapes.AddPicture(path + Opciones.Folder.LOGO, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 180, 15, 100, 35);
+                    //Logo de la empresa                   
+                    ws.Shapes.AddPicture(cargarLogo(), Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 180, 15, 100, 35);
                     
                     //Header Documento
                     Range formatRange;
@@ -405,8 +405,7 @@ namespace presentación
             int y = 150;
 
             //Logo de la empresa
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            Bitmap myBitmap = new Bitmap(path + Opciones.Folder.LOGO);
+            Bitmap myBitmap = new Bitmap(cargarLogo());
             
             e.Graphics.DrawImage(myBitmap, new System.Drawing.Rectangle(300, 20, 250, 75));
             e.Graphics.DrawString("PRESUPUESTO", font, Brushes.Black, new RectangleF(40, y, width, 40 ));
@@ -570,6 +569,19 @@ namespace presentación
             xlApp.Quit();
 
             return listaPresupuesto;
+        }
+
+        private string cargarLogo()
+        {
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string logo;
+            
+            if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
+                logo = path + Opciones.Folder.LOGOPERSONAL;
+            else
+                logo = path + Opciones.Folder.LOGO;
+
+            return logo;
         }
     }
 }
