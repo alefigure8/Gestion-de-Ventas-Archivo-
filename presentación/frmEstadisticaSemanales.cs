@@ -4,19 +4,10 @@ using Microsoft.Office.Interop.Excel;
 using negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using System.Drawing.Printing;
-using Microsoft.Office.Interop.Excel;
-using configuracion;
 
 
 namespace presentación

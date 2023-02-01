@@ -5,7 +5,6 @@ using configuracion;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using configuracion;
 
 namespace negocio
 {

@@ -25,8 +25,6 @@ namespace presentación
         frmPrincipal screen;
         int iCell;
         int cantidad;
-        decimal total;
-
         public frmPresupuesto()
         {
             InitializeComponent();
@@ -46,7 +44,6 @@ namespace presentación
 
             this.iCell = 0;
             this.cantidad = 1;
-            this.total = 0;
             
             OptionGridViewOpen(GridViewOpen);
             opcionModificar();

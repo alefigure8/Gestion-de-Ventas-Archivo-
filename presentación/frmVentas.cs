@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using negocio;
 using helper;
-using negocio;
 
 namespace presentación
 {
