@@ -35,8 +35,9 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-
+           //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
+            Console.WriteLine(path);
             //Icono
             picLogo.Image = Image.FromFile(path + Opciones.Folder.ICONO);
 

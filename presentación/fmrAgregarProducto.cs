@@ -148,7 +148,8 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             btnConfigureCategoria.BackgroundImage = System.Drawing.Image.FromFile(path + Opciones.Folder.CONFIGURACION);
             btnConfigureMarca.BackgroundImage = System.Drawing.Image.FromFile(path + Opciones.Folder.CONFIGURACION);
             pbDeleteImage.Load(path + Opciones.Folder.ELIMINAR);

@@ -384,7 +384,7 @@
             this.Controls.Add(this.chartGananciaSemanal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmEstadisticaSemanales";
-            this.Text = "frmEstadisticaSemanales";
+            this.Text = "Estadistica semanal";
             this.Load += new System.EventHandler(this.frmEstadisticaSemanales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartGananciaSemanal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartSemanalCategoria)).EndInit();

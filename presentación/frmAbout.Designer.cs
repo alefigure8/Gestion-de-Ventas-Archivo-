@@ -182,7 +182,7 @@
             this.Controls.Add(this.lbFrmAboutVersion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAbout";
-            this.Text = "frmAbout";
+            this.Text = "Acerca";
             this.Load += new System.EventHandler(this.frmAbout_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAutor)).EndInit();

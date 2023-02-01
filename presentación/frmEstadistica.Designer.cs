@@ -198,7 +198,7 @@
             this.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmEstadistica";
-            this.Text = "frmEstadistica";
+            this.Text = "Estadísticas";
             this.Load += new System.EventHandler(this.frmEstadistica_Load);
             this.panelContainerOprions.ResumeLayout(false);
             this.panelContainerOprions2.ResumeLayout(false);

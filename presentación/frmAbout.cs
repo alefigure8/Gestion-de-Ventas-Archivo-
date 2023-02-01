@@ -15,7 +15,8 @@ namespace presentación
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             pbVersion.Load(path + Opciones.Folder.VERSION);
             pbAutor.Load(path + Opciones.Folder.AUTOR);
             pbGitHub.Load(path + Opciones.Folder.GITHUB);

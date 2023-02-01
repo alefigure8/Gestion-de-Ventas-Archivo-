@@ -62,7 +62,8 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             btnExportar.Load(path + Opciones.Folder.EXPORTAR);
             btnPrinter.Load(path + Opciones.Folder.IMPRIMIR);
             btnFile.Load(path + Opciones.Folder.GUARDARARCHIVO);
@@ -537,8 +538,7 @@ namespace presentación
             printPresupuesto.PrintPage += printPresupuesto_PrintPage;
 
             printPreview = new PrintPreviewDialog();
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            printPreview.Icon = new System.Drawing.Icon(path + Opciones.Folder.ICONO);
+            printPreview.Icon = new System.Drawing.Icon(cargarLogo());
             printPreview.MinimumSize = new Size(375, 250);
             printPreview.SetBounds(100, -550, 800, 800);
             printPreview.Document = printPresupuesto;
@@ -677,7 +677,8 @@ namespace presentación
 
         private string cargarLogo()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+           // string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;  
             string logo;
             
             if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))

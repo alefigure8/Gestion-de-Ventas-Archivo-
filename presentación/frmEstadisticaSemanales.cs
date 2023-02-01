@@ -48,7 +48,8 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             btnPrinter.Load(path + Opciones.Folder.IMPRIMIR);
             btnFile.Load(path + Opciones.Folder.GUARDARARCHIVO);
         }
@@ -340,7 +341,8 @@ namespace presentación
             printProdcuctosSemanal.PrintPage += printPresupuesto_PrintPage;
 
             PrintPreviewDialog printPreview = new PrintPreviewDialog();
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             printPreview.Icon = new System.Drawing.Icon(path + Opciones.Folder.ICONO);
             printPreview.MinimumSize = new Size(375, 250);
             printPreview.SetBounds(100, -550, 800, 800);

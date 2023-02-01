@@ -30,11 +30,11 @@
         {
             this.lbTituloConfiguracion = new System.Windows.Forms.Label();
             this.gbLogo = new System.Windows.Forms.GroupBox();
+            this.btnLogo = new System.Windows.Forms.Button();
             this.picLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lbLogoText = new System.Windows.Forms.Label();
             this.btnSeleccionarImagen = new System.Windows.Forms.Button();
-            this.btnLogo = new System.Windows.Forms.Button();
             this.gbLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,24 @@
             this.gbLogo.TabIndex = 4;
             this.gbLogo.TabStop = false;
             this.gbLogo.Text = "Logo";
+            // 
+            // btnLogo
+            // 
+            this.btnLogo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogo.FlatAppearance.BorderSize = 0;
+            this.btnLogo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.btnLogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.btnLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
+            this.btnLogo.Location = new System.Drawing.Point(14, 149);
+            this.btnLogo.Name = "btnLogo";
+            this.btnLogo.Size = new System.Drawing.Size(86, 23);
+            this.btnLogo.TabIndex = 11;
+            this.btnLogo.Text = "Sin Banner";
+            this.btnLogo.UseVisualStyleBackColor = false;
+            this.btnLogo.Click += new System.EventHandler(this.button1_Click);
             // 
             // picLogoEmpresa
             // 
@@ -124,24 +142,6 @@
             this.btnSeleccionarImagen.UseVisualStyleBackColor = false;
             this.btnSeleccionarImagen.Click += new System.EventHandler(this.btnSeleccionarImagen_Click);
             // 
-            // btnLogo
-            // 
-            this.btnLogo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogo.FlatAppearance.BorderSize = 0;
-            this.btnLogo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
-            this.btnLogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
-            this.btnLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
-            this.btnLogo.Location = new System.Drawing.Point(14, 149);
-            this.btnLogo.Name = "btnLogo";
-            this.btnLogo.Size = new System.Drawing.Size(86, 23);
-            this.btnLogo.TabIndex = 11;
-            this.btnLogo.Text = "Sin Banner";
-            this.btnLogo.UseVisualStyleBackColor = false;
-            this.btnLogo.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,7 +152,7 @@
             this.Controls.Add(this.lbTituloConfiguracion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmConfiguracion";
-            this.Text = "frmConfiguracion";
+            this.Text = "Configuración";
             this.gbLogo.ResumeLayout(false);
             this.gbLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogoEmpresa)).EndInit();

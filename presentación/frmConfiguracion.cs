@@ -31,7 +31,8 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
             if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
                 picLogoEmpresa.Image = System.Drawing.Image.FromFile(path + Opciones.Folder.LOGOPERSONAL);
@@ -99,7 +100,8 @@ namespace presentación
 
         private void configuracionGUI()
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
             if (File.Exists(path + Opciones.Folder.NOLOGO))
                 btnLogo.Text = Opciones.Btn.CONLOGO;

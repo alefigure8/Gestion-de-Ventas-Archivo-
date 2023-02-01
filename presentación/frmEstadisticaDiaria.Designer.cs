@@ -387,7 +387,7 @@
             this.Controls.Add(this.chartSemanalCategoria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmEstadisticaDiaria";
-            this.Text = "frmEstadisticaDiaria";
+            this.Text = "Estadísticas diarias";
             this.Load += new System.EventHandler(this.frmEstadisticaDiaria_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

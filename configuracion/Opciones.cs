@@ -1,4 +1,6 @@
-﻿namespace configuracion
+﻿using System.IO;
+
+namespace configuracion
 {
     public static class Opciones
     {

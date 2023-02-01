@@ -35,7 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTituloPresupuesto = new System.Windows.Forms.Label();
             this.panelPrespuesto = new System.Windows.Forms.Panel();
+            this.lbBuscador = new System.Windows.Forms.Label();
             this.lbModificarcantidad = new System.Windows.Forms.Label();
+            this.lbAgregarCantidad = new System.Windows.Forms.Label();
             this.lbModificarPrecio = new System.Windows.Forms.Label();
             this.txtModificarPrecio = new System.Windows.Forms.TextBox();
             this.numericModificarPresupuesto = new System.Windows.Forms.NumericUpDown();
@@ -59,8 +61,6 @@
             this.printPresupuesto = new System.Drawing.Printing.PrintDocument();
             this.panelCargarArchivo = new System.Windows.Forms.Panel();
             this.btnCargarArchivo = new System.Windows.Forms.Button();
-            this.lbBuscador = new System.Windows.Forms.Label();
-            this.lbAgregarCantidad = new System.Windows.Forms.Label();
             this.panelPrespuesto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericModificarPresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPresupuesto)).BeginInit();
@@ -103,6 +103,17 @@
             this.panelPrespuesto.Size = new System.Drawing.Size(662, 318);
             this.panelPrespuesto.TabIndex = 11;
             // 
+            // lbBuscador
+            // 
+            this.lbBuscador.AutoSize = true;
+            this.lbBuscador.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBuscador.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbBuscador.Location = new System.Drawing.Point(244, 64);
+            this.lbBuscador.Name = "lbBuscador";
+            this.lbBuscador.Size = new System.Drawing.Size(202, 13);
+            this.lbBuscador.TabIndex = 16;
+            this.lbBuscador.Text = "Presione F2 para abrir el buscador.";
+            // 
             // lbModificarcantidad
             // 
             this.lbModificarcantidad.AutoSize = true;
@@ -113,6 +124,17 @@
             this.lbModificarcantidad.Size = new System.Drawing.Size(62, 14);
             this.lbModificarcantidad.TabIndex = 19;
             this.lbModificarcantidad.Text = "Cantidad";
+            // 
+            // lbAgregarCantidad
+            // 
+            this.lbAgregarCantidad.AutoSize = true;
+            this.lbAgregarCantidad.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAgregarCantidad.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbAgregarCantidad.Location = new System.Drawing.Point(19, 64);
+            this.lbAgregarCantidad.Name = "lbAgregarCantidad";
+            this.lbAgregarCantidad.Size = new System.Drawing.Size(212, 13);
+            this.lbAgregarCantidad.TabIndex = 15;
+            this.lbAgregarCantidad.Text = "Presione F1 para modificar cantidad.";
             // 
             // lbModificarPrecio
             // 
@@ -429,28 +451,6 @@
             this.btnCargarArchivo.UseVisualStyleBackColor = false;
             this.btnCargarArchivo.Click += new System.EventHandler(this.btnCargarArchivo_Click);
             // 
-            // lbBuscador
-            // 
-            this.lbBuscador.AutoSize = true;
-            this.lbBuscador.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBuscador.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbBuscador.Location = new System.Drawing.Point(244, 64);
-            this.lbBuscador.Name = "lbBuscador";
-            this.lbBuscador.Size = new System.Drawing.Size(202, 13);
-            this.lbBuscador.TabIndex = 16;
-            this.lbBuscador.Text = "Presione F2 para abrir el buscador.";
-            // 
-            // lbAgregarCantidad
-            // 
-            this.lbAgregarCantidad.AutoSize = true;
-            this.lbAgregarCantidad.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAgregarCantidad.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbAgregarCantidad.Location = new System.Drawing.Point(19, 64);
-            this.lbAgregarCantidad.Name = "lbAgregarCantidad";
-            this.lbAgregarCantidad.Size = new System.Drawing.Size(212, 13);
-            this.lbAgregarCantidad.TabIndex = 15;
-            this.lbAgregarCantidad.Text = "Presione F1 para modificar cantidad.";
-            // 
             // frmPresupuesto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,7 +464,7 @@
             this.Controls.Add(this.lbTituloPresupuesto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPresupuesto";
-            this.Text = "frmPresupuesto";
+            this.Text = "Presupuesto";
             this.Load += new System.EventHandler(this.frmPresupuesto_Load);
             this.panelPrespuesto.ResumeLayout(false);
             this.panelPrespuesto.PerformLayout();
