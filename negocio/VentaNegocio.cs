@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using configuracion;
 using dominio;
@@ -60,38 +61,49 @@ namespace negocio
                         aux.Total = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
                         string aux_id_producto = data[icolumn++];
                         string aux_cantidad_venta = data[icolumn++];
+                        string aux_precio_venta = data[icolumn++];
                         aux.id_cliente = int.Parse(data[icolumn++]);
                         aux.Credit = int.Parse(data[icolumn++]) == 1 ? true : false;
                         aux.Impuesto = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
                         aux.Descuento = Convert.ToDecimal(data[icolumn++].ToString().Replace(".", ","));
-
+                        
                         //Llave con Id de Productos, cargamos uno por uno
                         List<string> id_Producto = new List<string>();
-                        id_Producto = aux_id_producto.Split('.').ToList();
+                        id_Producto = aux_id_producto.Split('|').ToList();
 
-                        foreach(var id in id_Producto)
+                        //Llave con precio de cada producto, cargamos uno por uno
+                        List<string> precio_venta = new List<string>();
+                        precio_venta = aux_precio_venta.Split('|').ToList();
+
+                        // foreach (var id in id_Producto)
+                        for(int i = 0; i < id_Producto.Count; i++)
                         {
-                           if(!string.IsNullOrEmpty(id))
+                            //SI NO ES LIBRE
+                            if (!string.IsNullOrEmpty(id_Producto[i]) && id_Producto[i] != "0")
                             {
                                 Venta aux_venta = new Venta();
-                                Producto aux_producto = listaProducto.Find(x => int.Parse(id) == x.Id);
-
+                                Producto aux_producto = listaProducto.Find(x => int.Parse(id_Producto[i]) == x.Id);
+                              
                                if(aux_venta != null)
                                 {
+                                    //Cargamos desde listado de productos
                                     aux_venta.Id = aux_producto.Id;
                                     aux_venta.Codigo = aux_producto.Codigo;
                                     aux_venta.Nombre = aux_producto.Nombre;
                                     aux_venta.Descripcion = aux_producto.Descripcion;
-                                    aux_venta.Precio = aux_producto.Precio;
                                     aux_venta.Stock = aux_producto.Stock;
                                     aux_venta.Costo = aux_producto.Costo;
+                                    
+                                    //Precio
+                                    aux_venta.Precio = Convert.ToDecimal(precio_venta[i].ToString().Replace(".", ","));
 
-
+                                    //Marca
                                     Marca marca = new Marca();
                                     marca.Id = aux_producto.MarcaInfo.Id;
                                     marca.Descripcion = aux_producto.MarcaInfo.Descripcion;
                                     aux_venta.MarcaInfo = marca;
-
+                                    
+                                    //Categoria
                                     Categoria categoria = new Categoria();
                                     categoria.Id = aux_producto.CategoriaInfo.Id;
                                     categoria.Descripcion = aux_producto.CategoriaInfo.Descripcion;
@@ -100,11 +112,26 @@ namespace negocio
                                     listaVenta.Add(aux_venta);
                                 }
                             }
+                            else
+                            {
+                                //CREAR PRODUCTO LIBRE
+                                Venta aux_venta = new Venta();
+
+                                // Cargamos desde listado de productos
+                                aux_venta.Codigo = "LIBRE";
+                                aux_venta.Nombre = "LIBRE";
+                                aux_venta.Descripcion = "LIBRE";
+
+                                //Precio
+                                aux_venta.Precio = Convert.ToDecimal(precio_venta[i].ToString().Replace(".", ","));
+
+                                listaVenta.Add(aux_venta);
+                            }
                         }
 
                         //Llave con cantidades de cada Venta
                         List<string> cantidad_venta = new List<string>();
-                        cantidad_venta = aux_cantidad_venta.Split('.').ToList();
+                        cantidad_venta = aux_cantidad_venta.Split('|').ToList();
 
                         for (int i = 0; i < listaVenta.Count; i++)
                         {
@@ -169,24 +196,34 @@ namespace negocio
                     {
                         string id_venta = string.Empty;
                         string cantiadad_venta = string.Empty;
+                        string precio_venta = string.Empty;
 
+                        //Guardar ids de productos
                         foreach (var item2 in item.Venta)
                         {
                             if (item2.Id != 0)
-                                id_venta += item2.Id.ToString() + ".";
+                                id_venta += item2.Id.ToString() + "|";
                         }
 
+                        //Guardar cantidad de productos de cada venta
                         foreach (var item2 in item.Venta)
                         {
                             if (item2.Cantidad != 0)
-                                cantiadad_venta += item2.Cantidad.ToString() + ".";
+                                cantiadad_venta += item2.Cantidad.ToString() + "|";
 
+                        }
+
+                        //guardar precio de cada venta realizada
+                        foreach (var item2 in item.Venta)
+                        {
+                            if(item2.Precio != 0)
+                                precio_venta += item2.Precio.ToString().Replace(",", ".") + "|";
                         }
 
                         string credit = item.Credit ? "1": "0";
 
-                        //Add the Data rows.
-                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta},{item.id_cliente},{credit},{item.Impuesto.ToString().Replace(",", ".")},{item.Descuento.ToString().Replace(",", ".")}";
+                        //Add the Data rows: id,fecha,total,id_venta,cantidad_venta,id_cliente,credit,impuesto,descuento
+                        csv += $"{item.Id},{item.Fecha.ToString("dd/MM/yyyy")},{item.Total.ToString().Replace(",", ".")},{id_venta},{cantiadad_venta},{precio_venta},{item.id_cliente},{credit},{item.Impuesto.ToString().Replace(",", ".")},{item.Descuento.ToString().Replace(",", ".")}";
                         //Add new line.
                         csv += "\r\n";
 
