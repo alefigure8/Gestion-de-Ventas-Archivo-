@@ -137,7 +137,8 @@ namespace helper
             }
             catch (Exception)
             {
-                string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+               //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+                string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
                 //Utilizar using para liberar el recurso
                 using (FileStream fs = new FileStream(path + Opciones.Folder.PLACEHOLDER, FileMode.Open))
