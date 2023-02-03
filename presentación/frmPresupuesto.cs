@@ -11,6 +11,8 @@ using System.IO;
 using System.Drawing.Printing;
 using Microsoft.Office.Interop.Excel;
 using System.Text;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace presentación
 {
@@ -196,6 +198,7 @@ namespace presentación
             foreach (DataGridViewColumn c in dgvPresupuesto.Columns)
             {
                 c.ReadOnly = true;
+                c.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
             //setting celda de búsqueda
@@ -270,11 +273,9 @@ namespace presentación
 
                             //Carhar producto en la lista de venta
                             listaPresupuesto.Add(productoAux);
-                            Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
 
-                            //Colocar último el objeto tipo para búsqueda
-                            listaPresupuesto.Remove(eraser);
-                            listaPresupuesto.Add(new Presupuesto());
+                            //Reiniciar grid
+                            reiniciarAgregarProducto();
 
                             this.cantidad = 1;
                             iCell++;
@@ -298,12 +299,42 @@ namespace presentación
             if (e.KeyCode.ToString() == "F2")
             {
                 //Cargar pantalla de busqueda
-                screen = new frmPrincipal(this.screen, true);
+                this.screen = new frmPrincipal(this.screen, true);
+                this.screen.ShowDialog();
+
+                if (this.screen.codigo != null)
+                {
+                    editGridView(this.screen.codigo);
+                }
+            }
+
+            if (e.KeyCode.ToString() == "F3")
+            {
+                //Cargar pantalla de producto libre
+                frmAgregarLibre screen = new frmAgregarLibre();
                 screen.ShowDialog();
 
-                if (screen.codigo != null)
+                if (screen.producto != null)
                 {
-                    editGridView(screen.codigo);
+                    Presupuesto aux = new Presupuesto();
+                    aux.Id = screen.producto.Id;
+                    aux.Codigo = screen.producto.Codigo;
+                    aux.Nombre = screen.producto.Nombre;
+                    aux.Descripcion = screen.producto.Descripcion;
+                    aux.Precio = screen.producto.Precio;
+                    aux.cantidad = 1;
+                    aux.total = aux.cantidad * aux.Precio;
+
+                    this.listaPresupuesto.Add(aux);
+
+                    //Reiniciar Grid
+                    reiniciarAgregarProducto();
+
+                    iCell++;
+                    this.cantidad = 1;
+
+                    cargarGridView();
+                    Total();
                 }
             }
         }
@@ -335,11 +366,9 @@ namespace presentación
                 listaPresupuesto.Remove(auxModificar);
                 listaPresupuesto.Add(auxModificar);
 
-                //Colocar último el objeto tipo para búsqueda
-                Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
-                listaPresupuesto.Remove(eraser);
-                listaPresupuesto.Add(new Presupuesto());
 
+                //Reiniciar Grid
+                reiniciarAgregarProducto();
                 cargarGridView();
                 Total();
                 opcionModificar();
@@ -361,7 +390,7 @@ namespace presentación
             using (SaveFileDialog saveDialog = new SaveFileDialog() { Filter = "Excel|*.xlsx", Title = "Guardar Presupuesto", FileName = $"Presupuesto - {DateTime.Now.ToString("dddd, dd MMMM yyyy")}"})
             {
                 //Validar si el gridView está vacío
-                if(listaPresupuesto.Count() == 0)
+                if(listaPresupuesto.Count() == 1)
                 {
                     MessageBox.Show("Selecciones algunos productos antes de generar un archivo");
                     return;
@@ -523,7 +552,7 @@ namespace presentación
 
         private void btnPrinter_Click(object sender, EventArgs e)
         {
-            if(listaPresupuesto.Count() == 0)
+            if(listaPresupuesto.Count() == 1)
             {
                 MessageBox.Show("Pruebe cargando algunos productos antes de imprimir");
                 return;
@@ -535,7 +564,8 @@ namespace presentación
             printPresupuesto.PrintPage += printPresupuesto_PrintPage;
 
             printPreview = new PrintPreviewDialog();
-            printPreview.Icon = new System.Drawing.Icon(cargarLogo());
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
+            printPreview.Icon = new System.Drawing.Icon(path + Opciones.Folder.ICONO);
             printPreview.MinimumSize = new Size(375, 250);
             printPreview.SetBounds(100, -550, 800, 800);
             printPreview.Document = printPresupuesto;
@@ -674,9 +704,8 @@ namespace presentación
 
         private string cargarLogo()
         {
-           // string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;  
-            string logo;
+            string logo = string.Empty;
             
             if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
                 logo = path + Opciones.Folder.LOGOPERSONAL;
@@ -684,6 +713,14 @@ namespace presentación
                 logo = path + Opciones.Folder.LOGO;
 
             return logo;
+        }
+
+        private void reiniciarAgregarProducto()
+        {
+            //Colocar último el objeto tipo para búsqueda
+            Presupuesto eraser = listaPresupuesto.Find(x => string.IsNullOrEmpty(x.Nombre));
+            listaPresupuesto.Remove(eraser);
+            listaPresupuesto.Add(new Presupuesto());
         }
     }
 }
