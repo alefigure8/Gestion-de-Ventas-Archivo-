@@ -85,10 +85,10 @@
             this.lbTextStockModificado = new System.Windows.Forms.Label();
             this.lbStockModificado = new System.Windows.Forms.Label();
             this.panelFechas = new System.Windows.Forms.Panel();
+            this.lbFechaCreacion = new System.Windows.Forms.Label();
             this.lbTextoFechaCreacion = new System.Windows.Forms.Label();
             this.panelFechasTitulo = new System.Windows.Forms.Panel();
             this.lbFechaTitulo = new System.Windows.Forms.Label();
-            this.lbFechaCreacion = new System.Windows.Forms.Label();
             this.panelCargaProducto.SuspendLayout();
             this.panelCargarCategoria.SuspendLayout();
             this.panelCargarMarca.SuspendLayout();
@@ -761,6 +761,16 @@
             this.panelFechas.Size = new System.Drawing.Size(207, 65);
             this.panelFechas.TabIndex = 10;
             // 
+            // lbFechaCreacion
+            // 
+            this.lbFechaCreacion.AutoSize = true;
+            this.lbFechaCreacion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFechaCreacion.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbFechaCreacion.Location = new System.Drawing.Point(76, 45);
+            this.lbFechaCreacion.Name = "lbFechaCreacion";
+            this.lbFechaCreacion.Size = new System.Drawing.Size(0, 13);
+            this.lbFechaCreacion.TabIndex = 10;
+            // 
             // lbTextoFechaCreacion
             // 
             this.lbTextoFechaCreacion.AutoSize = true;
@@ -791,16 +801,6 @@
             this.lbFechaTitulo.Size = new System.Drawing.Size(51, 16);
             this.lbFechaTitulo.TabIndex = 2;
             this.lbFechaTitulo.Text = "Fechas";
-            // 
-            // lbFechaCreacion
-            // 
-            this.lbFechaCreacion.AutoSize = true;
-            this.lbFechaCreacion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFechaCreacion.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbFechaCreacion.Location = new System.Drawing.Point(76, 45);
-            this.lbFechaCreacion.Name = "lbFechaCreacion";
-            this.lbFechaCreacion.Size = new System.Drawing.Size(0, 13);
-            this.lbFechaCreacion.TabIndex = 10;
             // 
             // fmrAgregarProducto
             // 
