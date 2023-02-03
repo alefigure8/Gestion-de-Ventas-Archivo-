@@ -112,7 +112,8 @@ namespace negocio
                                     listaVenta.Add(aux_venta);
                                 }
                             }
-                            else
+                            
+                            if(id_Producto[i] == "0")
                             {
                                 //CREAR PRODUCTO LIBRE
                                 Venta aux_venta = new Venta();
@@ -165,6 +166,7 @@ namespace negocio
             string csv = string.Empty;
 
             List<Ventas> listaVentas = new List<Ventas>();
+            List<Venta> listaVenta = new List<Venta>();
 
             //Si no existe el directorio, locrea
             if (!Directory.Exists(path))
@@ -185,6 +187,10 @@ namespace negocio
                     //Listar ventas del archivo
                     listaVentas = this.listar();
 
+                    //Quitar el ultimo registro del listado de ventas
+                    listaVenta = venta.Venta.FindAll(x=>x.Codigo != "Ingrese Código");
+                    venta.Venta = listaVenta;
+                    
                     //Gnerar Id
                     venta.Id = Utils.generarIdRandom();
 
@@ -201,23 +207,19 @@ namespace negocio
                         //Guardar ids de productos
                         foreach (var item2 in item.Venta)
                         {
-                            if (item2.Id != 0)
-                                id_venta += item2.Id.ToString() + "|";
+                            id_venta += item2.Id.ToString() + "|";
                         }
 
                         //Guardar cantidad de productos de cada venta
                         foreach (var item2 in item.Venta)
                         {
-                            if (item2.Cantidad != 0)
-                                cantiadad_venta += item2.Cantidad.ToString() + "|";
-
+                            cantiadad_venta += item2.Cantidad.ToString() + "|";
                         }
 
                         //guardar precio de cada venta realizada
                         foreach (var item2 in item.Venta)
                         {
-                            if(item2.Precio != 0)
-                                precio_venta += item2.Precio.ToString().Replace(",", ".") + "|";
+                            precio_venta += item2.Precio.ToString().Replace(",", ".") + "|";
                         }
 
                         string credit = item.Credit ? "1": "0";
