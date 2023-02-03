@@ -40,6 +40,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbTotalTitulo = new System.Windows.Forms.Label();
             this.lbTotalPrecio = new System.Windows.Forms.Label();
+            this.lbSymbolPorcentaje = new System.Windows.Forms.Label();
             this.lbIVAPorcentaje = new System.Windows.Forms.Label();
             this.lbDescuentoSimbolo = new System.Windows.Forms.Label();
             this.lbIVATitulo = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             this.lbAgregarCantidad = new System.Windows.Forms.Label();
             this.lbBuscador = new System.Windows.Forms.Label();
             this.btnAgregarCliente = new System.Windows.Forms.Button();
-            this.lbSymbolPorcentaje = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelSubtotal.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -149,6 +150,17 @@
             this.lbTotalPrecio.Size = new System.Drawing.Size(56, 23);
             this.lbTotalPrecio.TabIndex = 8;
             this.lbTotalPrecio.Text = "0.000";
+            // 
+            // lbSymbolPorcentaje
+            // 
+            this.lbSymbolPorcentaje.AutoSize = true;
+            this.lbSymbolPorcentaje.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSymbolPorcentaje.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbSymbolPorcentaje.Location = new System.Drawing.Point(379, 27);
+            this.lbSymbolPorcentaje.Name = "lbSymbolPorcentaje";
+            this.lbSymbolPorcentaje.Size = new System.Drawing.Size(18, 13);
+            this.lbSymbolPorcentaje.TabIndex = 4;
+            this.lbSymbolPorcentaje.Text = "%";
             // 
             // lbIVAPorcentaje
             // 
@@ -362,6 +374,8 @@
             // 
             // dgvProductos
             // 
+            this.dgvProductos.AllowUserToAddRows = false;
+            this.dgvProductos.AllowUserToDeleteRows = false;
             this.dgvProductos.AllowUserToResizeColumns = false;
             this.dgvProductos.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -465,16 +479,16 @@
             this.btnAgregarCliente.UseVisualStyleBackColor = false;
             this.btnAgregarCliente.Click += new System.EventHandler(this.btnAgregarCliente_Click);
             // 
-            // lbSymbolPorcentaje
+            // label1
             // 
-            this.lbSymbolPorcentaje.AutoSize = true;
-            this.lbSymbolPorcentaje.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSymbolPorcentaje.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbSymbolPorcentaje.Location = new System.Drawing.Point(379, 27);
-            this.lbSymbolPorcentaje.Name = "lbSymbolPorcentaje";
-            this.lbSymbolPorcentaje.Size = new System.Drawing.Size(18, 13);
-            this.lbSymbolPorcentaje.TabIndex = 4;
-            this.lbSymbolPorcentaje.Text = "%";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(473, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(264, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Presione F3 para agregar producto no listado.";
             // 
             // frmVentas
             // 
@@ -483,6 +497,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
             this.ClientSize = new System.Drawing.Size(955, 515);
             this.Controls.Add(this.btnAgregarCliente);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbBuscador);
             this.Controls.Add(this.lbAgregarCantidad);
             this.Controls.Add(this.dgvProductos);
@@ -546,5 +561,6 @@
         private System.Windows.Forms.Label lbBuscador;
         private System.Windows.Forms.Button btnAgregarCliente;
         private System.Windows.Forms.Label lbSymbolPorcentaje;
+        private System.Windows.Forms.Label label1;
     }
 }
