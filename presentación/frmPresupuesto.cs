@@ -322,7 +322,7 @@ namespace presentación
                     aux.Nombre = screen.producto.Nombre;
                     aux.Descripcion = screen.producto.Descripcion;
                     aux.Precio = screen.producto.Precio;
-                    aux.cantidad = 1;
+                    aux.cantidad = this.cantidad;
                     aux.total = aux.cantidad * aux.Precio;
 
                     this.listaPresupuesto.Add(aux);

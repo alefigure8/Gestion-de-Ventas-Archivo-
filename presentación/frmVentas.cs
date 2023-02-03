@@ -146,7 +146,7 @@ namespace presentación
                     aux.Nombre = screen.producto.Nombre;
                     aux.Descripcion = screen.producto.Descripcion;
                     aux.Precio = screen.producto.Precio;
-                    aux.Cantidad = 1;
+                    aux.Cantidad = this.cantidad;
                     aux.Total = aux.Cantidad * aux.Precio;
 
                     this.listaVentas.Add(aux);
