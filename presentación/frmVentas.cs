@@ -99,12 +99,10 @@ namespace presentación
 
                         //Carhar producto en la lista de venta
                         listaVentas.Add(aux);
-                        Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
-                        
+
                         //Colocar último el objeto tipo para búsqueda
-                        listaVentas.Remove(eraser);
-                        listaVentas.Add(new Venta());
-                        
+                        reiniciarAgregarProducto();
+
                         this.cantidad = 1;
                         iCell++;
                     }
@@ -122,15 +120,44 @@ namespace presentación
                 this.cantidad = screen.cantidad;
             }
 
-            if(e.KeyCode.ToString() == "F2")
+            if (e.KeyCode.ToString() == "F2")
             {
                 //Cargar pantalla de busqueda
                 screen = new frmPrincipal(this.screen, true);
                 screen.ShowDialog();
 
-                if(screen.codigo != null)
+                if (screen.codigo != null)
                 {
                     editGridView(screen.codigo);
+                }
+            }
+
+            if (e.KeyCode.ToString() == "F3")
+            {
+                //Cargar pantalla de producto libre
+                frmAgregarLibre screen = new frmAgregarLibre();
+                screen.ShowDialog();
+                
+                if (screen.producto != null)
+                {
+                    Venta aux = new Venta();
+                    aux.Id = screen.producto.Id;
+                    aux.Codigo = screen.producto.Codigo;
+                    aux.Nombre = screen.producto.Nombre;
+                    aux.Descripcion = screen.producto.Descripcion;
+                    aux.Precio = screen.producto.Precio;
+                    aux.Cantidad = 1;
+                    aux.Total = aux.Cantidad * aux.Precio;
+
+                    this.listaVentas.Add(aux);
+
+                    //Reiniciar Grid
+                    reiniciarAgregarProducto();
+                    
+                    this.cantidad = 1;
+                    iCell++;
+
+                    cargarGUI();
                 }
             }
         }
@@ -141,6 +168,7 @@ namespace presentación
             foreach (DataGridViewColumn c in dgvProductos.Columns)
             {
                 c.ReadOnly = true;
+                c.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
             //setting celda de búsqueda
@@ -337,6 +365,7 @@ namespace presentación
                             ProductoNegocio productoNegocio = new ProductoNegocio();
                             List<Producto> listaProductos = productoNegocio.listar();
 
+                            //Actualizar stock de los productos
                             foreach (var item in listaVentas)
                             {
                                 listaProductos.ForEach(prod =>
@@ -420,6 +449,14 @@ namespace presentación
                 btnAgregarCliente.Text = "Agregar";
 
             }
+        }
+
+        private void reiniciarAgregarProducto()
+        {
+            //Colocar último el objeto tipo para búsqueda
+            Venta eraser = listaVentas.Find(x => string.IsNullOrEmpty(x.Nombre));
+            listaVentas.Remove(eraser);
+            listaVentas.Add(new Venta());
         }
     }
 }
