@@ -69,25 +69,29 @@
             this.cbAgregarMarca = new System.Windows.Forms.ComboBox();
             this.btnAgregarMarca = new System.Windows.Forms.Button();
             this.panelTituloCargarMarcar = new System.Windows.Forms.Panel();
+            this.btnPanelMarca = new System.Windows.Forms.Button();
             this.lbAgregarMarca = new System.Windows.Forms.Label();
             this.pbCargarProducto = new System.Windows.Forms.PictureBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.lbImagen = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPanelImagen = new System.Windows.Forms.Button();
+            this.panelContainerImagen = new System.Windows.Forms.Panel();
             this.pbDeleteImage = new System.Windows.Forms.PictureBox();
             this.lbAgregarCategoria = new System.Windows.Forms.Label();
             this.panelTituloCargarCategoria = new System.Windows.Forms.Panel();
+            this.btnPanelCategoria = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.lbTextoModificado = new System.Windows.Forms.Label();
             this.lbModificado = new System.Windows.Forms.Label();
             this.lbTextStockModificado = new System.Windows.Forms.Label();
             this.lbStockModificado = new System.Windows.Forms.Label();
-            this.panelFechas = new System.Windows.Forms.Panel();
+            this.panelContainerFecha = new System.Windows.Forms.Panel();
             this.lbFechaCreacion = new System.Windows.Forms.Label();
             this.lbTextoFechaCreacion = new System.Windows.Forms.Label();
             this.panelFechasTitulo = new System.Windows.Forms.Panel();
+            this.btnPanelFecha = new System.Windows.Forms.Button();
             this.lbFechaTitulo = new System.Windows.Forms.Label();
             this.panelCargaProducto.SuspendLayout();
             this.panelCargarCategoria.SuspendLayout();
@@ -95,10 +99,10 @@
             this.panelTituloCargarMarcar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCargarProducto)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelContainerImagen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeleteImage)).BeginInit();
             this.panelTituloCargarCategoria.SuspendLayout();
-            this.panelFechas.SuspendLayout();
+            this.panelContainerFecha.SuspendLayout();
             this.panelFechasTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,9 +208,9 @@
             // 
             // txtCosto
             // 
-            this.txtCosto.Location = new System.Drawing.Point(257, 109);
+            this.txtCosto.Location = new System.Drawing.Point(242, 109);
             this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(58, 20);
+            this.txtCosto.Size = new System.Drawing.Size(73, 20);
             this.txtCosto.TabIndex = 4;
             // 
             // lbCosto
@@ -215,7 +219,7 @@
             this.lbCosto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbCosto.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCosto.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbCosto.Location = new System.Drawing.Point(207, 110);
+            this.lbCosto.Location = new System.Drawing.Point(192, 110);
             this.lbCosto.Name = "lbCosto";
             this.lbCosto.Size = new System.Drawing.Size(44, 16);
             this.lbCosto.TabIndex = 22;
@@ -280,7 +284,7 @@
             this.lbErrorPrecio.AutoSize = true;
             this.lbErrorPrecio.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbErrorPrecio.ForeColor = System.Drawing.Color.LightCoral;
-            this.lbErrorPrecio.Location = new System.Drawing.Point(174, 112);
+            this.lbErrorPrecio.Location = new System.Drawing.Point(178, 111);
             this.lbErrorPrecio.Name = "lbErrorPrecio";
             this.lbErrorPrecio.Size = new System.Drawing.Size(18, 18);
             this.lbErrorPrecio.TabIndex = 14;
@@ -330,7 +334,7 @@
             // 
             this.txtAgregarPrecio.Location = new System.Drawing.Point(110, 109);
             this.txtAgregarPrecio.Name = "txtAgregarPrecio";
-            this.txtAgregarPrecio.Size = new System.Drawing.Size(58, 20);
+            this.txtAgregarPrecio.Size = new System.Drawing.Size(67, 20);
             this.txtAgregarPrecio.TabIndex = 3;
             // 
             // txtAgregarDescripcion
@@ -561,11 +565,28 @@
             // panelTituloCargarMarcar
             // 
             this.panelTituloCargarMarcar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panelTituloCargarMarcar.Controls.Add(this.btnPanelMarca);
             this.panelTituloCargarMarcar.Controls.Add(this.lbAgregarMarca);
             this.panelTituloCargarMarcar.Location = new System.Drawing.Point(633, 225);
             this.panelTituloCargarMarcar.Name = "panelTituloCargarMarcar";
             this.panelTituloCargarMarcar.Size = new System.Drawing.Size(290, 24);
             this.panelTituloCargarMarcar.TabIndex = 5;
+            // 
+            // btnPanelMarca
+            // 
+            this.btnPanelMarca.FlatAppearance.BorderSize = 0;
+            this.btnPanelMarca.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.btnPanelMarca.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(65)))), ((int)(((byte)(111)))));
+            this.btnPanelMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPanelMarca.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPanelMarca.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPanelMarca.Location = new System.Drawing.Point(267, 2);
+            this.btnPanelMarca.Name = "btnPanelMarca";
+            this.btnPanelMarca.Size = new System.Drawing.Size(20, 20);
+            this.btnPanelMarca.TabIndex = 14;
+            this.btnPanelMarca.Text = "+";
+            this.btnPanelMarca.UseVisualStyleBackColor = true;
+            this.btnPanelMarca.Click += new System.EventHandler(this.btnPanelMarca_Click);
             // 
             // lbAgregarMarca
             // 
@@ -637,21 +658,38 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panel1.Controls.Add(this.btnPanelImagen);
             this.panel1.Controls.Add(this.lbImagen);
             this.panel1.Location = new System.Drawing.Point(420, 91);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(207, 24);
             this.panel1.TabIndex = 6;
             // 
-            // panel2
+            // btnPanelImagen
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            this.panel2.Controls.Add(this.pbDeleteImage);
-            this.panel2.Controls.Add(this.pbCargarProducto);
-            this.panel2.Location = new System.Drawing.Point(419, 115);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(208, 238);
-            this.panel2.TabIndex = 3;
+            this.btnPanelImagen.FlatAppearance.BorderSize = 0;
+            this.btnPanelImagen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.btnPanelImagen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(65)))), ((int)(((byte)(111)))));
+            this.btnPanelImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPanelImagen.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPanelImagen.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPanelImagen.Location = new System.Drawing.Point(184, 2);
+            this.btnPanelImagen.Name = "btnPanelImagen";
+            this.btnPanelImagen.Size = new System.Drawing.Size(20, 20);
+            this.btnPanelImagen.TabIndex = 11;
+            this.btnPanelImagen.Text = "+";
+            this.btnPanelImagen.UseVisualStyleBackColor = true;
+            this.btnPanelImagen.Click += new System.EventHandler(this.btnPanelImagen_Click);
+            // 
+            // panelContainerImagen
+            // 
+            this.panelContainerImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelContainerImagen.Controls.Add(this.pbDeleteImage);
+            this.panelContainerImagen.Controls.Add(this.pbCargarProducto);
+            this.panelContainerImagen.Location = new System.Drawing.Point(420, 115);
+            this.panelContainerImagen.Name = "panelContainerImagen";
+            this.panelContainerImagen.Size = new System.Drawing.Size(208, 238);
+            this.panelContainerImagen.TabIndex = 3;
             // 
             // pbDeleteImage
             // 
@@ -681,11 +719,28 @@
             // panelTituloCargarCategoria
             // 
             this.panelTituloCargarCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panelTituloCargarCategoria.Controls.Add(this.btnPanelCategoria);
             this.panelTituloCargarCategoria.Controls.Add(this.lbAgregarCategoria);
             this.panelTituloCargarCategoria.Location = new System.Drawing.Point(633, 91);
             this.panelTituloCargarCategoria.Name = "panelTituloCargarCategoria";
             this.panelTituloCargarCategoria.Size = new System.Drawing.Size(290, 24);
             this.panelTituloCargarCategoria.TabIndex = 4;
+            // 
+            // btnPanelCategoria
+            // 
+            this.btnPanelCategoria.FlatAppearance.BorderSize = 0;
+            this.btnPanelCategoria.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.btnPanelCategoria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(65)))), ((int)(((byte)(111)))));
+            this.btnPanelCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPanelCategoria.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPanelCategoria.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPanelCategoria.Location = new System.Drawing.Point(267, 2);
+            this.btnPanelCategoria.Name = "btnPanelCategoria";
+            this.btnPanelCategoria.Size = new System.Drawing.Size(20, 20);
+            this.btnPanelCategoria.TabIndex = 13;
+            this.btnPanelCategoria.Text = "+";
+            this.btnPanelCategoria.UseVisualStyleBackColor = true;
+            this.btnPanelCategoria.Click += new System.EventHandler(this.btnPanelCategoria_Click);
             // 
             // btnBorrar
             // 
@@ -719,7 +774,7 @@
             // lbModificado
             // 
             this.lbModificado.AutoSize = true;
-            this.lbModificado.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbModificado.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbModificado.Location = new System.Drawing.Point(94, 10);
             this.lbModificado.Name = "lbModificado";
@@ -740,31 +795,31 @@
             // lbStockModificado
             // 
             this.lbStockModificado.AutoSize = true;
-            this.lbStockModificado.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStockModificado.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStockModificado.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbStockModificado.Location = new System.Drawing.Point(127, 27);
             this.lbStockModificado.Name = "lbStockModificado";
             this.lbStockModificado.Size = new System.Drawing.Size(0, 13);
             this.lbStockModificado.TabIndex = 9;
             // 
-            // panelFechas
+            // panelContainerFecha
             // 
-            this.panelFechas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
-            this.panelFechas.Controls.Add(this.lbFechaCreacion);
-            this.panelFechas.Controls.Add(this.lbTextoModificado);
-            this.panelFechas.Controls.Add(this.lbStockModificado);
-            this.panelFechas.Controls.Add(this.lbModificado);
-            this.panelFechas.Controls.Add(this.lbTextoFechaCreacion);
-            this.panelFechas.Controls.Add(this.lbTextStockModificado);
-            this.panelFechas.Location = new System.Drawing.Point(420, 383);
-            this.panelFechas.Name = "panelFechas";
-            this.panelFechas.Size = new System.Drawing.Size(207, 65);
-            this.panelFechas.TabIndex = 10;
+            this.panelContainerFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(62)))), ((int)(((byte)(79)))));
+            this.panelContainerFecha.Controls.Add(this.lbFechaCreacion);
+            this.panelContainerFecha.Controls.Add(this.lbTextoModificado);
+            this.panelContainerFecha.Controls.Add(this.lbStockModificado);
+            this.panelContainerFecha.Controls.Add(this.lbModificado);
+            this.panelContainerFecha.Controls.Add(this.lbTextoFechaCreacion);
+            this.panelContainerFecha.Controls.Add(this.lbTextStockModificado);
+            this.panelContainerFecha.Location = new System.Drawing.Point(420, 383);
+            this.panelContainerFecha.Name = "panelContainerFecha";
+            this.panelContainerFecha.Size = new System.Drawing.Size(207, 65);
+            this.panelContainerFecha.TabIndex = 10;
             // 
             // lbFechaCreacion
             // 
             this.lbFechaCreacion.AutoSize = true;
-            this.lbFechaCreacion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFechaCreacion.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFechaCreacion.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbFechaCreacion.Location = new System.Drawing.Point(76, 45);
             this.lbFechaCreacion.Name = "lbFechaCreacion";
@@ -785,11 +840,28 @@
             // panelFechasTitulo
             // 
             this.panelFechasTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(44)))), ((int)(((byte)(56)))));
+            this.panelFechasTitulo.Controls.Add(this.btnPanelFecha);
             this.panelFechasTitulo.Controls.Add(this.lbFechaTitulo);
             this.panelFechasTitulo.Location = new System.Drawing.Point(420, 359);
             this.panelFechasTitulo.Name = "panelFechasTitulo";
             this.panelFechasTitulo.Size = new System.Drawing.Size(207, 24);
             this.panelFechasTitulo.TabIndex = 5;
+            // 
+            // btnPanelFecha
+            // 
+            this.btnPanelFecha.FlatAppearance.BorderSize = 0;
+            this.btnPanelFecha.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.btnPanelFecha.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(65)))), ((int)(((byte)(111)))));
+            this.btnPanelFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPanelFecha.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPanelFecha.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPanelFecha.Location = new System.Drawing.Point(184, 1);
+            this.btnPanelFecha.Name = "btnPanelFecha";
+            this.btnPanelFecha.Size = new System.Drawing.Size(20, 20);
+            this.btnPanelFecha.TabIndex = 12;
+            this.btnPanelFecha.Text = "+";
+            this.btnPanelFecha.UseVisualStyleBackColor = true;
+            this.btnPanelFecha.Click += new System.EventHandler(this.btnPanelFecha_Click);
             // 
             // lbFechaTitulo
             // 
@@ -808,10 +880,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(86)))), ((int)(((byte)(111)))));
             this.ClientSize = new System.Drawing.Size(954, 450);
-            this.Controls.Add(this.panelFechas);
+            this.Controls.Add(this.panelContainerFecha);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelContainerImagen);
             this.Controls.Add(this.btnAgregarProducto);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.panelFechasTitulo);
@@ -834,12 +906,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbCargarProducto)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.panelContainerImagen.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbDeleteImage)).EndInit();
             this.panelTituloCargarCategoria.ResumeLayout(false);
             this.panelTituloCargarCategoria.PerformLayout();
-            this.panelFechas.ResumeLayout(false);
-            this.panelFechas.PerformLayout();
+            this.panelContainerFecha.ResumeLayout(false);
+            this.panelContainerFecha.PerformLayout();
             this.panelFechasTitulo.ResumeLayout(false);
             this.panelFechasTitulo.PerformLayout();
             this.ResumeLayout(false);
@@ -879,7 +951,7 @@
         private System.Windows.Forms.Label lbMarca;
         private System.Windows.Forms.Label lbImagen;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelContainerImagen;
         private System.Windows.Forms.Label lbAgregarCategoria;
         private System.Windows.Forms.Panel panelTituloCargarCategoria;
         private System.Windows.Forms.Label lbErrorCodigo;
@@ -904,10 +976,14 @@
         private System.Windows.Forms.Label lbCheckStock;
         private System.Windows.Forms.Label lbTextStockModificado;
         private System.Windows.Forms.Label lbStockModificado;
-        private System.Windows.Forms.Panel panelFechas;
+        private System.Windows.Forms.Panel panelContainerFecha;
         private System.Windows.Forms.Label lbFechaCreacion;
         private System.Windows.Forms.Label lbTextoFechaCreacion;
         private System.Windows.Forms.Panel panelFechasTitulo;
         private System.Windows.Forms.Label lbFechaTitulo;
+        private System.Windows.Forms.Button btnPanelImagen;
+        private System.Windows.Forms.Button btnPanelMarca;
+        private System.Windows.Forms.Button btnPanelCategoria;
+        private System.Windows.Forms.Button btnPanelFecha;
     }
 }
