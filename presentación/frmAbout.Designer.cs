@@ -55,7 +55,7 @@
             this.lbFrmAboutVersion.Name = "lbFrmAboutVersion";
             this.lbFrmAboutVersion.Size = new System.Drawing.Size(88, 14);
             this.lbFrmAboutVersion.TabIndex = 0;
-            this.lbFrmAboutVersion.Text = "Version 0.1.0";
+            this.lbFrmAboutVersion.Text = "Version 1.0.1";
             // 
             // lbTituloAcerca
             // 
@@ -75,9 +75,9 @@
             this.lbRealizado.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbRealizado.Location = new System.Drawing.Point(76, 118);
             this.lbRealizado.Name = "lbRealizado";
-            this.lbRealizado.Size = new System.Drawing.Size(233, 14);
+            this.lbRealizado.Size = new System.Drawing.Size(234, 14);
             this.lbRealizado.TabIndex = 4;
-            this.lbRealizado.Text = "Realizado por Alejandro Gomez Nieto";
+            this.lbRealizado.Text = "Realizado por Suburbia Development";
             // 
             // pbVersion
             // 

@@ -15,7 +15,11 @@ namespace presentación
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            cargarImagen();
+        }
+
+        private void cargarImagen()
+        {
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             pbVersion.Load(path + Opciones.Folder.VERSION);
             pbAutor.Load(path + Opciones.Folder.AUTOR);
@@ -23,12 +27,12 @@ namespace presentación
             pbWeb.Load(path + Opciones.Folder.WEB);
             pbMail.Load(path + Opciones.Folder.MAIL);
         }
-
+        
         private void lbGithHub_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.Process.Start("https://github.com/alefigure8/TPFinalNivel2_GomezNieto");
+                Process.Start("https://github.com/alefigure8/Gestion-de-Ventas-Archivo-");
             }
             catch (Exception)
             {
@@ -40,7 +44,7 @@ namespace presentación
         {
             try
             {
-                System.Diagnostics.Process.Start("https://alegomeznieto.tech");
+                Process.Start("https://alegomeznieto.tech");
             }
             catch (Exception)
             {
