@@ -4,9 +4,11 @@ using helper;
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace presentación
 {
@@ -14,14 +16,23 @@ namespace presentación
     {
         Producto producto = null;
         Producto productoAux= null;
-        private OpenFileDialog file = null;
+        Form parent;
+        
+        //Listas
         List<Marca> listaMarca = null;
         List<Producto> listaProducto = null;
         List<Categoria> listaCategoria = null;
         List<TextBox> listaTxt;
         List<Label> listaLabel;
+        
+        private OpenFileDialog file = null;
         bool vista;
-        Form parent;
+
+        // Paneles
+        bool panelMarca = false;
+        bool panelCategoria = false;
+        bool panelFecha = false;
+        bool panelImagen = false;
 
         public fmrAgregarProducto(Form parent)
         {
@@ -96,6 +107,14 @@ namespace presentación
             Metodos.textBoxReadOnly(listaTxt, false);
             Metodos.enableComboBox(cbMarca);
             Metodos.enableComboBox(cbCategoria);
+        }
+
+        private void panelesInit()
+        {
+            panelImagenGUI();
+            panelFechaGUI();
+            panelCategoriaGUI();
+            panelMarcaGUI();
         }
 
         private void clonarObjeto()
@@ -400,14 +419,20 @@ namespace presentación
                         return;
                     }
 
-                    //Actualizar fecha de Stock
-                    if(checkStockUpdate.Checked)
+                    //Actualizar fecha de Stock sin se modifico
+                    if (checkStockUpdate.Checked)
+                    {
                         producto.StockModificado = DateTime.Now;
+                    }
+                    
+                    //Actualizar Fecha de modificacion
+                    producto.Modifiado = DateTime.Now;
 
                     if (productoNegocio.modificar(producto))
                     {
 
                         //Cambiar vista de edición a vista
+                        cargarFechas(true);
                         modoVista();
 
                         MessageBox.Show("El producto fue modificado");
@@ -628,6 +653,8 @@ namespace presentación
 
             if (listaMarca != null)
                 Metodos.buscarEnLista<Marca>(listaMarca, cbAgregarMarca, btnConfigureMarca);
+
+            panelesInit();
         }
 
         private void checkStockUpdate_CheckedChanged(object sender, EventArgs e)
@@ -645,7 +672,13 @@ namespace presentación
 
         private void cargarFechas(bool visible = false)
         {
-            panelFechas.Visible = visible;
+            if(producto != null)
+            {
+                lbModificado.Text = producto.Modifiado.ToString("dd/MM/yyyy");
+                lbStockModificado.Text = producto.StockModificado.ToString("dd/MM/yyyy");
+                lbFechaCreacion.Text = producto.Creado.ToString("dd/MM/yyyy");
+            }
+            
             panelFechasTitulo.Visible = visible;
             lbFechaTitulo.Visible = visible;
             lbModificado.Visible = visible;
@@ -654,6 +687,92 @@ namespace presentación
             lbTextoFechaCreacion.Visible = visible;
             lbFechaCreacion.Visible = visible;
             lbTextStockModificado.Visible = visible;
+        }
+
+        
+        private void panelImagenGUI(bool opcion = false)
+        {
+            panelImagen = opcion;
+            panelContainerImagen.Visible = opcion;
+
+            if (opcion)
+            {
+                btnPanelImagen.Text = "-";
+                panelFechasTitulo.Location = new Point(420, 359);
+                panelContainerFecha.Location = new Point(420, 383);
+            }
+            else
+            {
+                btnPanelImagen.Text = "+";
+                panelFechasTitulo.Location = new Point(420, 120);
+                panelContainerFecha.Location = new Point(420, 120 + 24);
+            }
+        }
+
+        private void panelFechaGUI(bool opcion = false)
+        {
+            panelFecha = opcion;
+            panelContainerFecha.Visible = opcion;
+            
+            if(opcion)
+                btnPanelFecha.Text = "-";
+            else
+                btnPanelFecha.Text = "+";
+
+        }
+
+        private void panelCategoriaGUI(bool opcion = false)
+        {
+            panelCategoria = opcion;
+            panelCargarCategoria.Visible = opcion;
+
+            if (opcion)
+            {
+                btnPanelCategoria.Text = "-";
+                panelTituloCargarMarcar.Location = new Point(633, 225);
+                panelCargarMarca.Location = new Point(633, 249);
+            }
+            else
+            {
+                btnPanelCategoria.Text = "+";
+                panelTituloCargarMarcar.Location = new Point(633, 120);
+                panelCargarMarca.Location = new Point(633, 120 + 24);
+            }
+        }
+
+        private void panelMarcaGUI(bool opcion = false)
+        {
+            panelMarca = opcion;
+            panelCargarMarca.Visible = opcion;
+
+            if (opcion)
+                btnPanelMarca.Text = "-";
+            else
+                btnPanelMarca.Text = "+";
+        }
+        
+        private void btnPanelImagen_Click(object sender, EventArgs e)
+        {
+            this.panelImagen = !panelImagen;
+            panelImagenGUI(panelImagen);
+        }
+
+        private void btnPanelFecha_Click(object sender, EventArgs e)
+        {
+            this.panelFecha = !panelFecha;
+            panelFechaGUI(panelFecha);
+        }
+
+        private void btnPanelCategoria_Click(object sender, EventArgs e)
+        {
+            this.panelCategoria = !panelCategoria;
+            panelCategoriaGUI(panelCategoria);
+        }
+
+        private void btnPanelMarca_Click(object sender, EventArgs e)
+        {
+            this.panelMarca = !panelMarca;
+            panelMarcaGUI(panelMarca);
         }
     }
 }
