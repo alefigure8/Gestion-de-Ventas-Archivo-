@@ -66,7 +66,7 @@ namespace helper
 
         static public bool guardarLogo(OpenFileDialog file)
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
             string logoPersonal = path + Opciones.Folder.LOGOPERSONAL;
 
             //Validar si existe la carpeta
@@ -137,7 +137,6 @@ namespace helper
             }
             catch (Exception)
             {
-               //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
                 string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
                 //Utilizar using para liberar el recurso
@@ -150,9 +149,9 @@ namespace helper
 
         public static void logoTransparente(PictureBox pictureBox)
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            
-            if(File.Exists(path + Opciones.Folder.LOGOTRANSPARENT))
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
+
+            if (File.Exists(path + Opciones.Folder.LOGOTRANSPARENT))
             {
                 File.Copy(path + Opciones.Folder.LOGOTRANSPARENT, path + Opciones.Folder.NOLOGO, true);
                 cargarimagen(pictureBox, path + Opciones.Folder.NOLOGO);
@@ -161,16 +160,16 @@ namespace helper
 
         public static void defaultLogo(PictureBox pictureBox)
         {
-            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-            
+            string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
+
             if (File.Exists(path + Opciones.Folder.NOLOGO))
             {
                 File.Delete(path + Opciones.Folder.NOLOGO);
                 
-                if(!File.Exists(path + Opciones.Folder.LOGOPERSONAL))
-                    cargarimagen(pictureBox, path + Opciones.Folder.LOGO);
-                else
+                if(File.Exists(path + Opciones.Folder.LOGOPERSONAL))
                     cargarimagen(pictureBox, path + Opciones.Folder.LOGOPERSONAL);
+                else
+                    cargarimagen(pictureBox, path + Opciones.Folder.LOGO);
             }
         }
 
