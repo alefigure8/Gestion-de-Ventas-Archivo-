@@ -31,28 +31,23 @@ namespace presentación
 
         private void cargarImagenes()
         {
-            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
             if (File.Exists(path + Opciones.Folder.LOGOPERSONAL))
-                picLogoEmpresa.Image = System.Drawing.Image.FromFile(path + Opciones.Folder.LOGOPERSONAL);
+                Metodos.cargarimagen(picLogoEmpresa, path + Opciones.Folder.LOGOPERSONAL);
             else
-                picLogoEmpresa.Image = System.Drawing.Image.FromFile(path + Opciones.Folder.LOGO);
+                Metodos.cargarimagen(picLogoEmpresa, path + Opciones.Folder.LOGO);
         }
 
         private void btnSeleccionarImagen_Click(object sender, EventArgs e)
         {
-
             file = new OpenFileDialog();
             file.Filter = "All|*|Bitmap Image (.bmp)|*.bmp|Gif Image (.gif)|*.gif|JPEG Image (.jpeg)|*.jpeg|Png Image (.png)|*.png|Tiff Image (.tiff)|*.tiff|Wmf Image (.wmf)|*.wmf";
 
             if (file.ShowDialog() == DialogResult.OK)
             {
                 try
-                {
-                    //Borrar imagen del pictureBox
-                    picLogoEmpresa.Image.Dispose();
-                    
+                {                   
                     Metodos.cargarimagen(picLogoEmpresa, file.FileName);
                 }
                 catch (Exception)
@@ -69,11 +64,8 @@ namespace presentación
             {
                 try
                 {
-                    string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
-                    
-                    //Quitar imagen actual del picture box del Panel Form1
-                    parent.picLogoEmpresa.Image.Dispose();
-                    
+                    string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
+                                       
                     //Guardar imagen nueva
                     if (Metodos.guardarLogo(file))
                     {
@@ -100,7 +92,6 @@ namespace presentación
 
         private void configuracionGUI()
         {
-            //string path = Path.GetDirectoryName(Directory.GetCurrentDirectory().Replace(@"\bin", "")) + Opciones.Folder.ROOTIMAGE;
             string path = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + Opciones.Folder.ROOTIMAGE;
 
             if (File.Exists(path + Opciones.Folder.NOLOGO))
