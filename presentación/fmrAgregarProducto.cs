@@ -430,7 +430,6 @@ namespace presentación
 
                     if (productoNegocio.modificar(producto))
                     {
-
                         //Cambiar vista de edición a vista
                         cargarFechas(true);
                         modoVista();
@@ -476,6 +475,8 @@ namespace presentación
                             //Recargar ComboBoxes
                             ComboBoxOptions.comboBoxCategoria(cbAgregarcategoria);
                             ComboBoxOptions.comboBoxCategoria(cbCategoria);
+                            
+                            //Obtener lista de categoria
                             listaCategoria = categoriaNegocio.listar();
                             MessageBox.Show(Opciones.MensajeExito.EXITOCARGARMENSAJE);
                         }
